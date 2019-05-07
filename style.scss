@@ -6,11 +6,12 @@ html, body, h1 {
   padding: 0;
   margin: 0;
   font-family: 'Montserrat', sans-serif;
+  height: 100%;
 }
 
 #page {
   background: rgb(10,10,10);
-  height: 100vh;
+  height: 100%;
   width: 100%;
   margin: 0;
   padding: 0;
@@ -74,7 +75,7 @@ html, body, h1 {
     @include glitchCopy;
     left: -2px;
     text-shadow: -2px 0 #00fff9, 2px 2px #ff00c1;
-    animation: glitch-anim2 1s infinite linear alternate-reverse;
+    animation: glitch-anim2 3s infinite linear alternate-reverse;
   }
 }
 
