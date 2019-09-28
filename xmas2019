@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="no">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Kristiania Flipperselskap">
+    <title>XMAS 2019</title>
+
+    <link href="style3.css" rel="stylesheet">
+</head>
+<body>
+<div class="logo">
+    <b>XM<span>A</span>S<span> 20</span>1<span>9</span></b>
+</div>
+</body>
+</html>
