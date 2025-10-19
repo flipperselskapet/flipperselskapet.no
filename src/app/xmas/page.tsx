@@ -1,11 +1,26 @@
 import type { Metadata } from "next";
+import { db } from "~/db";
+import { registrations } from "~/db/schema";
+import { and, isNull, isNotNull } from "drizzle-orm";
 
 export const metadata: Metadata = {
   title: "XMAS Matchplay Open 2025 - Kristiania Flipperselskap",
   description: "Annual pinball championship in Oslo - XMAS Matchplay Open 2025",
 };
 
-export default function Xmas2025() {
+export default async function Xmas2025() {
+  // Get count of verified, non-deleted registrations
+  const verifiedPlayers = await db
+    .select()
+    .from(registrations)
+    .where(
+      and(
+        isNull(registrations.deletedAt),
+        isNotNull(registrations.verifiedAt)
+      )
+    );
+
+  const playerCount = verifiedPlayers.length;
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-950 via-slate-900 to-slate-950">
       {/* Hero Section with Flashy Title */}
@@ -78,9 +93,24 @@ export default function Xmas2025() {
               <p className="text-sm text-gray-300 mb-3 mt-4">
                 Register for the main tournament and optionally join the warmup and side tournaments.
               </p>
-              <p className="text-xs text-gray-400">
+              <p className="text-xs text-gray-400 mb-4">
                 <em>Norwegian players will pay with VIPPS at arrival. International players - we'll figure out payment together.</em>
               </p>
+
+              {/* Registered Players Link */}
+              <div className="flex items-center gap-3">
+                <a
+                  href="/xmas/players"
+                  className="inline-block text-cyan-400 hover:text-cyan-200 underline font-semibold"
+                >
+                  View registered players →
+                </a>
+                {playerCount > 0 && (
+                  <span className="inline-block px-3 py-1 bg-cyan-900/50 border border-cyan-500/50 rounded-full text-cyan-200 font-bold text-sm">
+                    {playerCount} {playerCount === 1 ? "player" : "players"}
+                  </span>
+                )}
+              </div>
             </div>
 
             <div className="bg-blue-900/20 border border-blue-500/30 rounded-lg p-4">

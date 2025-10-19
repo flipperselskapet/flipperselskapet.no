@@ -15,6 +15,11 @@ export const registrations = pgTable("registrations", {
   phone: text("phone").notNull(),
   ifpaNumber: text("ifpa_number"),
 
+  // Admin fields
+  verifiedAt: timestamp("verified_at"),
+  paidAt: timestamp("paid_at"),
+  deletedAt: timestamp("deleted_at"),
+
   // Metadata
   createdAt: timestamp("created_at").notNull().defaultNow(),
   updatedAt: timestamp("updated_at")

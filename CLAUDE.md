@@ -65,12 +65,29 @@ src/
     layout.tsx         # Root layout with font loading and metadata
     page.tsx           # Homepage
     globals.css        # Tailwind imports and theme tokens
+    xmas/              # XMAS Tournament pages
+      page.tsx         # Tournament information page
+      register/        # Registration functionality
+        page.tsx       # Registration page
+        registration-form.tsx  # Client-side form with Turnstile captcha
+        actions.ts     # Server action for registration submission
+      admin/           # Admin panel (password protected)
+        page.tsx       # Admin dashboard
+        actions.ts     # Admin actions (verify, paid, delete)
+        login-actions.ts # Authentication actions
+        admin-login.tsx  # Login form
+        registration-row.tsx # Table row component
+        logout-button.tsx # Logout button
+      players/         # Public player list
+        page.tsx       # Registered players list
   db/                  # Database configuration and schema
     index.ts           # Database connection and Drizzle client
     schema.ts          # Database schema definitions
   env.ts               # Environment variables validation (T3 Env)
 old/                   # Legacy static HTML files (archived)
 public/                # Static assets
+supabase/
+  migrations/          # Database migration files
 ```
 
 ## Path Aliases

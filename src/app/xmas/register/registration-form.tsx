@@ -246,16 +246,41 @@ export function RegistrationForm() {
         </div>
       </div>
 
-      {/* Submit Status */}
-      {submitStatus && (
-        <div
-          className={`p-4 rounded-lg ${
-            submitStatus.type === "success"
-              ? "bg-green-900/30 border-2 border-green-500/50 text-green-200"
-              : "bg-red-900/30 border-2 border-red-500/50 text-red-200"
-          }`}
-        >
+      {/* Error Status (inline) */}
+      {submitStatus && submitStatus.type === "error" && (
+        <div className="p-4 rounded-lg bg-red-900/30 border-2 border-red-500/50 text-red-200">
           <p className="font-semibold">{submitStatus.message}</p>
+        </div>
+      )}
+
+      {/* Success Modal */}
+      {submitStatus && submitStatus.type === "success" && (
+        <div className="fixed inset-0 bg-black/80 flex items-center justify-center z-50 p-4">
+          <div className="bg-gradient-to-r from-slate-900 to-slate-800 rounded-lg border-4 border-green-500/80 p-8 max-w-md w-full shadow-2xl">
+            <div className="text-center">
+              <div className="text-6xl mb-4">✓</div>
+              <h2 className="text-3xl font-bold text-green-300 mb-4">
+                Registration Successful!
+              </h2>
+              <p className="text-gray-200 mb-6">
+                {submitStatus.message}
+              </p>
+              <div className="space-y-3">
+                <a
+                  href="/xmas"
+                  className="block w-full py-3 px-6 bg-gradient-to-r from-cyan-600 to-purple-600 hover:from-cyan-500 hover:to-purple-500 text-white font-bold text-lg rounded-lg shadow-lg transition-all duration-200"
+                >
+                  Back to Tournament Information
+                </a>
+                <a
+                  href="/xmas/players"
+                  className="block w-full py-3 px-6 bg-slate-700 hover:bg-slate-600 text-white font-semibold rounded-lg transition-all duration-200"
+                >
+                  View Registered Players
+                </a>
+              </div>
+            </div>
+          </div>
         </div>
       )}
 

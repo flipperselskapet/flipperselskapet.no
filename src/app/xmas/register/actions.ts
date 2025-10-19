@@ -64,9 +64,28 @@ export async function submitRegistration(formData: FormData) {
       };
     }
 
+    // Validate at least one tournament is selected
+    if (!registration.mainTournament && !registration.warmupTournament && !registration.sideTournament) {
+      return {
+        success: false,
+        error: "Please select at least one tournament to participate in",
+      };
+    }
+
     // Save to database
     const { db } = await import("~/db");
     const { registrations } = await import("~/db/schema");
+    const { isNull, count } = await import("drizzle-orm");
+
+    // Check if we should auto-verify this registration
+    // Count current non-deleted registrations (regardless of verification status)
+    const [countResult] = await db
+      .select({ count: count() })
+      .from(registrations)
+      .where(isNull(registrations.deletedAt));
+
+    const currentCount = countResult?.count ?? 0;
+    const shouldAutoVerify = currentCount < env.AUTO_VERIFY_LIMIT;
 
     await db.insert(registrations).values({
       mainTournament: registration.mainTournament,
@@ -77,6 +96,7 @@ export async function submitRegistration(formData: FormData) {
       email: registration.email,
       phone: registration.phone,
       ifpaNumber: registration.ifpaNumber,
+      verifiedAt: shouldAutoVerify ? new Date() : null,
     });
 
     // Log to console
@@ -91,6 +111,9 @@ export async function submitRegistration(formData: FormData) {
     console.log("  Email:", registration.email);
     console.log("  Phone:", registration.phone);
     console.log("  IFPA Number:", registration.ifpaNumber || "(not provided)");
+    console.log("\nVerification:");
+    console.log("  Auto-verified:", shouldAutoVerify ? "✓" : "✗");
+    console.log("  Registration count:", `${currentCount + 1}/${env.AUTO_VERIFY_LIMIT}`);
     console.log("====================================\n");
 
     return {

@@ -12,6 +12,8 @@ export const env = createEnv({
       .enum(["development", "test", "production"])
       .default("development"),
     TURNSTILE_SECRET_KEY: z.string().min(1),
+    AUTO_VERIFY_LIMIT: z.coerce.number().int().positive().default(50),
+    ADMIN_PASSWORD: z.string().min(8),
   },
 
   /**
@@ -32,6 +34,8 @@ export const env = createEnv({
     NODE_ENV: process.env.NODE_ENV,
     TURNSTILE_SECRET_KEY: process.env.TURNSTILE_SECRET_KEY,
     NEXT_PUBLIC_TURNSTILE_SITE_KEY: process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY,
+    AUTO_VERIFY_LIMIT: process.env.AUTO_VERIFY_LIMIT,
+    ADMIN_PASSWORD: process.env.ADMIN_PASSWORD,
   },
   /**
    * Run `build` or `dev` with `SKIP_ENV_VALIDATION` to skip env validation. This is especially
