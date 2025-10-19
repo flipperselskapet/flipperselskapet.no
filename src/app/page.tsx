@@ -2,7 +2,7 @@ export default function Home() {
   console.log("testing staging");
   return (
     <div
-      className="h-screen m-0"
+      className="h-screen m-0 relative"
       style={{
         background: "#112 url(/wall.jpg) center no-repeat",
         backgroundSize: "cover",
@@ -13,6 +13,14 @@ export default function Home() {
           Kri<span>s</span>tian<span>ia</span> flipp<span>er</span>sel
           <span>sk</span>ap
         </b>
+      </div>
+      <div className="absolute bottom-8 right-8">
+        <a
+          href="/machines"
+          className="text-gray-400 hover:text-gray-200 text-sm transition-colors opacity-50 hover:opacity-100"
+        >
+          Maskiner
+        </a>
       </div>
     </div>
   );
