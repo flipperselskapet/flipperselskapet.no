@@ -108,6 +108,15 @@ supabase/
 - **Database Client**: `postgres` package
 - **Configuration**: `drizzle.config.ts` at project root
 - **Environment Variables**: Validated via T3 Env (`src/env.ts`)
+- **Migrations**: Stored in `supabase/migrations/`
+
+### Database Schema
+
+**Registrations Table** (`registrations`):
+- Tournament selections: `mainTournament`, `warmupTournament`, `sideTournament` (boolean)
+- Personal info: `firstName`, `lastName`, `email`, `phone`, `ifpaNumber` (text)
+- Admin fields: `verifiedAt`, `paidAt`, `deletedAt` (timestamp, nullable)
+- Metadata: `createdAt`, `updatedAt` (timestamp)
 
 ### Database Workflow
 
@@ -118,6 +127,44 @@ supabase/
 
 The database connection is initialized in `src/db/index.ts` and exported as a Drizzle client instance for use throughout the application.
 
+## XMAS Tournament Registration System
+
+The project includes a complete tournament registration system for the XMAS Matchplay Open 2025 tournament:
+
+### Features
+
+1. **Public Pages**:
+   - `/xmas` - Tournament information and schedule
+   - `/xmas/register` - Registration form with Cloudflare Turnstile captcha
+   - `/xmas/players` - List of verified registered players
+
+2. **Admin Panel** (`/xmas/admin`):
+   - Password protected (cookie-based auth)
+   - View all registrations with statistics
+   - Mark players as verified/paid
+   - Soft-delete registrations
+   - Logout functionality
+
+3. **Auto-Verification**:
+   - First N registrations are automatically verified (configured via `AUTO_VERIFY_LIMIT`)
+   - Based on count of non-deleted registrations
+   - Admins can manually verify beyond the limit
+
+4. **Security**:
+   - Cloudflare Turnstile captcha prevents spam
+   - Admin password via environment variable
+   - HTTP-only cookies for admin auth
+   - Server-side validation
+
+### Environment Variables
+
+Required environment variables (add to `.env`):
+- `DATABASE_POSTGRES_URL` - PostgreSQL connection string
+- `TURNSTILE_SECRET_KEY` - Cloudflare Turnstile secret key
+- `NEXT_PUBLIC_TURNSTILE_SITE_KEY` - Cloudflare Turnstile site key (public)
+- `ADMIN_PASSWORD` - Admin panel password (min 8 characters)
+- `AUTO_VERIFY_LIMIT` - Number of auto-verified registrations (default: 50)
+
 ## Architecture Notes
 
 - Uses Next.js App Router (not Pages Router)
@@ -125,3 +172,4 @@ The database connection is initialized in `src/db/index.ts` and exported as a Dr
 - Turbopack enabled for faster builds and development
 - No custom Next.js configuration currently (default settings)
 - PostgreSQL database managed via Drizzle ORM
+- Cookie-based authentication for admin panel

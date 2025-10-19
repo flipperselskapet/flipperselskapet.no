@@ -15,6 +15,13 @@
       "when": 1760899197139,
       "tag": "0001_clever_khan",
       "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "7",
+      "when": 1760903770568,
+      "tag": "0002_eager_pretty_boy",
+      "breakpoints": true
     }
   ]
 }
