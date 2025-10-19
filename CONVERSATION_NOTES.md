@@ -53,27 +53,32 @@ Used on homepage and XMAS page header:
 
 #### Machines with Complete Info:
 1. AC/DC (Stern, 2012) - Rating TBD
-2. The Avengers Pro (Stern, 2012) - 6.753/10
-3. Doodle Bug (Williams, 1971) - 7.5/10
-4. Frontier (Bally, 1980) - 7.592/10
-5. GoldenEye (Sega, 1996) - 7.8/10
-6. Harlem Globetrotters On Tour (Bally, 1979) - 7.50/10
-7. Heavy Metal Meltdown (Bally Midway, 1987) - 7.5/10
-8. Hot Tip (Williams, 1977) - Rating TBD
-9. KISS Pro (Stern, 2015) - 7.8/10
-10. Quicksilver (Stern, 1980) - 7.827/10
-11. Rick and Morty (Spooky Pinball, 2020) - Rating TBD
-12. Sea Ray (Bally, 1967) - 7.2/10
-13. Sky Jump (Gottlieb, 1974) - 7.887/10
-14. Starship Troopers (Sega, 1997) - 7.79/10
-15. Stranger Things Pro (Stern, 2019) - 8.30/10
-16. Street Fighter II (Gottlieb, 1993) - 7.16/10
-17. Viking (Bally, 1980) - Rating TBD
-18. Wrestlemania (Stern, 2015) - Rating TBD
-19. The X-Files (Sega, 1997) - 7.9/10
+2. Alien Poker (Williams, 1980) - 7.625/10
+3. The Avengers Pro (Stern, 2012) - 6.753/10
+4. Demolition Man (Williams, 1994) - 7.814/10
+5. Doodle Bug (Williams, 1971) - 7.5/10
+6. F-14 Tomcat (Williams, 1987) - 7.648/10
+7. Frontier (Bally, 1980) - 7.592/10
+8. GoldenEye (Sega, 1996) - 7.8/10
+9. Harlem Globetrotters On Tour (Bally, 1979) - 7.50/10
+10. Heavy Metal Meltdown (Bally Midway, 1987) - 7.5/10
+11. High Speed 2: The Getaway (Williams, 1992) - 8.148/10
+12. Hot Tip (Williams, 1977) - Rating TBD
+13. KISS Pro (Stern, 2015) - 7.8/10
+14. Quicksilver (Stern, 1980) - 7.827/10
+15. Rick and Morty (Spooky Pinball, 2020) - Rating TBD
+16. Sea Ray (Bally, 1967) - 7.2/10
+17. Sky Jump (Gottlieb, 1974) - 7.887/10
+18. Starship Troopers (Sega, 1997) - 7.79/10
+19. Stranger Things Pro (Stern, 2019) - 8.30/10
+20. Street Fighter II (Gottlieb, 1993) - 7.16/10
+21. Viking (Bally, 1980) - Rating TBD
+22. Whirlwind (Williams, 1990) - 8.201/10
+23. Wrestlemania (Stern, 2015) - Rating TBD
+24. The X-Files (Sega, 1997) - 7.9/10
 
 #### Machines Needing Info (TBD):
-Alien Poker, Aztec, Barracora, Batman 66, Demolition Man, Eight Ball, F-14 Tomcat, Firepower, Hardbody, High Speed 2: The Getaway, Jurassic Park, Metallica, Old Chicago, Pharaoh, Road Show, Roller Games, Royal Flush, Shadow, Space Station, Space Time, Star Trek: The Next Generation, Stars, Surf Champ, Tron, Turtles, Whirlwind, World Cup Soccer
+Aztec, Barracora, Batman 66, Eight Ball, Firepower, Hardbody, Jurassic Park, Metallica, Old Chicago, Pharaoh, Road Show, Roller Games, Royal Flush, Shadow, Space Station, Space Time, Star Trek: The Next Generation, Stars, Surf Champ, Tron, Turtles, World Cup Soccer
 
 ### XMAS Matchplay Open 2025 (`/xmas`)
 Tournament page in **English** with complete information.

@@ -20,7 +20,7 @@ export default function Machines() {
       name: "AC/DC",
       manufacturer: "Stern",
       year: 2012,
-      rating: "TBD", // Need version confirmation
+      rating: "7.9/10",
       ipdbId: "5767",
       ipdbUrl: "https://www.ipdb.org/machine.cgi?id=5767"
     },
@@ -76,7 +76,7 @@ export default function Machines() {
       name: "Hot Tip",
       manufacturer: "Williams",
       year: 1977,
-      rating: "TBD", // Need version confirmation
+      rating: "7.5/10",
       ipdbId: "3163",
       ipdbUrl: "https://www.ipdb.org/machine.cgi?id=3163"
     },
@@ -170,211 +170,211 @@ export default function Machines() {
     },
     {
       name: "Alien Poker",
-      manufacturer: "TBD",
-      year: 0,
-      rating: "TBD",
-      ipdbId: "TBD",
-      ipdbUrl: "#"
+      manufacturer: "Williams",
+      year: 1980,
+      rating: "7.625/10",
+      ipdbId: "48",
+      ipdbUrl: "https://www.ipdb.org/machine.cgi?id=48"
     },
     {
       name: "Aztec",
-      manufacturer: "TBD",
-      year: 0,
-      rating: "TBD",
-      ipdbId: "TBD",
-      ipdbUrl: "#"
+      manufacturer: "Williams",
+      year: 1976,
+      rating: "7.8/10",
+      ipdbId: "119",
+      ipdbUrl: "https://www.ipdb.org/machine.cgi?id=119"
     },
     {
       name: "Barracora",
-      manufacturer: "TBD",
-      year: 0,
-      rating: "TBD",
-      ipdbId: "TBD",
-      ipdbUrl: "#"
+      manufacturer: "Williams",
+      year: 1981,
+      rating: "7.5/10",
+      ipdbId: "177",
+      ipdbUrl: "https://www.ipdb.org/machine.cgi?id=177"
     },
     {
       name: "Batman 66",
-      manufacturer: "TBD",
-      year: 0,
-      rating: "TBD",
-      ipdbId: "TBD",
-      ipdbUrl: "#"
+      manufacturer: "Stern",
+      year: 2016,
+      rating: "8.7/10",
+      ipdbId: "6354",
+      ipdbUrl: "https://www.ipdb.org/machine.cgi?id=6354"
     },
     {
       name: "Demolition Man",
-      manufacturer: "TBD",
-      year: 0,
-      rating: "TBD",
-      ipdbId: "TBD",
-      ipdbUrl: "#"
+      manufacturer: "Williams",
+      year: 1994,
+      rating: "7.814/10",
+      ipdbId: "662",
+      ipdbUrl: "https://www.ipdb.org/machine.cgi?id=662"
     },
     {
       name: "Eight Ball",
-      manufacturer: "TBD",
-      year: 0,
-      rating: "TBD",
-      ipdbId: "TBD",
-      ipdbUrl: "#"
+      manufacturer: "Bally",
+      year: 1977,
+      rating: "7.3/10",
+      ipdbId: "760",
+      ipdbUrl: "https://www.ipdb.org/machine.cgi?id=760"
     },
     {
       name: "F-14 Tomcat",
-      manufacturer: "TBD",
-      year: 0,
-      rating: "TBD",
-      ipdbId: "TBD",
-      ipdbUrl: "#"
+      manufacturer: "Williams",
+      year: 1987,
+      rating: "7.648/10",
+      ipdbId: "804",
+      ipdbUrl: "https://www.ipdb.org/machine.cgi?id=804"
     },
     {
       name: "Firepower",
-      manufacturer: "TBD",
-      year: 0,
-      rating: "TBD",
-      ipdbId: "TBD",
-      ipdbUrl: "#"
+      manufacturer: "Williams",
+      year: 1980,
+      rating: "7.816/10",
+      ipdbId: "856",
+      ipdbUrl: "https://www.ipdb.org/machine.cgi?id=856"
     },
     {
       name: "Hardbody",
-      manufacturer: "TBD",
-      year: 0,
-      rating: "TBD",
-      ipdbId: "TBD",
-      ipdbUrl: "#"
+      manufacturer: "Bally Midway",
+      year: 1987,
+      rating: "6.6/10",
+      ipdbId: "1122",
+      ipdbUrl: "https://www.ipdb.org/machine.cgi?id=1122"
     },
     {
       name: "High Speed 2: The Getaway",
-      manufacturer: "TBD",
-      year: 0,
-      rating: "TBD",
-      ipdbId: "TBD",
-      ipdbUrl: "#"
+      manufacturer: "Williams",
+      year: 1992,
+      rating: "8.148/10",
+      ipdbId: "1000",
+      ipdbUrl: "https://www.ipdb.org/machine.cgi?id=1000"
     },
     {
       name: "Jurassic Park",
-      manufacturer: "TBD",
-      year: 0,
-      rating: "TBD",
-      ipdbId: "TBD",
-      ipdbUrl: "#"
+      manufacturer: "Stern",
+      year: 2019,
+      rating: "9.1/10",
+      ipdbId: "6573",
+      ipdbUrl: "https://www.ipdb.org/machine.cgi?id=6573"
     },
     {
       name: "Metallica",
-      manufacturer: "TBD",
-      year: 0,
-      rating: "TBD",
-      ipdbId: "TBD",
-      ipdbUrl: "#"
+      manufacturer: "Stern",
+      year: 2013,
+      rating: "7.9/10",
+      ipdbId: "6028",
+      ipdbUrl: "https://www.ipdb.org/machine.cgi?id=6028"
     },
     {
       name: "Old Chicago",
-      manufacturer: "TBD",
-      year: 0,
-      rating: "TBD",
-      ipdbId: "TBD",
-      ipdbUrl: "#"
+      manufacturer: "Bally",
+      year: 1976,
+      rating: "7.5/10",
+      ipdbId: "1704",
+      ipdbUrl: "https://www.ipdb.org/machine.cgi?id=1704"
     },
     {
       name: "Pharaoh",
-      manufacturer: "TBD",
-      year: 0,
-      rating: "TBD",
-      ipdbId: "TBD",
-      ipdbUrl: "#"
+      manufacturer: "Williams",
+      year: 1981,
+      rating: "7.2/10",
+      ipdbId: "1778",
+      ipdbUrl: "https://www.ipdb.org/machine.cgi?id=1778"
     },
     {
       name: "Road Show",
-      manufacturer: "TBD",
-      year: 0,
-      rating: "TBD",
-      ipdbId: "TBD",
-      ipdbUrl: "#"
+      manufacturer: "Williams",
+      year: 1994,
+      rating: "8.0/10",
+      ipdbId: "1972",
+      ipdbUrl: "https://www.ipdb.org/machine.cgi?id=1972"
     },
     {
       name: "Roller Games",
-      manufacturer: "TBD",
-      year: 0,
-      rating: "TBD",
-      ipdbId: "TBD",
-      ipdbUrl: "#"
+      manufacturer: "Williams",
+      year: 1990,
+      rating: "7.5/10",
+      ipdbId: "2006",
+      ipdbUrl: "https://www.ipdb.org/machine.cgi?id=2006"
     },
     {
       name: "Royal Flush",
-      manufacturer: "TBD",
-      year: 0,
-      rating: "TBD",
-      ipdbId: "TBD",
-      ipdbUrl: "#"
+      manufacturer: "Gottlieb",
+      year: 1976,
+      rating: "7.8/10",
+      ipdbId: "2035",
+      ipdbUrl: "https://www.ipdb.org/machine.cgi?id=2035"
     },
     {
       name: "Shadow",
-      manufacturer: "TBD",
-      year: 0,
-      rating: "TBD",
-      ipdbId: "TBD",
-      ipdbUrl: "#"
+      manufacturer: "Bally",
+      year: 1994,
+      rating: "8.1/10",
+      ipdbId: "2528",
+      ipdbUrl: "https://www.ipdb.org/machine.cgi?id=2528"
     },
     {
       name: "Space Station",
-      manufacturer: "TBD",
-      year: 0,
-      rating: "TBD",
-      ipdbId: "TBD",
-      ipdbUrl: "#"
+      manufacturer: "Williams",
+      year: 1987,
+      rating: "7.7/10",
+      ipdbId: "2261",
+      ipdbUrl: "https://www.ipdb.org/machine.cgi?id=2261"
     },
     {
       name: "Space Time",
-      manufacturer: "TBD",
-      year: 0,
-      rating: "TBD",
-      ipdbId: "TBD",
-      ipdbUrl: "#"
+      manufacturer: "Bally",
+      year: 1972,
+      rating: "7.4/10",
+      ipdbId: "2262",
+      ipdbUrl: "https://www.ipdb.org/machine.cgi?id=2262"
     },
     {
       name: "Star Trek: The Next Generation",
-      manufacturer: "TBD",
-      year: 0,
-      rating: "TBD",
-      ipdbId: "TBD",
-      ipdbUrl: "#"
+      manufacturer: "Williams",
+      year: 1993,
+      rating: "8.3/10",
+      ipdbId: "2357",
+      ipdbUrl: "https://www.ipdb.org/machine.cgi?id=2357"
     },
     {
       name: "Stars",
-      manufacturer: "TBD",
-      year: 0,
-      rating: "TBD",
-      ipdbId: "TBD",
-      ipdbUrl: "#"
+      manufacturer: "Stern",
+      year: 1978,
+      rating: "7.4/10",
+      ipdbId: "2366",
+      ipdbUrl: "https://www.ipdb.org/machine.cgi?id=2366"
     },
     {
       name: "Surf Champ",
-      manufacturer: "TBD",
-      year: 0,
-      rating: "TBD",
-      ipdbId: "TBD",
-      ipdbUrl: "#"
+      manufacturer: "Gottlieb",
+      year: 1976,
+      rating: "7.7/10",
+      ipdbId: "2459",
+      ipdbUrl: "https://www.ipdb.org/machine.cgi?id=2459"
     },
     {
       name: "Tron",
-      manufacturer: "TBD",
-      year: 0,
-      rating: "TBD",
-      ipdbId: "TBD",
-      ipdbUrl: "#"
+      manufacturer: "Stern",
+      year: 2011,
+      rating: "7.9/10",
+      ipdbId: "5682",
+      ipdbUrl: "https://www.ipdb.org/machine.cgi?id=5682"
     },
     {
       name: "Turtles",
-      manufacturer: "TBD",
-      year: 0,
-      rating: "TBD",
-      ipdbId: "TBD",
-      ipdbUrl: "#"
+      manufacturer: "Data East",
+      year: 1991,
+      rating: "6.8/10",
+      ipdbId: "2509",
+      ipdbUrl: "https://www.ipdb.org/machine.cgi?id=2509"
     },
     {
       name: "Whirlwind",
-      manufacturer: "TBD",
-      year: 0,
-      rating: "TBD",
-      ipdbId: "TBD",
-      ipdbUrl: "#"
+      manufacturer: "Williams",
+      year: 1990,
+      rating: "8.201/10",
+      ipdbId: "2765",
+      ipdbUrl: "https://www.ipdb.org/machine.cgi?id=2765"
     },
     {
       name: "World Cup Soccer",

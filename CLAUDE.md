@@ -150,11 +150,22 @@ The project includes a complete tournament registration system for the XMAS Matc
    - Based on count of non-deleted registrations
    - Admins can manually verify beyond the limit
 
-4. **Security**:
+4. **Validation**:
+   - Client-side validation for tournament selection (at least one required)
+   - Server-side validation for all fields
+   - Captcha reset on validation errors (form data preserved)
+   - Form only resets on successful submission
+
+5. **Security**:
    - Cloudflare Turnstile captcha prevents spam
    - Admin password via environment variable
    - HTTP-only cookies for admin auth
-   - Server-side validation
+   - Server-side validation with Turnstile token verification
+
+6. **Cache Management**:
+   - Automatic cache revalidation when players are verified/deleted
+   - `/xmas/players` and `/xmas` pages update immediately
+   - Admin changes reflect in public pages without delay
 
 ### Environment Variables
 
