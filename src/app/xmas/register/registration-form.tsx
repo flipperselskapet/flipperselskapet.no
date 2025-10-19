@@ -1,9 +1,9 @@
 "use client";
 
-import { useState } from "react";
 import { Turnstile } from "@marsidev/react-turnstile";
-import { submitRegistration } from "./actions";
+import { useState, useRef } from "react";
 import { env } from "~/env";
+import { submitRegistration } from "./actions";
 
 export function RegistrationForm() {
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -12,10 +12,15 @@ export function RegistrationForm() {
     message: string;
   } | null>(null);
   const [turnstileToken, setTurnstileToken] = useState<string | null>(null);
+  const turnstileRef = useRef<any>(null);
 
-  async function handleSubmit(formData: FormData) {
+  async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
+    e.preventDefault();
     setIsSubmitting(true);
     setSubmitStatus(null);
+
+    const formElement = e.currentTarget;
+    const formData = new FormData(formElement);
 
     // Check if turnstile token is present
     if (!turnstileToken) {
@@ -24,6 +29,22 @@ export function RegistrationForm() {
         message: "Please complete the captcha verification.",
       });
       setIsSubmitting(false);
+      return;
+    }
+
+    // Client-side validation: Check if at least one tournament is selected
+    const mainTournament = formData.get("mainTournament") === "true";
+    const warmupTournament = formData.get("warmupTournament") === "true";
+    const sideTournament = formData.get("sideTournament") === "true";
+
+    if (!mainTournament && !warmupTournament && !sideTournament) {
+      setSubmitStatus({
+        type: "error",
+        message: "Please select at least one tournament to participate in",
+      });
+      setIsSubmitting(false);
+      setTurnstileToken(null);
+      turnstileRef.current?.reset();
       return;
     }
 
@@ -36,30 +57,36 @@ export function RegistrationForm() {
       if (result.success) {
         setSubmitStatus({
           type: "success",
-          message: "Registration submitted successfully! We'll be in touch soon.",
+          message:
+            "Registration submitted successfully! We'll be in touch soon.",
         });
-        // Reset form
-        const form = document.querySelector("form") as HTMLFormElement;
-        form?.reset();
+        // Reset form only on success
+        formElement.reset();
         setTurnstileToken(null);
       } else {
         setSubmitStatus({
           type: "error",
           message: result.error || "Something went wrong. Please try again.",
         });
+        // Reset captcha on error so user can retry
+        setTurnstileToken(null);
+        turnstileRef.current?.reset();
       }
-    } catch (error) {
+    } catch {
       setSubmitStatus({
         type: "error",
         message: "Failed to submit registration. Please try again.",
       });
+      // Reset captcha on error so user can retry
+      setTurnstileToken(null);
+      turnstileRef.current?.reset();
     } finally {
       setIsSubmitting(false);
     }
   }
 
   return (
-    <form action={handleSubmit} className="space-y-8">
+    <form onSubmit={handleSubmit} className="space-y-8">
       {/* Tournament Selection */}
       <div>
         <h2 className="text-2xl font-bold text-cyan-300 mb-4">
@@ -81,11 +108,15 @@ export function RegistrationForm() {
                 className="mt-1 h-5 w-5 rounded border-purple-300 text-purple-600 focus:ring-purple-500"
               />
               <div className="flex-1">
-                <label htmlFor="main-tournament" className="block font-semibold text-purple-200 cursor-pointer">
+                <label
+                  htmlFor="main-tournament"
+                  className="block font-semibold text-purple-200 cursor-pointer"
+                >
                   XMAS Matchplay Open Main 2025 (Saturday)
                 </label>
                 <p className="text-sm text-gray-300 mt-1">
-                  Group matchplay qualifications followed by top 16 playoffs - 200% TGP
+                  Group matchplay qualifications followed by top 16 playoffs -
+                  200% TGP
                 </p>
               </div>
             </div>
@@ -102,7 +133,10 @@ export function RegistrationForm() {
                 className="mt-1 h-5 w-5 rounded border-cyan-300 text-cyan-600 focus:ring-cyan-500"
               />
               <div className="flex-1">
-                <label htmlFor="warmup-tournament" className="block font-semibold text-cyan-200 cursor-pointer">
+                <label
+                  htmlFor="warmup-tournament"
+                  className="block font-semibold text-cyan-200 cursor-pointer"
+                >
                   XMAS Matchplay Open Warmup 2025 (Friday)
                 </label>
                 <p className="text-sm text-gray-300 mt-1">
@@ -126,7 +160,10 @@ export function RegistrationForm() {
                 className="mt-1 h-5 w-5 rounded border-pink-300 text-pink-600 focus:ring-pink-500"
               />
               <div className="flex-1">
-                <label htmlFor="side-tournament" className="block font-semibold text-pink-200 cursor-pointer">
+                <label
+                  htmlFor="side-tournament"
+                  className="block font-semibold text-pink-200 cursor-pointer"
+                >
                   XMAS Matchplay Open Side 2025 (Saturday evening)
                 </label>
                 <p className="text-sm text-gray-300 mt-1">
@@ -151,7 +188,10 @@ export function RegistrationForm() {
           {/* Name Fields */}
           <div className="grid md:grid-cols-2 gap-4">
             <div>
-              <label htmlFor="firstName" className="block text-sm font-medium text-gray-200 mb-2">
+              <label
+                htmlFor="firstName"
+                className="block text-sm font-medium text-gray-200 mb-2"
+              >
                 First Name <span className="text-red-400">*</span>
               </label>
               <input
@@ -165,7 +205,10 @@ export function RegistrationForm() {
             </div>
 
             <div>
-              <label htmlFor="lastName" className="block text-sm font-medium text-gray-200 mb-2">
+              <label
+                htmlFor="lastName"
+                className="block text-sm font-medium text-gray-200 mb-2"
+              >
                 Last Name <span className="text-red-400">*</span>
               </label>
               <input
@@ -181,7 +224,10 @@ export function RegistrationForm() {
 
           {/* Email */}
           <div>
-            <label htmlFor="email" className="block text-sm font-medium text-gray-200 mb-2">
+            <label
+              htmlFor="email"
+              className="block text-sm font-medium text-gray-200 mb-2"
+            >
               Email Address <span className="text-red-400">*</span>
             </label>
             <input
@@ -196,7 +242,10 @@ export function RegistrationForm() {
 
           {/* Phone */}
           <div>
-            <label htmlFor="phone" className="block text-sm font-medium text-gray-200 mb-2">
+            <label
+              htmlFor="phone"
+              className="block text-sm font-medium text-gray-200 mb-2"
+            >
               Phone Number <span className="text-red-400">*</span>
             </label>
             <input
@@ -214,7 +263,10 @@ export function RegistrationForm() {
 
           {/* IFPA Number */}
           <div>
-            <label htmlFor="ifpaNumber" className="block text-sm font-medium text-gray-200 mb-2">
+            <label
+              htmlFor="ifpaNumber"
+              className="block text-sm font-medium text-gray-200 mb-2"
+            >
               IFPA Number <span className="text-gray-400">(Optional)</span>
             </label>
             <input
@@ -225,7 +277,8 @@ export function RegistrationForm() {
               placeholder="12345"
             />
             <p className="text-xs text-gray-400 mt-1">
-              Your International Flipper Pinball Association player number, if you have one.
+              Your International Flipper Pinball Association player number, if
+              you have one.
             </p>
           </div>
         </div>
@@ -233,11 +286,10 @@ export function RegistrationForm() {
 
       {/* Captcha */}
       <div>
-        <h2 className="text-2xl font-bold text-cyan-300 mb-4">
-          Verification
-        </h2>
+        <h2 className="text-2xl font-bold text-cyan-300 mb-4">Verification</h2>
         <div className="flex justify-center">
           <Turnstile
+            ref={turnstileRef}
             siteKey={env.NEXT_PUBLIC_TURNSTILE_SITE_KEY}
             onSuccess={(token) => setTurnstileToken(token)}
             onError={() => setTurnstileToken(null)}
@@ -262,9 +314,7 @@ export function RegistrationForm() {
               <h2 className="text-3xl font-bold text-green-300 mb-4">
                 Registration Successful!
               </h2>
-              <p className="text-gray-200 mb-6">
-                {submitStatus.message}
-              </p>
+              <p className="text-gray-200 mb-6">{submitStatus.message}</p>
               <div className="space-y-3">
                 <a
                   href="/xmas"

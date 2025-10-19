@@ -1,5 +1,6 @@
 "use server";
 
+import { revalidatePath } from "next/cache";
 import { env } from "~/env";
 
 export async function submitRegistration(formData: FormData) {
@@ -26,7 +27,7 @@ export async function submitRegistration(formData: FormData) {
           secret: env.TURNSTILE_SECRET_KEY,
           response: turnstileToken,
         }),
-      }
+      },
     );
 
     const turnstileData = await turnstileResponse.json();
@@ -50,14 +51,19 @@ export async function submitRegistration(formData: FormData) {
       lastName: formData.get("lastName") as string,
       email: formData.get("email") as string,
       phone: formData.get("phone") as string,
-      ifpaNumber: formData.get("ifpaNumber") as string || null,
+      ifpaNumber: (formData.get("ifpaNumber") as string) || null,
 
       // Metadata
       submittedAt: new Date().toISOString(),
     };
 
     // Validate required fields
-    if (!registration.firstName || !registration.lastName || !registration.email || !registration.phone) {
+    if (
+      !registration.firstName ||
+      !registration.lastName ||
+      !registration.email ||
+      !registration.phone
+    ) {
       return {
         success: false,
         error: "Please fill in all required fields",
@@ -65,7 +71,11 @@ export async function submitRegistration(formData: FormData) {
     }
 
     // Validate at least one tournament is selected
-    if (!registration.mainTournament && !registration.warmupTournament && !registration.sideTournament) {
+    if (
+      !registration.mainTournament &&
+      !registration.warmupTournament &&
+      !registration.sideTournament
+    ) {
       return {
         success: false,
         error: "Please select at least one tournament to participate in",
@@ -103,18 +113,39 @@ export async function submitRegistration(formData: FormData) {
     console.log("=== XMAS Tournament Registration ===");
     console.log("Submitted at:", registration.submittedAt);
     console.log("\nTournaments:");
-    console.log("  - Main Tournament (Saturday):", registration.mainTournament ? "✓" : "✗");
-    console.log("  - Warmup Tournament (Friday):", registration.warmupTournament ? "✓" : "✗");
-    console.log("  - Side Tournament (Saturday evening):", registration.sideTournament ? "✓" : "✗");
+    console.log(
+      "  - Main Tournament (Saturday):",
+      registration.mainTournament ? "✓" : "✗",
+    );
+    console.log(
+      "  - Warmup Tournament (Friday):",
+      registration.warmupTournament ? "✓" : "✗",
+    );
+    console.log(
+      "  - Side Tournament (Saturday evening):",
+      registration.sideTournament ? "✓" : "✗",
+    );
     console.log("\nParticipant Information:");
-    console.log("  Name:", `${registration.firstName} ${registration.lastName}`);
+    console.log(
+      "  Name:",
+      `${registration.firstName} ${registration.lastName}`,
+    );
     console.log("  Email:", registration.email);
     console.log("  Phone:", registration.phone);
     console.log("  IFPA Number:", registration.ifpaNumber || "(not provided)");
     console.log("\nVerification:");
     console.log("  Auto-verified:", shouldAutoVerify ? "✓" : "✗");
-    console.log("  Registration count:", `${currentCount + 1}/${env.AUTO_VERIFY_LIMIT}`);
+    console.log(
+      "  Registration count:",
+      `${currentCount + 1}/${env.AUTO_VERIFY_LIMIT}`,
+    );
     console.log("====================================\n");
+
+    // Revalidate player list and xmas page if auto-verified
+    if (shouldAutoVerify) {
+      revalidatePath("/xmas/players");
+      revalidatePath("/xmas");
+    }
 
     return {
       success: true,

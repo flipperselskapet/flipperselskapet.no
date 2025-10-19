@@ -24,7 +24,10 @@ export async function toggleVerified(id: number) {
       .set({ verifiedAt: current.verifiedAt ? null : new Date() })
       .where(eq(registrations.id, id));
 
+    // Revalidate all affected pages
     revalidatePath("/xmas/admin");
+    revalidatePath("/xmas/players");
+    revalidatePath("/xmas");
     return { success: true };
   } catch (error) {
     console.error("Error toggling verified status:", error);
@@ -51,6 +54,7 @@ export async function togglePaid(id: number) {
       .set({ paidAt: current.paidAt ? null : new Date() })
       .where(eq(registrations.id, id));
 
+    // Revalidate admin page (paid status doesn't affect public pages)
     revalidatePath("/xmas/admin");
     return { success: true };
   } catch (error) {
@@ -67,7 +71,10 @@ export async function markDeleted(id: number) {
       .set({ deletedAt: new Date() })
       .where(eq(registrations.id, id));
 
+    // Revalidate all affected pages
     revalidatePath("/xmas/admin");
+    revalidatePath("/xmas/players");
+    revalidatePath("/xmas");
     return { success: true };
   } catch (error) {
     console.error("Error deleting registration:", error);
