@@ -12,16 +12,9 @@ export default function Xmas2025() {
       <div className="relative overflow-hidden bg-black/40 border-b-4 border-cyan-500">
         <div className="absolute inset-0 bg-[url(/wall.jpg)] opacity-20 bg-cover bg-center" />
         <div className="relative container mx-auto px-4 py-16 text-center">
-          <h1 className="text-6xl md:text-8xl font-black mb-4 animate-pulse">
-            <span className="bg-gradient-to-r from-cyan-400 via-blue-500 to-purple-500 text-transparent bg-clip-text drop-shadow-[0_0_30px_rgba(6,182,212,0.8)]">
-              XMAS MATCHPLAY
-            </span>
+          <h1 className="neon-logo text-6xl md:text-8xl mb-6">
+            XMAS MATCHPLAY OPEN 2025
           </h1>
-          <h2 className="text-4xl md:text-6xl font-black mb-6">
-            <span className="bg-gradient-to-r from-purple-400 via-pink-500 to-cyan-400 text-transparent bg-clip-text drop-shadow-[0_0_20px_rgba(147,51,234,0.6)]">
-              OPEN 2025
-            </span>
-          </h2>
           <div className="max-w-3xl mx-auto">
             <p className="text-xl md:text-2xl text-cyan-100 font-semibold mb-4 drop-shadow-lg">
               Welcome to Norway's premier pinball event!
@@ -73,29 +66,11 @@ export default function Xmas2025() {
               <p className="text-lg mb-2">
                 <strong className="text-cyan-200">Registration opens soon!</strong>
               </p>
-              <p className="text-sm text-gray-300">
-                Registration link and player list will be posted here when registration opens.
+              <p className="text-sm text-gray-300 mb-3">
+                Registration link, player list, and entry fees will be posted here when registration opens.
               </p>
-            </div>
-
-            <div className="bg-black/30 p-5 rounded border border-cyan-500/30">
-              <h3 className="text-xl font-bold text-cyan-200 mb-4">Entry Fees</h3>
-              <div className="space-y-3">
-                <div className="flex justify-between items-center border-b border-cyan-500/20 pb-2">
-                  <span><strong className="text-cyan-300">Friday XMAS Warmup</strong></span>
-                  <span className="text-cyan-200 font-bold">200 NOK</span>
-                </div>
-                <div className="flex justify-between items-center border-b border-cyan-500/20 pb-2">
-                  <span><strong className="text-purple-300">Saturday XMAS Main</strong></span>
-                  <span className="text-purple-200 font-bold">200 NOK</span>
-                </div>
-                <div className="flex justify-between items-center pb-2">
-                  <span><strong className="text-pink-300">Saturday XMAS Side</strong></span>
-                  <span className="text-pink-200 font-bold">200 NOK</span>
-                </div>
-              </div>
-              <p className="text-sm text-gray-400 mt-4 pt-4 border-t border-cyan-500/20">
-                <em>Norwegian players pay with VIPPS at arrival. International players - we'll figure out payment together.</em>
+              <p className="text-xs text-gray-400">
+                <em>Norwegian players will pay with VIPPS at arrival. International players - we'll figure out payment together.</em>
               </p>
             </div>
 
@@ -113,7 +88,34 @@ export default function Xmas2025() {
             <span className="text-5xl">📜</span>
             Tournament Format
           </h2>
+          <div className="bg-yellow-900/30 border-2 border-yellow-500/50 rounded-lg p-4 mb-6">
+            <p className="text-yellow-200 font-bold text-center">
+              ⚠️ PRELIMINARY FORMAT - Subject to change
+            </p>
+          </div>
           <div className="text-gray-200 space-y-6">
+
+            {/* XMAS Warmup Format */}
+            <div className="bg-black/30 p-4 rounded border border-cyan-500/30">
+              <h3 className="text-xl font-bold text-cyan-200 mb-3">XMAS Warmup | Death Race</h3>
+              <p className="mb-3">
+                The official XMAS warmup tournament is also our Stern Army Monthly tournament, with the chance to win some Stern Pinball goodies!
+              </p>
+              <ul className="list-disc list-inside space-y-2 ml-4 mb-3">
+                <li><strong>Format:</strong> Death Race - Target matchplay with a target of 21 points</li>
+                <li><strong>Scoring:</strong> 4-2-1-0</li>
+                <li>Group matchplay until 10 players reach the target</li>
+                <li>Top 10 players advance to Amazing Race finals</li>
+                <li><strong className="text-cyan-300">125% TGP</strong></li>
+              </ul>
+              <div className="bg-cyan-900/20 border border-cyan-500/20 rounded p-3 text-sm">
+                <p className="font-semibold text-cyan-200 mb-2">Amazing Race Finals:</p>
+                <p>
+                  First player sets a target score on game 1, then advances. Following players must reach that score to advance to the next machine.
+                  Lowest score is eliminated. Continues until one winner remains!
+                </p>
+              </div>
+            </div>
 
             {/* XMAS Main Format */}
             <div className="bg-black/30 p-4 rounded border border-purple-500/30">
@@ -292,8 +294,21 @@ export default function Xmas2025() {
             {/* Friday Schedule */}
             <div className="bg-black/30 p-5 rounded border border-cyan-600/30">
               <h3 className="font-bold text-cyan-300 mb-4 text-2xl">📅 Friday, December 5th</h3>
-              <h4 className="text-cyan-200 font-semibold mb-3 text-lg">XMAS Matchplay Open Warmup 2025</h4>
-              <p className="text-sm text-gray-400 italic mb-4">Detailed schedule coming soon</p>
+              <h4 className="text-cyan-200 font-semibold mb-4 text-lg">XMAS Matchplay Open Warmup 2025</h4>
+              <div className="space-y-2 text-sm">
+                <div className="flex gap-3">
+                  <span className="font-mono text-cyan-300 min-w-[80px]">17:00-18:00</span>
+                  <span>Attendance and registration</span>
+                </div>
+                <div className="flex gap-3">
+                  <span className="font-mono text-cyan-300 min-w-[80px]">18:00-22:00</span>
+                  <span className="font-semibold">Death Race</span> <span className="text-gray-400">- Group matchplay until 10 players reach 21 points</span>
+                </div>
+                <div className="flex gap-3">
+                  <span className="font-mono text-cyan-300 min-w-[80px]">22:00-00:30</span>
+                  <span className="font-semibold">Amazing Race Finals</span> <span className="text-gray-400">- Top 10 compete until one winner remains</span>
+                </div>
+              </div>
             </div>
 
             {/* Saturday Schedule - Main */}
