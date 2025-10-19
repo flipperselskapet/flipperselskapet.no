@@ -63,11 +63,20 @@ export default function Xmas2025() {
           <div className="text-gray-200 space-y-6">
 
             <div className="bg-cyan-900/30 border-2 border-cyan-500/50 rounded-lg p-5">
-              <p className="text-lg mb-2">
-                <strong className="text-cyan-200">Registration opens soon!</strong>
+              <p className="text-lg mb-4">
+                <strong className="text-cyan-200">Registration is now open!</strong>
               </p>
-              <p className="text-sm text-gray-300 mb-3">
-                Registration link, player list, and entry fees will be posted here when registration opens.
+
+              {/* Call to Action Button */}
+              <a
+                href="/xmas/register"
+                className="inline-block w-full sm:w-auto px-8 py-4 bg-gradient-to-r from-cyan-600 to-purple-600 hover:from-cyan-500 hover:to-purple-500 text-white font-bold text-xl rounded-lg shadow-lg transition-all duration-200 transform hover:scale-105 text-center mb-4"
+              >
+                Register Now →
+              </a>
+
+              <p className="text-sm text-gray-300 mb-3 mt-4">
+                Register for the main tournament and optionally join the warmup and side tournaments.
               </p>
               <p className="text-xs text-gray-400">
                 <em>Norwegian players will pay with VIPPS at arrival. International players - we'll figure out payment together.</em>

@@ -1,5 +1,4 @@
 export default function Home() {
-  console.log("testing staging");
   return (
     <div
       className="h-screen m-0 relative"

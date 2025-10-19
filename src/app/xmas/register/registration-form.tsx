@@ -1,0 +1,278 @@
+"use client";
+
+import { useState } from "react";
+import { Turnstile } from "@marsidev/react-turnstile";
+import { submitRegistration } from "./actions";
+import { env } from "~/env";
+
+export function RegistrationForm() {
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitStatus, setSubmitStatus] = useState<{
+    type: "success" | "error";
+    message: string;
+  } | null>(null);
+  const [turnstileToken, setTurnstileToken] = useState<string | null>(null);
+
+  async function handleSubmit(formData: FormData) {
+    setIsSubmitting(true);
+    setSubmitStatus(null);
+
+    // Check if turnstile token is present
+    if (!turnstileToken) {
+      setSubmitStatus({
+        type: "error",
+        message: "Please complete the captcha verification.",
+      });
+      setIsSubmitting(false);
+      return;
+    }
+
+    // Add turnstile token to form data
+    formData.append("turnstileToken", turnstileToken);
+
+    try {
+      const result = await submitRegistration(formData);
+
+      if (result.success) {
+        setSubmitStatus({
+          type: "success",
+          message: "Registration submitted successfully! We'll be in touch soon.",
+        });
+        // Reset form
+        const form = document.querySelector("form") as HTMLFormElement;
+        form?.reset();
+        setTurnstileToken(null);
+      } else {
+        setSubmitStatus({
+          type: "error",
+          message: result.error || "Something went wrong. Please try again.",
+        });
+      }
+    } catch (error) {
+      setSubmitStatus({
+        type: "error",
+        message: "Failed to submit registration. Please try again.",
+      });
+    } finally {
+      setIsSubmitting(false);
+    }
+  }
+
+  return (
+    <form action={handleSubmit} className="space-y-8">
+      {/* Tournament Selection */}
+      <div>
+        <h2 className="text-2xl font-bold text-cyan-300 mb-4">
+          Tournament Selection
+        </h2>
+        <p className="text-gray-300 text-sm mb-4">
+          Select which tournaments you want to participate in.
+        </p>
+
+        <div className="space-y-4">
+          {/* Main Tournament */}
+          <div className="bg-purple-900/30 border-2 border-purple-500/50 rounded-lg p-4">
+            <div className="flex items-start gap-3">
+              <input
+                type="checkbox"
+                id="main-tournament"
+                name="mainTournament"
+                value="true"
+                className="mt-1 h-5 w-5 rounded border-purple-300 text-purple-600 focus:ring-purple-500"
+              />
+              <div className="flex-1">
+                <label htmlFor="main-tournament" className="block font-semibold text-purple-200 cursor-pointer">
+                  XMAS Matchplay Open Main 2025 (Saturday)
+                </label>
+                <p className="text-sm text-gray-300 mt-1">
+                  Group matchplay qualifications followed by top 16 playoffs - 200% TGP
+                </p>
+              </div>
+            </div>
+          </div>
+
+          {/* Warmup Tournament */}
+          <div className="bg-cyan-900/30 border-2 border-cyan-500/50 rounded-lg p-4">
+            <div className="flex items-start gap-3">
+              <input
+                type="checkbox"
+                id="warmup-tournament"
+                name="warmupTournament"
+                value="true"
+                className="mt-1 h-5 w-5 rounded border-cyan-300 text-cyan-600 focus:ring-cyan-500"
+              />
+              <div className="flex-1">
+                <label htmlFor="warmup-tournament" className="block font-semibold text-cyan-200 cursor-pointer">
+                  XMAS Matchplay Open Warmup 2025 (Friday)
+                </label>
+                <p className="text-sm text-gray-300 mt-1">
+                  Death Race format with Amazing Race finals - 125% TGP
+                </p>
+                <p className="text-xs text-gray-400 mt-1">
+                  Friday evening, December 5th
+                </p>
+              </div>
+            </div>
+          </div>
+
+          {/* Side Tournament */}
+          <div className="bg-pink-900/30 border-2 border-pink-500/50 rounded-lg p-4">
+            <div className="flex items-start gap-3">
+              <input
+                type="checkbox"
+                id="side-tournament"
+                name="sideTournament"
+                value="true"
+                className="mt-1 h-5 w-5 rounded border-pink-300 text-pink-600 focus:ring-pink-500"
+              />
+              <div className="flex-1">
+                <label htmlFor="side-tournament" className="block font-semibold text-pink-200 cursor-pointer">
+                  XMAS Matchplay Open Side 2025 (Saturday evening)
+                </label>
+                <p className="text-sm text-gray-300 mt-1">
+                  Progressive strikes matchplay with top 8 playoffs
+                </p>
+                <p className="text-xs text-gray-400 mt-1">
+                  Saturday evening, December 6th (after main tournament)
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* Personal Information */}
+      <div>
+        <h2 className="text-2xl font-bold text-cyan-300 mb-4">
+          Personal Information
+        </h2>
+
+        <div className="space-y-4">
+          {/* Name Fields */}
+          <div className="grid md:grid-cols-2 gap-4">
+            <div>
+              <label htmlFor="firstName" className="block text-sm font-medium text-gray-200 mb-2">
+                First Name <span className="text-red-400">*</span>
+              </label>
+              <input
+                type="text"
+                id="firstName"
+                name="firstName"
+                required
+                className="w-full px-4 py-2 bg-slate-800/50 border border-cyan-500/30 rounded-lg text-gray-100 placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-cyan-500 focus:border-transparent"
+                placeholder="Your first name"
+              />
+            </div>
+
+            <div>
+              <label htmlFor="lastName" className="block text-sm font-medium text-gray-200 mb-2">
+                Last Name <span className="text-red-400">*</span>
+              </label>
+              <input
+                type="text"
+                id="lastName"
+                name="lastName"
+                required
+                className="w-full px-4 py-2 bg-slate-800/50 border border-cyan-500/30 rounded-lg text-gray-100 placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-cyan-500 focus:border-transparent"
+                placeholder="Your last name"
+              />
+            </div>
+          </div>
+
+          {/* Email */}
+          <div>
+            <label htmlFor="email" className="block text-sm font-medium text-gray-200 mb-2">
+              Email Address <span className="text-red-400">*</span>
+            </label>
+            <input
+              type="email"
+              id="email"
+              name="email"
+              required
+              className="w-full px-4 py-2 bg-slate-800/50 border border-cyan-500/30 rounded-lg text-gray-100 placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-cyan-500 focus:border-transparent"
+              placeholder="your.email@example.com"
+            />
+          </div>
+
+          {/* Phone */}
+          <div>
+            <label htmlFor="phone" className="block text-sm font-medium text-gray-200 mb-2">
+              Phone Number <span className="text-red-400">*</span>
+            </label>
+            <input
+              type="tel"
+              id="phone"
+              name="phone"
+              required
+              className="w-full px-4 py-2 bg-slate-800/50 border border-cyan-500/30 rounded-lg text-gray-100 placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-cyan-500 focus:border-transparent"
+              placeholder="+47 123 45 678"
+            />
+            <p className="text-xs text-gray-400 mt-1">
+              Include country code for international numbers
+            </p>
+          </div>
+
+          {/* IFPA Number */}
+          <div>
+            <label htmlFor="ifpaNumber" className="block text-sm font-medium text-gray-200 mb-2">
+              IFPA Number <span className="text-gray-400">(Optional)</span>
+            </label>
+            <input
+              type="text"
+              id="ifpaNumber"
+              name="ifpaNumber"
+              className="w-full px-4 py-2 bg-slate-800/50 border border-cyan-500/30 rounded-lg text-gray-100 placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-cyan-500 focus:border-transparent"
+              placeholder="12345"
+            />
+            <p className="text-xs text-gray-400 mt-1">
+              Your International Flipper Pinball Association player number, if you have one.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      {/* Captcha */}
+      <div>
+        <h2 className="text-2xl font-bold text-cyan-300 mb-4">
+          Verification
+        </h2>
+        <div className="flex justify-center">
+          <Turnstile
+            siteKey={env.NEXT_PUBLIC_TURNSTILE_SITE_KEY}
+            onSuccess={(token) => setTurnstileToken(token)}
+            onError={() => setTurnstileToken(null)}
+            onExpire={() => setTurnstileToken(null)}
+          />
+        </div>
+      </div>
+
+      {/* Submit Status */}
+      {submitStatus && (
+        <div
+          className={`p-4 rounded-lg ${
+            submitStatus.type === "success"
+              ? "bg-green-900/30 border-2 border-green-500/50 text-green-200"
+              : "bg-red-900/30 border-2 border-red-500/50 text-red-200"
+          }`}
+        >
+          <p className="font-semibold">{submitStatus.message}</p>
+        </div>
+      )}
+
+      {/* Submit Button */}
+      <div className="pt-4">
+        <button
+          type="submit"
+          disabled={isSubmitting || !turnstileToken}
+          className="w-full py-4 px-6 bg-gradient-to-r from-cyan-600 to-purple-600 hover:from-cyan-500 hover:to-purple-500 disabled:from-gray-600 disabled:to-gray-600 disabled:cursor-not-allowed text-white font-bold text-lg rounded-lg shadow-lg transition-all duration-200 transform hover:scale-105 disabled:hover:scale-100"
+        >
+          {isSubmitting ? "Submitting..." : "Register for Tournament"}
+        </button>
+
+        <p className="text-xs text-gray-400 text-center mt-3">
+          <span className="text-red-400">*</span> Required fields
+        </p>
+      </div>
+    </form>
+  );
+}

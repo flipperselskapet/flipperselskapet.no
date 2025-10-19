@@ -30,6 +30,12 @@ pnpm lint
 
 # Format code with Biome
 pnpm format
+
+# Database commands (Drizzle ORM)
+pnpm run db:generate  # Generate migration files after schema changes
+pnpm run db:push      # Push schema changes to local dev database
+pnpm run db:migrate   # Run migrations
+pnpm run db:studio    # Open Drizzle Studio (database GUI)
 ```
 
 Development server runs at http://localhost:3000
@@ -59,13 +65,17 @@ src/
     layout.tsx         # Root layout with font loading and metadata
     page.tsx           # Homepage
     globals.css        # Tailwind imports and theme tokens
+  db/                  # Database configuration and schema
+    index.ts           # Database connection and Drizzle client
+    schema.ts          # Database schema definitions
+  env.ts               # Environment variables validation (T3 Env)
 old/                   # Legacy static HTML files (archived)
 public/                # Static assets
 ```
 
 ## Path Aliases
 
-- `@/*` maps to `src/*` (configured in `tsconfig.json`)
+- `~/*` maps to `src/*` (configured in `tsconfig.json`)
 
 ## TypeScript Configuration
 
@@ -74,9 +84,27 @@ public/                # Static assets
 - Module resolution: bundler
 - Next.js plugin enabled for type checking
 
+## Database
+
+- **ORM**: Drizzle ORM with PostgreSQL
+- **Schema Location**: `src/db/schema.ts`
+- **Database Client**: `postgres` package
+- **Configuration**: `drizzle.config.ts` at project root
+- **Environment Variables**: Validated via T3 Env (`src/env.ts`)
+
+### Database Workflow
+
+1. **Update Schema**: Edit `src/db/schema.ts` to define tables and relations
+2. **Generate Migrations**: Run `pnpm run db:generate` to create migration files
+3. **Apply Changes**: Run `pnpm run db:push` to push changes to local dev database
+4. **GUI Access**: Run `pnpm run db:studio` to open Drizzle Studio for visual database management
+
+The database connection is initialized in `src/db/index.ts` and exported as a Drizzle client instance for use throughout the application.
+
 ## Architecture Notes
 
 - Uses Next.js App Router (not Pages Router)
 - Server Components by default (React 19)
 - Turbopack enabled for faster builds and development
 - No custom Next.js configuration currently (default settings)
+- PostgreSQL database managed via Drizzle ORM
