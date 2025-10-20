@@ -65,6 +65,8 @@ src/
     layout.tsx         # Root layout with font loading and metadata
     page.tsx           # Homepage
     globals.css        # Tailwind imports and theme tokens
+    machines/          # Pinball machine inventory
+      page.tsx         # Machine list page
     xmas/              # XMAS Tournament pages
       page.tsx         # Tournament information page
       register/        # Registration functionality
@@ -80,6 +82,8 @@ src/
         logout-button.tsx # Logout button
       players/         # Public player list
         page.tsx       # Registered players list
+  data/                # Data files
+    machines.ts        # Pinball machine data with IPDB information
   db/                  # Database configuration and schema
     index.ts           # Database connection and Drizzle client
     schema.ts          # Database schema definitions
@@ -184,3 +188,56 @@ Required environment variables (add to `.env`):
 - No custom Next.js configuration currently (default settings)
 - PostgreSQL database managed via Drizzle ORM
 - Cookie-based authentication for admin panel
+
+## Design Decisions
+
+1. **No Christmas colors** - Despite "XMAS" name, uses cyan/blue/purple color scheme
+2. **No pulsing/blinking header** - Changed to static neon sign style matching homepage
+3. **No opening hours** - Kept website links for restaurants/shops, removed messy hours
+4. **Table layout** - Changed from cards to compact table for machines
+5. **English language** - XMAS page in English (rest of site mostly Norwegian)
+6. **Geist fonts preserved** - Keep for general pages, neon sign uses Vibur font
+
+## Known Issues / TODOs
+
+- Rick and Morty machine has no IPDB rating yet (waiting for community ratings)
+- Entry fees for XMAS tournament TBD
+- Registration link not yet available
+- Tournament format marked as preliminary
+- Schedule marked as preliminary
+
+## Pinball Machine Data (IPDB)
+
+All pinball machines in the project (`src/data/machines.ts`) reference the **Internet Pinball Database (IPDB)** at https://www.ipdb.org.
+
+### About IPDB
+
+- Every pinball machine ever produced has a unique ID in the IPDB database
+- IPDB URL format: `https://www.ipdb.org/machine.cgi?id={ipdbId}`
+- Example: AC/DC (Stern, 2012) has IPDB ID 5767 → https://www.ipdb.org/machine.cgi?id=5767
+
+### Machine Data Structure
+
+Each machine in `src/data/machines.ts` contains:
+- `name` - Machine name
+- `manufacturer` - Company that produced the machine
+- `year` - Year of manufacture
+- `rating` - Community rating from IPDB (format: "X.XX/10" or "TBD" if no ratings)
+- `ipdbId` - Unique IPDB identifier
+- `ipdbUrl` - Direct link to IPDB page
+
+### Finding Machine Information
+
+To look up or verify machine data:
+1. Search by name at https://www.ipdb.org/search.pl
+2. Find the machine's IPDB ID from the URL
+3. Extract rating from "Average Fun Rating" field
+4. Update `src/data/machines.ts` with the information
+
+**Note**: Some newer machines may not have ratings yet if the community hasn't submitted enough reviews.
+
+## Reference URLs
+
+- IPDB (Internet Pinball Database): https://www.ipdb.org
+- Veitvet Senter Google Maps: https://maps.app.goo.gl/GEfjhTpv9SAzE8JR6
+- Last year's event info: ifpa.no/xmas2024/ (referenced for content)
