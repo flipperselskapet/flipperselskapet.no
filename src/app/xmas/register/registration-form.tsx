@@ -1,7 +1,7 @@
 "use client";
 
 import { Turnstile } from "@marsidev/react-turnstile";
-import { useState, useRef } from "react";
+import { useRef, useState } from "react";
 import { env } from "~/env";
 import { submitRegistration } from "./actions";
 
@@ -12,7 +12,7 @@ export function RegistrationForm() {
     message: string;
   } | null>(null);
   const [turnstileToken, setTurnstileToken] = useState<string | null>(null);
-  const turnstileRef = useRef<any>(null);
+  const turnstileRef = useRef<{ reset: () => void } | null>(null);
 
   async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();

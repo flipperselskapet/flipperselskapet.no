@@ -32,12 +32,18 @@ export default function RegisterPage() {
         <div className="mt-8 text-center text-gray-400 text-sm">
           <p className="mb-2">
             Questions? Contact us on{" "}
-            <a href="/slack" className="text-cyan-400 hover:text-cyan-200 underline">
+            <a
+              href="/slack"
+              className="text-cyan-400 hover:text-cyan-200 underline"
+            >
               Slack
             </a>
           </p>
           <p>
-            <a href="/xmas" className="text-cyan-400 hover:text-cyan-200 underline">
+            <a
+              href="/xmas"
+              className="text-cyan-400 hover:text-cyan-200 underline"
+            >
               ← Back to tournament information
             </a>
           </p>

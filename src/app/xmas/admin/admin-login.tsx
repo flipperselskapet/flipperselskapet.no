@@ -33,9 +33,7 @@ export function AdminLogin() {
           <h1 className="text-4xl font-bold text-cyan-300 mb-2">
             Admin Access
           </h1>
-          <p className="text-gray-300">
-            Enter the admin password to continue
-          </p>
+          <p className="text-gray-300">Enter the admin password to continue</p>
         </div>
 
         <form onSubmit={handleSubmit} className="space-y-6">
@@ -52,7 +50,6 @@ export function AdminLogin() {
               value={password}
               onChange={(e) => setPassword(e.target.value)}
               required
-              autoFocus
               className="w-full px-4 py-3 bg-slate-800/50 border border-cyan-500/30 rounded-lg text-gray-100 placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-cyan-500 focus:border-transparent"
               placeholder="Enter admin password"
             />
