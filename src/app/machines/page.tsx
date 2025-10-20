@@ -59,8 +59,13 @@ export default function Machines() {
                       key={machine.ipdbId}
                       className="border-b border-cyan-500/20 hover:bg-cyan-500/10 transition-colors"
                     >
-                      <td className="py-3 px-4 text-gray-200 font-semibold">
-                        {machine.name}
+                      <td className="py-3 px-4">
+                        <div className="text-gray-200 font-semibold">
+                          {machine.name}
+                        </div>
+                        <div className="text-gray-400 text-sm mt-1 md:hidden">
+                          {machine.manufacturer} • {machine.year !== 0 ? machine.year : "TBD"} • {machine.rating}
+                        </div>
                       </td>
                       <td className="py-3 px-4 text-gray-300 hidden md:table-cell">
                         {machine.manufacturer}
