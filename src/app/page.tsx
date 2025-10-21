@@ -15,10 +15,10 @@ export default function Home() {
       </div>
       <div className="absolute bottom-8 left-8">
         <a
-          href="/xmas/register"
+          href="/xmas"
           className="text-gray-400 hover:text-gray-200 text-sm transition-colors opacity-50 hover:opacity-100"
         >
-          XMAS 2025 Registration
+          XMAS 2025
         </a>
       </div>
       <div className="absolute bottom-8 right-8">
