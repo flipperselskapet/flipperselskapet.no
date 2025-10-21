@@ -1,11 +1,11 @@
+import { isNull } from "drizzle-orm";
 import type { Metadata } from "next";
 import { db } from "~/db";
 import { registrations } from "~/db/schema";
-import { isNull } from "drizzle-orm";
-import { AdminRegistrationRow } from "./registration-row";
-import { checkAdminAuth } from "./login-actions";
 import { AdminLogin } from "./admin-login";
+import { checkAdminAuth } from "./login-actions";
 import { LogoutButton } from "./logout-button";
+import { AdminRegistrationRow } from "./registration-row";
 
 export const metadata: Metadata = {
   title: "Admin - XMAS Matchplay Open 2025",

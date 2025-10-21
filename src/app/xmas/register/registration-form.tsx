@@ -1,7 +1,7 @@
 "use client";
 
 import { Turnstile, type TurnstileInstance } from "@marsidev/react-turnstile";
-import { useState, useRef } from "react";
+import { useRef, useState } from "react";
 import { env } from "~/env";
 import { submitRegistration } from "./actions";
 

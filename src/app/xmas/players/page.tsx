@@ -1,7 +1,7 @@
+import { and, isNotNull, isNull } from "drizzle-orm";
 import type { Metadata } from "next";
 import { db } from "~/db";
 import { registrations } from "~/db/schema";
-import { and, isNull, isNotNull } from "drizzle-orm";
 
 export const metadata: Metadata = {
   title: "Registered Players - XMAS Matchplay Open 2025",
@@ -23,10 +23,7 @@ export default async function PlayersPage() {
     })
     .from(registrations)
     .where(
-      and(
-        isNull(registrations.deletedAt),
-        isNotNull(registrations.verifiedAt)
-      )
+      and(isNull(registrations.deletedAt), isNotNull(registrations.verifiedAt)),
     )
     .orderBy(registrations.lastName, registrations.firstName);
 
@@ -54,12 +51,15 @@ export default async function PlayersPage() {
               {players.length}
             </div>
             <div className="text-xl text-gray-300 mb-4">
-              {players.length === 1 ? "Registered Player" : "Registered Players"}
+              {players.length === 1
+                ? "Registered Player"
+                : "Registered Players"}
             </div>
             <div className="bg-blue-900/30 border border-blue-500/50 rounded-lg p-4 max-w-2xl mx-auto">
               <p className="text-sm text-blue-200">
-                <strong>ℹ️ Note:</strong> Your name might not appear immediately after registering.
-                All registrations are reviewed and verified before being added to this list.
+                <strong>ℹ️ Note:</strong> Your name might not appear immediately
+                after registering. All registrations are reviewed and verified
+                before being added to this list.
               </p>
             </div>
           </div>

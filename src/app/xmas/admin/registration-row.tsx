@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import type { SelectRegistration } from "~/db/schema";
-import { toggleVerified, togglePaid, markDeleted } from "./actions";
+import { markDeleted, togglePaid, toggleVerified } from "./actions";
 
 interface Props {
   registration: SelectRegistration;
@@ -26,7 +26,7 @@ export function AdminRegistrationRow({ registration }: Props) {
   async function handleDelete() {
     if (
       !confirm(
-        `Are you sure you want to delete ${registration.firstName} ${registration.lastName}?`
+        `Are you sure you want to delete ${registration.firstName} ${registration.lastName}?`,
       )
     ) {
       return;
