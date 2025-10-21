@@ -46,8 +46,7 @@ export default async function Xmas2025() {
             </p>
             <p className="text-lg text-gray-200 leading-relaxed mb-6">
               Kristiania Flipperselskap is a private pinball club located in
-              Oslo, Norway. With 40+ pinball machines of different eras, arcade
-              machines and in close proximity to shops, restaurants and pubs -
+              Oslo, Norway. With 40+ pinball machines of different eras and in close proximity to shops, restaurants and pubs -
               only 15 minutes outside downtown Oslo - we are excited to host
               another XMAS annual tournament!
             </p>
