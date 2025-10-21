@@ -568,9 +568,7 @@ export default async function Xmas2025() {
                   <span className="font-mono text-purple-300 min-w-[80px]">
                     10:00-10:15
                   </span>
-                  <span>
-                    Tournament information + Prize ceremony from Friday
-                  </span>
+                  <span>Tournament information</span>
                 </div>
                 <div className="flex gap-3">
                   <span className="font-mono text-purple-300 min-w-[80px]">
@@ -580,9 +578,15 @@ export default async function Xmas2025() {
                 </div>
                 <div className="flex gap-3">
                   <span className="font-mono text-purple-300 min-w-[80px]">
-                    12:45-18:00
+                    12:45-13:30
                   </span>
                   <span className="text-gray-400">Food break</span>
+                </div>
+                <div className="flex gap-3">
+                  <span className="font-mono text-purple-300 min-w-[80px]">
+                    13:30-18:00
+                  </span>
+                  <span className="font-semibold">Qualifying rounds</span>
                 </div>
               </div>
             </div>
