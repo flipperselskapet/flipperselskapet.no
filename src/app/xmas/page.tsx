@@ -566,7 +566,7 @@ export default async function Xmas2025() {
                 </div>
                 <div className="flex gap-3">
                   <span className="font-mono text-purple-300 min-w-[80px]">
-                    10:00-10:30
+                    10:00-10:15
                   </span>
                   <span>
                     Tournament information + Prize ceremony from Friday
@@ -574,52 +574,13 @@ export default async function Xmas2025() {
                 </div>
                 <div className="flex gap-3">
                   <span className="font-mono text-purple-300 min-w-[80px]">
-                    10:30-11:20
+                    10:15-12:45
                   </span>
-                  <span className="font-semibold">Round 1</span>
+                  <span className="font-semibold">Qualifying rounds</span>
                 </div>
                 <div className="flex gap-3">
                   <span className="font-mono text-purple-300 min-w-[80px]">
-                    11:20-12:10
-                  </span>
-                  <span className="font-semibold">Round 2</span>
-                </div>
-                <div className="flex gap-3">
-                  <span className="font-mono text-purple-300 min-w-[80px]">
-                    12:10-12:40
-                  </span>
-                  <span className="text-gray-400">Break for food/shopping</span>
-                </div>
-                <div className="flex gap-3">
-                  <span className="font-mono text-purple-300 min-w-[80px]">
-                    12:40-13:30
-                  </span>
-                  <span className="font-semibold">Round 3</span>
-                </div>
-                <div className="flex gap-3">
-                  <span className="font-mono text-purple-300 min-w-[80px]">
-                    13:30-14:20
-                  </span>
-                  <span className="font-semibold">Round 4</span>
-                </div>
-                <div className="flex gap-3">
-                  <span className="font-mono text-purple-300 min-w-[80px]">
-                    14:20-15:10
-                  </span>
-                  <span className="font-semibold">Round 5</span>
-                </div>
-                <div className="flex gap-3">
-                  <span className="font-mono text-purple-300 min-w-[80px]">
-                    15:10-16:00
-                  </span>
-                  <span className="font-semibold">Round 6</span>{" "}
-                  <span className="text-gray-400">
-                    (final qualification round)
-                  </span>
-                </div>
-                <div className="flex gap-3">
-                  <span className="font-mono text-purple-300 min-w-[80px]">
-                    16:00-18:00
+                    12:45-18:00
                   </span>
                   <span className="text-gray-400">Food break</span>
                 </div>
