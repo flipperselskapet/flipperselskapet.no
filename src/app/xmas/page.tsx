@@ -232,21 +232,24 @@ export default async function Xmas2025() {
                 XMAS Main | Group Matchplay
               </h3>
               <p className="mb-3">
-                The qualifications will consist of <strong>6 rounds</strong>,
-                with <strong>3 games in each round</strong>, one from each era
-                (EM, SS/semi-modern and modern).
+                The qualifications will consist of <strong>10 rounds</strong>{" "}
+                with <strong>2 games in each round</strong> (one modern, one
+                classic).
               </p>
               <ul className="list-disc list-inside space-y-2 ml-4">
                 <li>Points: 7-5-3-1</li>
                 <li>First round pairing: IFPA Slaughter</li>
                 <li>Following rounds: Tiered Swiss</li>
-                <li>Top 16 players advance to playoffs</li>
                 <li>
-                  Tie breaks for 16th place on predetermined machine (probably
-                  Harlem)
+                  Top 24 players advance to playoffs (if less than 48 players
+                  then top 16 advance)
                 </li>
                 <li>
-                  <strong className="text-purple-300">200% TGP!</strong>
+                  Tie breaks for 24th (or 16th) place on predetermined machine
+                  (probably Harlem)
+                </li>
+                <li>
+                  <strong className="text-purple-300">200-250% TGP!</strong>
                 </li>
               </ul>
             </div>
