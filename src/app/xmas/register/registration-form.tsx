@@ -97,31 +97,6 @@ export function RegistrationForm() {
         </p>
 
         <div className="space-y-4">
-          {/* Main Tournament */}
-          <div className="bg-purple-900/30 border-2 border-purple-500/50 rounded-lg p-4">
-            <div className="flex items-start gap-3">
-              <input
-                type="checkbox"
-                id="main-tournament"
-                name="mainTournament"
-                value="true"
-                className="mt-1 h-5 w-5 rounded border-purple-300 text-purple-600 focus:ring-purple-500"
-              />
-              <div className="flex-1">
-                <label
-                  htmlFor="main-tournament"
-                  className="block font-semibold text-purple-200 cursor-pointer"
-                >
-                  XMAS Matchplay Open Main 2025 (Saturday)
-                </label>
-                <p className="text-sm text-gray-300 mt-1">
-                  Group matchplay qualifications followed by top 16 playoffs -
-                  200% TGP
-                </p>
-              </div>
-            </div>
-          </div>
-
           {/* Warmup Tournament */}
           <div className="bg-cyan-900/30 border-2 border-cyan-500/50 rounded-lg p-4">
             <div className="flex items-start gap-3">
@@ -144,6 +119,34 @@ export function RegistrationForm() {
                 </p>
                 <p className="text-xs text-gray-400 mt-1">
                   Friday evening, December 5th
+                </p>
+              </div>
+            </div>
+          </div>
+
+          {/* Main Tournament */}
+          <div className="bg-purple-900/30 border-2 border-purple-500/50 rounded-lg p-4">
+            <div className="flex items-start gap-3">
+              <input
+                type="checkbox"
+                id="main-tournament"
+                name="mainTournament"
+                value="true"
+                className="mt-1 h-5 w-5 rounded border-purple-300 text-purple-600 focus:ring-purple-500"
+              />
+              <div className="flex-1">
+                <label
+                  htmlFor="main-tournament"
+                  className="block font-semibold text-purple-200 cursor-pointer"
+                >
+                  XMAS Matchplay Open Main 2025 (Saturday & Sunday)
+                </label>
+                <p className="text-sm text-gray-300 mt-1">
+                  Group matchplay qualifications (Saturday) followed by playoffs
+                  (Sunday) - 200-250% TGP
+                </p>
+                <p className="text-xs text-gray-400 mt-1">
+                  Saturday, December 6th and Sunday, December 7th
                 </p>
               </div>
             </div>
