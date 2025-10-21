@@ -637,15 +637,6 @@ export default async function Xmas2025() {
                   </span>
                   <span className="font-semibold">Finals complete</span>
                 </div>
-                <div className="flex gap-3">
-                  <span className="font-mono text-purple-300 min-w-[80px]">
-                    12:00
-                  </span>
-                  <span className="font-semibold">Leftovers</span>{" "}
-                  <span className="text-gray-400">
-                    - Format TBD
-                  </span>
-                </div>
               </div>
 
               <div className="bg-purple-900/20 border border-purple-500/20 rounded p-4 text-sm mt-4 space-y-3">
@@ -683,6 +674,27 @@ export default async function Xmas2025() {
                     <li>Player starting order on consecutive machines determined by previous game results</li>
                   </ul>
                 </div>
+              </div>
+            </div>
+
+            {/* Sunday Schedule - Leftovers */}
+            <div className="bg-black/30 p-5 rounded border border-orange-600/30">
+              <h3 className="font-bold text-orange-300 mb-4 text-2xl">
+                📅 Sunday, December 7th - Leftovers
+              </h3>
+              <h4 className="text-orange-200 font-semibold mb-4 text-lg">
+                XMAS Leftovers 2025
+              </h4>
+              <div className="bg-yellow-900/30 border-2 border-yellow-500/50 rounded-lg p-4 mb-4">
+                <p className="text-yellow-200 font-bold text-center">
+                  ⚠️ Schedule and format TBD
+                </p>
+              </div>
+              <div className="space-y-2 text-sm">
+                <p className="text-orange-100">
+                  A separate tournament for players who didn't advance to the Main
+                  finals. More details coming soon!
+                </p>
               </div>
             </div>
           </div>
