@@ -124,6 +124,8 @@ supabase/
 
 ### Database Workflow
 
+**IMPORTANT**: Always ask the user before making database schema changes. Never modify the schema without explicit permission.
+
 1. **Update Schema**: Edit `src/db/schema.ts` to define tables and relations
 2. **Generate Migrations**: Run `pnpm run db:generate` to create migration files
 3. **Apply Changes**: Run `pnpm run db:push` to push changes to local dev database

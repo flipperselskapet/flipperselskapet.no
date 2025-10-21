@@ -14,6 +14,33 @@ export function RegistrationForm() {
   const [turnstileToken, setTurnstileToken] = useState<string | null>(null);
   const turnstileRef = useRef<TurnstileInstance | null>(null);
 
+  // Track tournament selections for price calculation
+  const [selectedTournaments, setSelectedTournaments] = useState({
+    warmup: false,
+    main: false,
+    side: false,
+  });
+
+  // Calculate total price
+  const calculateTotal = () => {
+    const { warmup, main, side } = selectedTournaments;
+
+    // Package deal: all tournaments for 750 NOK
+    if (warmup && main && side) {
+      return { total: 750, isPackageDeal: true };
+    }
+
+    // Individual pricing
+    let total = 0;
+    if (warmup) total += 250;
+    if (main) total += 350;
+    if (side) total += 250;
+
+    return { total, isPackageDeal: false };
+  };
+
+  const priceInfo = calculateTotal();
+
   async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
     setIsSubmitting(true);
@@ -108,11 +135,19 @@ export function RegistrationForm() {
                 id="warmup-tournament"
                 name="warmupTournament"
                 value="true"
+                checked={selectedTournaments.warmup}
+                onChange={(e) =>
+                  setSelectedTournaments((prev) => ({
+                    ...prev,
+                    warmup: e.target.checked,
+                  }))
+                }
                 className="mt-1 h-5 w-5 rounded border-cyan-300 text-cyan-600 focus:ring-cyan-500"
               />
               <div className="flex-1">
                 <div className="block font-semibold text-cyan-200">
                   XMAS Matchplay Open Warmup 2025 (Friday)
+                  <span className="ml-2 text-cyan-300">250 NOK</span>
                 </div>
                 <p className="text-sm text-gray-300 mt-1">
                   Death Race format with Amazing Race finals - 125% TGP
@@ -135,11 +170,19 @@ export function RegistrationForm() {
                 id="main-tournament"
                 name="mainTournament"
                 value="true"
+                checked={selectedTournaments.main}
+                onChange={(e) =>
+                  setSelectedTournaments((prev) => ({
+                    ...prev,
+                    main: e.target.checked,
+                  }))
+                }
                 className="mt-1 h-5 w-5 rounded border-purple-300 text-purple-600 focus:ring-purple-500"
               />
               <div className="flex-1">
                 <div className="block font-semibold text-purple-200">
                   XMAS Matchplay Open Main 2025 (Saturday & Sunday)
+                  <span className="ml-2 text-purple-300">350 NOK</span>
                 </div>
                 <p className="text-sm text-gray-300 mt-1">
                   Group matchplay qualifications (Saturday) followed by playoffs
@@ -163,11 +206,19 @@ export function RegistrationForm() {
                 id="side-tournament"
                 name="sideTournament"
                 value="true"
+                checked={selectedTournaments.side}
+                onChange={(e) =>
+                  setSelectedTournaments((prev) => ({
+                    ...prev,
+                    side: e.target.checked,
+                  }))
+                }
                 className="mt-1 h-5 w-5 rounded border-pink-300 text-pink-600 focus:ring-pink-500"
               />
               <div className="flex-1">
                 <div className="block font-semibold text-pink-200">
                   XMAS Matchplay Open Side 2025 (Saturday evening)
+                  <span className="ml-2 text-pink-300">250 NOK</span>
                 </div>
                 <p className="text-sm text-gray-300 mt-1">
                   Progressive strikes matchplay with top 8 playoffs
@@ -179,6 +230,39 @@ export function RegistrationForm() {
             </div>
           </label>
         </div>
+
+        {/* Total Price Calculator */}
+        {priceInfo.total > 0 && (
+          <div className="mt-6 bg-gradient-to-r from-cyan-900/40 to-purple-900/40 border-2 border-cyan-500/50 rounded-lg p-5">
+            <div className="flex justify-between items-center">
+              <div>
+                <h3 className="text-lg font-bold text-cyan-300 mb-1">
+                  Total to pay:
+                </h3>
+                {priceInfo.isPackageDeal && (
+                  <p className="text-sm text-green-300 font-semibold">
+                    Package Deal - Save 100 NOK!
+                  </p>
+                )}
+                <p className="text-xs text-gray-400 mt-2">
+                  Norwegian players: Vipps on arrival
+                  <br />
+                  International players: We'll figure something out
+                </p>
+              </div>
+              <div className="text-right">
+                <p className="text-4xl font-bold text-cyan-300">
+                  {priceInfo.total} NOK
+                </p>
+                {priceInfo.isPackageDeal && (
+                  <p className="text-sm text-gray-400 line-through mt-1">
+                    850 NOK
+                  </p>
+                )}
+              </div>
+            </div>
+          </div>
+        )}
       </div>
 
       {/* Personal Information */}

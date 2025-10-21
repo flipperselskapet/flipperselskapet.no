@@ -42,7 +42,7 @@ export default async function Xmas2025() {
           </h1>
           <div className="max-w-3xl mx-auto">
             <p className="text-xl md:text-2xl text-cyan-100 font-semibold mb-4 drop-shadow-lg">
-              Welcome to Norway's premier pinball event!
+              Join us for a weekend of pinball competition in Oslo!
             </p>
             <p className="text-lg text-gray-200 leading-relaxed mb-6">
               Kristiania Flipperselskap is a private pinball club located in
@@ -137,8 +137,8 @@ export default async function Xmas2025() {
                 </p>
                 <p className="text-xs text-gray-400 mb-4">
                   <em>
-                    Norwegian players will pay with VIPPS at arrival.
-                    International players - we'll figure out payment together.
+                    Norwegian players: Vipps on arrival.
+                    International players: We'll figure something out.
                   </em>
                 </p>
 
@@ -173,12 +173,48 @@ export default async function Xmas2025() {
                 </p>
                 <p className="text-xs text-gray-400">
                   <em>
-                    Norwegian players will pay with VIPPS at arrival.
-                    International players - we'll figure out payment together.
+                    Norwegian players: Vipps on arrival.
+                    International players: We'll figure something out.
                   </em>
                 </p>
               </div>
             )}
+
+            <div className="bg-slate-900/50 border-2 border-cyan-500/30 rounded-lg p-6">
+              <h3 className="text-xl font-bold text-cyan-300 mb-4">
+                💰 Entry Fees
+              </h3>
+              <div className="grid md:grid-cols-2 gap-4 text-gray-200">
+                <div className="space-y-2">
+                  <div className="flex justify-between">
+                    <span>XMAS Warmup:</span>
+                    <span className="font-semibold text-cyan-300">250 NOK</span>
+                  </div>
+                  <div className="flex justify-between">
+                    <span>XMAS Main:</span>
+                    <span className="font-semibold text-cyan-300">350 NOK</span>
+                  </div>
+                  <div className="flex justify-between">
+                    <span>XMAS Side:</span>
+                    <span className="font-semibold text-cyan-300">250 NOK</span>
+                  </div>
+                  <div className="flex justify-between items-center">
+                    <span>XMAS Leftovers:</span>
+                    <span className="font-semibold text-cyan-300">250 NOK*</span>
+                  </div>
+                </div>
+                <div className="bg-cyan-900/30 border border-cyan-500/50 rounded-lg p-4 flex flex-col justify-center">
+                  <p className="text-sm text-cyan-200 mb-2 font-semibold">
+                    Package Deal (Warmup + Main + Side):
+                  </p>
+                  <p className="text-3xl font-bold text-cyan-300">750 NOK</p>
+                  <p className="text-xs text-cyan-200 mt-1">Save 100 NOK!</p>
+                </div>
+              </div>
+              <p className="text-xs text-gray-400 italic mt-4">
+                * XMAS Leftovers is free for players participating in the Main tournament
+              </p>
+            </div>
 
             <div className="bg-blue-900/20 border border-blue-500/30 rounded-lg p-4">
               <p className="text-sm text-blue-200">
@@ -566,62 +602,27 @@ export default async function Xmas2025() {
                 </div>
                 <div className="flex gap-3">
                   <span className="font-mono text-purple-300 min-w-[80px]">
-                    10:00-10:30
+                    10:00-10:15
                   </span>
-                  <span>
-                    Tournament information + Prize ceremony from Friday
-                  </span>
+                  <span>Tournament information</span>
                 </div>
                 <div className="flex gap-3">
                   <span className="font-mono text-purple-300 min-w-[80px]">
-                    10:30-11:20
+                    10:15-12:45
                   </span>
-                  <span className="font-semibold">Round 1</span>
+                  <span className="font-semibold">Qualifying rounds</span>
                 </div>
                 <div className="flex gap-3">
                   <span className="font-mono text-purple-300 min-w-[80px]">
-                    11:20-12:10
-                  </span>
-                  <span className="font-semibold">Round 2</span>
-                </div>
-                <div className="flex gap-3">
-                  <span className="font-mono text-purple-300 min-w-[80px]">
-                    12:10-12:40
-                  </span>
-                  <span className="text-gray-400">Break for food/shopping</span>
-                </div>
-                <div className="flex gap-3">
-                  <span className="font-mono text-purple-300 min-w-[80px]">
-                    12:40-13:30
-                  </span>
-                  <span className="font-semibold">Round 3</span>
-                </div>
-                <div className="flex gap-3">
-                  <span className="font-mono text-purple-300 min-w-[80px]">
-                    13:30-14:20
-                  </span>
-                  <span className="font-semibold">Round 4</span>
-                </div>
-                <div className="flex gap-3">
-                  <span className="font-mono text-purple-300 min-w-[80px]">
-                    14:20-15:10
-                  </span>
-                  <span className="font-semibold">Round 5</span>
-                </div>
-                <div className="flex gap-3">
-                  <span className="font-mono text-purple-300 min-w-[80px]">
-                    15:10-16:00
-                  </span>
-                  <span className="font-semibold">Round 6</span>{" "}
-                  <span className="text-gray-400">
-                    (final qualification round)
-                  </span>
-                </div>
-                <div className="flex gap-3">
-                  <span className="font-mono text-purple-300 min-w-[80px]">
-                    16:00-18:00
+                    12:45-13:30
                   </span>
                   <span className="text-gray-400">Food break</span>
+                </div>
+                <div className="flex gap-3">
+                  <span className="font-mono text-purple-300 min-w-[80px]">
+                    13:30-18:00
+                  </span>
+                  <span className="font-semibold">Qualifying rounds</span>
                 </div>
               </div>
             </div>
