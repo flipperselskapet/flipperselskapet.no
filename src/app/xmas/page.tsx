@@ -89,22 +89,14 @@ export default async function Xmas2025() {
             Registration
           </h2>
           <div className="text-gray-200 space-y-6">
-            <div className="bg-cyan-900/30 border-2 border-cyan-500/50 rounded-lg p-5">
+            <div className="bg-yellow-900/30 border-2 border-yellow-500/50 rounded-lg p-5">
               <p className="text-lg mb-4">
-                <strong className="text-cyan-200">
-                  Registration is now open!
+                <strong className="text-yellow-200">
+                  Registration opens tomorrow at 20:00 (Norwegian time)
                 </strong>
               </p>
 
-              {/* Call to Action Button */}
-              <a
-                href="/xmas/register"
-                className="inline-block w-full sm:w-auto px-8 py-4 bg-gradient-to-r from-cyan-600 to-purple-600 hover:from-cyan-500 hover:to-purple-500 text-white font-bold text-xl rounded-lg shadow-lg transition-all duration-200 transform hover:scale-105 text-center mb-4"
-              >
-                Register Now →
-              </a>
-
-              <p className="text-sm text-gray-300 mb-3 mt-4">
+              <p className="text-sm text-gray-300 mb-3">
                 Register for the main tournament and optionally join the warmup
                 and side tournaments.
               </p>
