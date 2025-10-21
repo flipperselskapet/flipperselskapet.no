@@ -91,9 +91,14 @@ export default async function Xmas2025() {
                   <span className="text-pink-400 font-bold min-w-[140px]">
                     December 7th:
                   </span>
-                  <span className="text-gray-200">
-                    XMAS Matchplay Open Main 2025 (Finals)
-                  </span>
+                  <div className="space-y-1">
+                    <div className="text-gray-200">
+                      XMAS Matchplay Open Main 2025 (Finals)
+                    </div>
+                    <div className="text-gray-200">
+                      XMAS Leftovers 2025
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
