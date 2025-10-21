@@ -639,9 +639,12 @@ export default async function Xmas2025() {
                 </div>
                 <div className="flex gap-3">
                   <span className="font-mono text-purple-300 min-w-[80px]">
-                    TBD
+                    12:00
                   </span>
-                  <span className="font-semibold">Leftovers</span>
+                  <span className="font-semibold">Leftovers</span>{" "}
+                  <span className="text-gray-400">
+                    - Format TBD
+                  </span>
                 </div>
               </div>
 
