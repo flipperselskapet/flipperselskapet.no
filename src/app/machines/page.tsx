@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { machines } from "~/data/machines";
+import MachineList from "./machine-list";
 
 export const metadata: Metadata = {
   title: "Maskiner - Kristiania Flipperselskap",
@@ -31,82 +32,7 @@ export default function Machines() {
             🎮 Maskinliste
           </h2>
 
-          {machines.length === 0 ? (
-            <p className="text-gray-400 italic">Maskinliste kommer snart...</p>
-          ) : (
-            <div className="overflow-x-auto">
-              <table className="w-full text-left border-collapse">
-                <thead>
-                  <tr className="border-b-2 border-cyan-500/50">
-                    <th className="py-3 px-4 text-cyan-300 font-bold">
-                      Maskin
-                    </th>
-                    <th className="py-3 px-4 text-cyan-300 font-bold hidden sm:table-cell">
-                      Produsent
-                    </th>
-                    <th className="py-3 px-4 text-cyan-300 font-bold hidden md:table-cell">
-                      År
-                    </th>
-                    <th className="py-3 px-4 text-cyan-300 font-bold hidden lg:table-cell">
-                      Rating
-                    </th>
-                    <th className="py-3 px-4 text-cyan-300 font-bold">IPDB</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {machines.map((machine) => (
-                    <tr
-                      key={machine.ipdbId}
-                      className="border-b border-cyan-500/20 hover:bg-cyan-500/10 transition-colors"
-                    >
-                      <td className="py-3 px-4">
-                        <div className="text-gray-200 font-semibold">
-                          {machine.name}
-                        </div>
-                        <div className="text-gray-400 text-sm mt-1 lg:hidden">
-                          <span className="sm:hidden">
-                            {machine.manufacturer}
-                            {" • "}
-                          </span>
-                          <span className="md:hidden">
-                            {machine.year !== 0 ? machine.year : "TBD"}
-                            {" • "}
-                          </span>
-                          {machine.rating}
-                        </div>
-                      </td>
-                      <td className="py-3 px-4 text-gray-300 hidden sm:table-cell">
-                        {machine.manufacturer}
-                      </td>
-                      <td className="py-3 px-4 text-gray-300 hidden md:table-cell">
-                        {machine.year !== 0 ? machine.year : "TBD"}
-                      </td>
-                      <td className="py-3 px-4 text-gray-300 hidden lg:table-cell">
-                        {machine.rating}
-                      </td>
-                      <td className="py-3 px-4">
-                        {machine.ipdbUrl !== "#" ? (
-                          <a
-                            href={machine.ipdbUrl}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="text-cyan-400 hover:text-cyan-200 underline text-sm"
-                          >
-                            →
-                          </a>
-                        ) : (
-                          <span className="text-gray-600 text-sm">-</span>
-                        )}
-                      </td>
-                    </tr>
-                  ))}
-                </tbody>
-              </table>
-              <p className="text-gray-400 text-sm mt-4 text-center">
-                Total: {machines.length} maskiner
-              </p>
-            </div>
-          )}
+          <MachineList machines={machines} />
         </div>
 
         {/* Back Link */}
