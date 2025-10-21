@@ -14,6 +14,35 @@ export function RegistrationForm() {
   const [turnstileToken, setTurnstileToken] = useState<string | null>(null);
   const turnstileRef = useRef<TurnstileInstance | null>(null);
 
+  // Track tournament selections for price calculation
+  const [selectedTournaments, setSelectedTournaments] = useState({
+    warmup: false,
+    main: false,
+    side: false,
+    leftovers: false,
+  });
+
+  // Calculate total price
+  const calculateTotal = () => {
+    const { warmup, main, side, leftovers } = selectedTournaments;
+
+    // Package deal: all tournaments for 750 NOK
+    if (warmup && main && side && leftovers) {
+      return { total: 750, isPackageDeal: true };
+    }
+
+    // Individual pricing
+    let total = 0;
+    if (warmup) total += 250;
+    if (main) total += 350;
+    if (side) total += 250;
+    if (leftovers) total += 250;
+
+    return { total, isPackageDeal: false };
+  };
+
+  const priceInfo = calculateTotal();
+
   async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
     setIsSubmitting(true);
@@ -36,8 +65,14 @@ export function RegistrationForm() {
     const mainTournament = formData.get("mainTournament") === "true";
     const warmupTournament = formData.get("warmupTournament") === "true";
     const sideTournament = formData.get("sideTournament") === "true";
+    const leftoversTournament = formData.get("leftoversTournament") === "true";
 
-    if (!mainTournament && !warmupTournament && !sideTournament) {
+    if (
+      !mainTournament &&
+      !warmupTournament &&
+      !sideTournament &&
+      !leftoversTournament
+    ) {
       setSubmitStatus({
         type: "error",
         message: "Please select at least one tournament to participate in",
@@ -108,11 +143,19 @@ export function RegistrationForm() {
                 id="warmup-tournament"
                 name="warmupTournament"
                 value="true"
+                checked={selectedTournaments.warmup}
+                onChange={(e) =>
+                  setSelectedTournaments((prev) => ({
+                    ...prev,
+                    warmup: e.target.checked,
+                  }))
+                }
                 className="mt-1 h-5 w-5 rounded border-cyan-300 text-cyan-600 focus:ring-cyan-500"
               />
               <div className="flex-1">
                 <div className="block font-semibold text-cyan-200">
                   XMAS Matchplay Open Warmup 2025 (Friday)
+                  <span className="ml-2 text-cyan-300">250 NOK</span>
                 </div>
                 <p className="text-sm text-gray-300 mt-1">
                   Death Race format with Amazing Race finals - 125% TGP
@@ -135,11 +178,19 @@ export function RegistrationForm() {
                 id="main-tournament"
                 name="mainTournament"
                 value="true"
+                checked={selectedTournaments.main}
+                onChange={(e) =>
+                  setSelectedTournaments((prev) => ({
+                    ...prev,
+                    main: e.target.checked,
+                  }))
+                }
                 className="mt-1 h-5 w-5 rounded border-purple-300 text-purple-600 focus:ring-purple-500"
               />
               <div className="flex-1">
                 <div className="block font-semibold text-purple-200">
                   XMAS Matchplay Open Main 2025 (Saturday & Sunday)
+                  <span className="ml-2 text-purple-300">350 NOK</span>
                 </div>
                 <p className="text-sm text-gray-300 mt-1">
                   Group matchplay qualifications (Saturday) followed by playoffs
@@ -163,11 +214,19 @@ export function RegistrationForm() {
                 id="side-tournament"
                 name="sideTournament"
                 value="true"
+                checked={selectedTournaments.side}
+                onChange={(e) =>
+                  setSelectedTournaments((prev) => ({
+                    ...prev,
+                    side: e.target.checked,
+                  }))
+                }
                 className="mt-1 h-5 w-5 rounded border-pink-300 text-pink-600 focus:ring-pink-500"
               />
               <div className="flex-1">
                 <div className="block font-semibold text-pink-200">
                   XMAS Matchplay Open Side 2025 (Saturday evening)
+                  <span className="ml-2 text-pink-300">250 NOK</span>
                 </div>
                 <p className="text-sm text-gray-300 mt-1">
                   Progressive strikes matchplay with top 8 playoffs
@@ -178,47 +237,75 @@ export function RegistrationForm() {
               </div>
             </div>
           </label>
+
+          {/* Leftovers Tournament */}
+          <label
+            htmlFor="leftovers-tournament"
+            className="block bg-orange-900/30 border-2 border-orange-500/50 rounded-lg p-4 cursor-pointer hover:bg-orange-900/40 transition-colors"
+          >
+            <div className="flex items-start gap-3">
+              <input
+                type="checkbox"
+                id="leftovers-tournament"
+                name="leftoversTournament"
+                value="true"
+                checked={selectedTournaments.leftovers}
+                onChange={(e) =>
+                  setSelectedTournaments((prev) => ({
+                    ...prev,
+                    leftovers: e.target.checked,
+                  }))
+                }
+                className="mt-1 h-5 w-5 rounded border-orange-300 text-orange-600 focus:ring-orange-500"
+              />
+              <div className="flex-1">
+                <div className="block font-semibold text-orange-200">
+                  XMAS Leftovers 2025 (Sunday)
+                  <span className="ml-2 text-orange-300">250 NOK</span>
+                </div>
+                <p className="text-sm text-gray-300 mt-1">
+                  For players who don't advance to Main finals
+                </p>
+                <p className="text-xs text-gray-400 mt-1">
+                  Sunday, December 7th (during Main finals)
+                </p>
+              </div>
+            </div>
+          </label>
         </div>
 
-        {/* Pricing Information */}
-        <div className="mt-6 bg-slate-900/50 border-2 border-cyan-500/30 rounded-lg p-5">
-          <h3 className="text-lg font-bold text-cyan-300 mb-3">
-            💰 Entry Fees
-          </h3>
-          <div className="space-y-2 text-sm text-gray-200 mb-4">
-            <div className="flex justify-between">
-              <span>XMAS Warmup:</span>
-              <span className="font-semibold text-cyan-300">250 NOK</span>
-            </div>
-            <div className="flex justify-between">
-              <span>XMAS Main:</span>
-              <span className="font-semibold text-cyan-300">350 NOK</span>
-            </div>
-            <div className="flex justify-between">
-              <span>XMAS Side:</span>
-              <span className="font-semibold text-cyan-300">250 NOK</span>
-            </div>
-            <div className="flex justify-between">
-              <span>XMAS Leftovers:</span>
-              <span className="font-semibold text-cyan-300">250 NOK</span>
-            </div>
-          </div>
-          <div className="bg-cyan-900/30 border border-cyan-500/50 rounded-lg p-4">
+        {/* Total Price Calculator */}
+        {priceInfo.total > 0 && (
+          <div className="mt-6 bg-gradient-to-r from-cyan-900/40 to-purple-900/40 border-2 border-cyan-500/50 rounded-lg p-5">
             <div className="flex justify-between items-center">
               <div>
-                <p className="text-sm text-cyan-200 font-semibold">
-                  Package Deal - All Tournaments:
+                <h3 className="text-lg font-bold text-cyan-300 mb-1">
+                  Total to pay at arrival:
+                </h3>
+                {priceInfo.isPackageDeal && (
+                  <p className="text-sm text-green-300 font-semibold">
+                    Package Deal - Save 350 NOK!
+                  </p>
+                )}
+                <p className="text-xs text-gray-400 mt-2">
+                  Norwegian players: VIPPS payment
+                  <br />
+                  International players: We'll arrange payment
                 </p>
-                <p className="text-xs text-cyan-200 mt-1">Save 350 NOK!</p>
               </div>
-              <p className="text-2xl font-bold text-cyan-300">750 NOK</p>
+              <div className="text-right">
+                <p className="text-4xl font-bold text-cyan-300">
+                  {priceInfo.total} NOK
+                </p>
+                {priceInfo.isPackageDeal && (
+                  <p className="text-sm text-gray-400 line-through mt-1">
+                    1100 NOK
+                  </p>
+                )}
+              </div>
             </div>
           </div>
-          <p className="text-xs text-gray-400 italic mt-3">
-            Norwegian players will pay with VIPPS at arrival. International
-            players - we'll figure out payment together.
-          </p>
-        </div>
+        )}
       </div>
 
       {/* Personal Information */}

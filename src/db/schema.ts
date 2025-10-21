@@ -7,6 +7,7 @@ export const registrations = pgTable("registrations", {
   mainTournament: boolean("main_tournament").notNull().default(false),
   warmupTournament: boolean("warmup_tournament").notNull().default(false),
   sideTournament: boolean("side_tournament").notNull().default(false),
+  leftoversTournament: boolean("leftovers_tournament").notNull().default(false),
 
   // Personal information
   firstName: text("first_name").notNull(),
