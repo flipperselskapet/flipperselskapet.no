@@ -237,7 +237,7 @@ export function RegistrationForm() {
             <div className="flex justify-between items-center">
               <div>
                 <h3 className="text-lg font-bold text-cyan-300 mb-1">
-                  Total to pay at arrival:
+                  Total to pay:
                 </h3>
                 {priceInfo.isPackageDeal && (
                   <p className="text-sm text-green-300 font-semibold">
