@@ -41,10 +41,10 @@ export default function Machines() {
                     <th className="py-3 px-4 text-cyan-300 font-bold">
                       Maskin
                     </th>
-                    <th className="py-3 px-4 text-cyan-300 font-bold hidden md:table-cell">
+                    <th className="py-3 px-4 text-cyan-300 font-bold hidden sm:table-cell">
                       Produsent
                     </th>
-                    <th className="py-3 px-4 text-cyan-300 font-bold hidden sm:table-cell">
+                    <th className="py-3 px-4 text-cyan-300 font-bold hidden md:table-cell">
                       År
                     </th>
                     <th className="py-3 px-4 text-cyan-300 font-bold hidden lg:table-cell">
@@ -64,21 +64,21 @@ export default function Machines() {
                           {machine.name}
                         </div>
                         <div className="text-gray-400 text-sm mt-1 lg:hidden">
-                          <span className="md:hidden">
+                          <span className="sm:hidden">
                             {machine.manufacturer}
                             {" • "}
                           </span>
-                          <span className="sm:hidden">
+                          <span className="md:hidden">
                             {machine.year !== 0 ? machine.year : "TBD"}
                             {" • "}
                           </span>
                           {machine.rating}
                         </div>
                       </td>
-                      <td className="py-3 px-4 text-gray-300 hidden md:table-cell">
+                      <td className="py-3 px-4 text-gray-300 hidden sm:table-cell">
                         {machine.manufacturer}
                       </td>
-                      <td className="py-3 px-4 text-gray-300 hidden sm:table-cell">
+                      <td className="py-3 px-4 text-gray-300 hidden md:table-cell">
                         {machine.year !== 0 ? machine.year : "TBD"}
                       </td>
                       <td className="py-3 px-4 text-gray-300 hidden lg:table-cell">
