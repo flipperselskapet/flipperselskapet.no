@@ -193,6 +193,14 @@ export const machines: Machine[] = [
     ipdbUrl: "https://www.ipdb.org/machine.cgi?id=6354",
   },
   {
+    name: "Bow and Arrow",
+    manufacturer: "Bally",
+    year: 1975,
+    rating: "7.6/10",
+    ipdbId: "4770",
+    ipdbUrl: "https://www.ipdb.org/machine.cgi?id=4770",
+  },
+  {
     name: "Demolition Man",
     manufacturer: "Williams",
     year: 1994,
