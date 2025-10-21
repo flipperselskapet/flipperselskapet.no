@@ -323,6 +323,22 @@ export default async function Xmas2025() {
               </ul>
             </div>
 
+            {/* XMAS Leftovers Format */}
+            <div className="bg-black/30 p-4 rounded border border-orange-500/30">
+              <h3 className="text-xl font-bold text-orange-200 mb-3">
+                XMAS Leftovers
+              </h3>
+              <div className="bg-yellow-900/30 border-2 border-yellow-500/50 rounded-lg p-4">
+                <p className="text-yellow-200 font-bold text-center">
+                  ⚠️ Format TBD
+                </p>
+              </div>
+              <p className="mt-3">
+                A separate tournament for players who didn't advance to the Main
+                finals. More details coming soon!
+              </p>
+            </div>
+
             <p className="text-sm text-gray-400 italic">
               All tournaments played according to{" "}
               <strong>IFPA Matchplay rules</strong>
@@ -698,13 +714,12 @@ export default async function Xmas2025() {
               </h4>
               <div className="bg-yellow-900/30 border-2 border-yellow-500/50 rounded-lg p-4 mb-4">
                 <p className="text-yellow-200 font-bold text-center">
-                  ⚠️ Schedule and format TBD
+                  ⚠️ Schedule TBD
                 </p>
               </div>
-              <div className="space-y-2 text-sm">
-                <p className="text-orange-100">
-                  A separate tournament for players who didn't advance to the Main
-                  finals. More details coming soon!
+              <div className="bg-orange-900/20 border border-orange-500/20 rounded p-3 text-sm">
+                <p className="text-orange-200">
+                  See <strong>Tournament Format</strong> section above for format details.
                 </p>
               </div>
             </div>
