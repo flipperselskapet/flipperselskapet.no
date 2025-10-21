@@ -67,16 +67,16 @@ export default async function Xmas2025() {
               </h3>
               <div className="space-y-3 text-left">
                 <div className="flex items-start gap-3">
-                  <span className="text-cyan-400 font-bold min-w-[140px]">
-                    December 5th:
+                  <span className="text-cyan-400 font-bold min-w-[200px]">
+                    Friday, December 5th:
                   </span>
                   <span className="text-gray-200">
                     XMAS Matchplay Open Warmup 2025
                   </span>
                 </div>
                 <div className="flex items-start gap-3">
-                  <span className="text-purple-400 font-bold min-w-[140px]">
-                    December 6th:
+                  <span className="text-purple-400 font-bold min-w-[200px]">
+                    Saturday, December 6th:
                   </span>
                   <div className="space-y-1">
                     <div className="text-gray-200">
@@ -88,8 +88,8 @@ export default async function Xmas2025() {
                   </div>
                 </div>
                 <div className="flex items-start gap-3">
-                  <span className="text-pink-400 font-bold min-w-[140px]">
-                    December 7th:
+                  <span className="text-pink-400 font-bold min-w-[200px]">
+                    Sunday, December 7th:
                   </span>
                   <div className="space-y-1">
                     <div className="text-gray-200">
@@ -194,7 +194,7 @@ export default async function Xmas2025() {
         <section className="mb-12 bg-gradient-to-r from-slate-800/50 to-slate-900/50 rounded-lg border-2 border-purple-500/50 p-8 backdrop-blur-sm shadow-2xl">
           <h2 className="text-4xl font-black mb-6 text-purple-300 drop-shadow-lg flex items-center gap-3">
             <span className="text-5xl">📜</span>
-            Tournament Overview (5. - 7. December)
+            Tournament Format
           </h2>
           <div className="bg-yellow-900/30 border-2 border-yellow-500/50 rounded-lg p-4 mb-6">
             <p className="text-yellow-200 font-bold text-center">
@@ -205,7 +205,7 @@ export default async function Xmas2025() {
             {/* XMAS Warmup Format */}
             <div className="bg-black/30 p-4 rounded border border-cyan-500/30">
               <h3 className="text-xl font-bold text-cyan-200 mb-3">
-                XMAS Warmup | Death Race (Friday)
+                XMAS Warmup | Death Race
               </h3>
               <p className="mb-3">
                 The official XMAS warmup tournament is also our Stern Army
@@ -242,7 +242,7 @@ export default async function Xmas2025() {
             {/* XMAS Main Format */}
             <div className="bg-black/30 p-4 rounded border border-purple-500/30">
               <h3 className="text-xl font-bold text-purple-200 mb-3">
-                XMAS Main | Group Matchplay (Saturday & Sunday)
+                XMAS Main | Group Matchplay
               </h3>
               <p className="mb-3">
                 The qualifications will consist of <strong>10 rounds</strong>{" "}
@@ -307,7 +307,7 @@ export default async function Xmas2025() {
             {/* XMAS Side Format */}
             <div className="bg-black/30 p-4 rounded border border-pink-500/30">
               <h3 className="text-xl font-bold text-pink-200 mb-3">
-                XMAS Side | Progressive Strikes Matchplay (Saturday)
+                XMAS Side | Progressive Strikes Matchplay
               </h3>
               <p className="mb-3">
                 Progressive strike group matchplay tournament with{" "}
@@ -326,7 +326,7 @@ export default async function Xmas2025() {
             {/* XMAS Leftovers Format */}
             <div className="bg-black/30 p-4 rounded border border-orange-500/30">
               <h3 className="text-xl font-bold text-orange-200 mb-3">
-                XMAS Leftovers (Sunday)
+                XMAS Leftovers
               </h3>
               <div className="bg-yellow-900/30 border-2 border-yellow-500/50 rounded-lg p-4">
                 <p className="text-yellow-200 font-bold text-center">
