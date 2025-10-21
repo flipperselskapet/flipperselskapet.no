@@ -63,9 +63,15 @@ export default function Machines() {
                         <div className="text-gray-200 font-semibold">
                           {machine.name}
                         </div>
-                        <div className="text-gray-400 text-sm mt-1 md:hidden">
-                          {machine.manufacturer} •{" "}
-                          {machine.year !== 0 ? machine.year : "TBD"} •{" "}
+                        <div className="text-gray-400 text-sm mt-1 lg:hidden">
+                          <span className="md:hidden">
+                            {machine.manufacturer}
+                            {" • "}
+                          </span>
+                          <span className="sm:hidden">
+                            {machine.year !== 0 ? machine.year : "TBD"}
+                            {" • "}
+                          </span>
                           {machine.rating}
                         </div>
                       </td>
