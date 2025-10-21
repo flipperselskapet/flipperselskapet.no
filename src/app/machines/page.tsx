@@ -27,6 +27,14 @@ export default function Machines() {
 
       {/* Main Content */}
       <div className="container mx-auto px-4 py-12 max-w-6xl">
+        {/* Availability Notice */}
+        <div className="mb-6 bg-blue-900/30 border-l-4 border-blue-400 p-4 rounded-r-lg backdrop-blur-sm">
+          <p className="text-blue-200 text-sm">
+            ℹ️ Vær oppmerksom på at ikke alle maskiner er tilgjengelige til enhver tid.
+            Flippere krever vedlikehold, og maskintilstanden kan variere.
+          </p>
+        </div>
+
         <div className="bg-gradient-to-r from-slate-900/50 to-slate-800/50 rounded-lg border-2 border-cyan-500/50 p-8 backdrop-blur-sm shadow-2xl">
           <h2 className="text-3xl font-black mb-6 text-cyan-300 drop-shadow-lg">
             🎮 Maskinliste
