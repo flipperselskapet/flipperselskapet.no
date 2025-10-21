@@ -198,19 +198,22 @@ export default async function Xmas2025() {
                     <span>XMAS Side:</span>
                     <span className="font-semibold text-cyan-300">250 NOK</span>
                   </div>
-                  <div className="flex justify-between">
+                  <div className="flex justify-between items-center">
                     <span>XMAS Leftovers:</span>
-                    <span className="font-semibold text-cyan-300">250 NOK</span>
+                    <span className="font-semibold text-green-300">Free*</span>
                   </div>
                 </div>
                 <div className="bg-cyan-900/30 border border-cyan-500/50 rounded-lg p-4 flex flex-col justify-center">
                   <p className="text-sm text-cyan-200 mb-2 font-semibold">
-                    Package Deal - All Tournaments:
+                    Package Deal (Warmup + Main + Side):
                   </p>
                   <p className="text-3xl font-bold text-cyan-300">750 NOK</p>
-                  <p className="text-xs text-cyan-200 mt-1">Save 350 NOK!</p>
+                  <p className="text-xs text-cyan-200 mt-1">Save 100 NOK!</p>
                 </div>
               </div>
+              <p className="text-xs text-gray-400 italic mt-4">
+                * XMAS Leftovers is free for players registered for the Main tournament who don't advance to finals
+              </p>
             </div>
 
             <div className="bg-blue-900/20 border border-blue-500/30 rounded-lg p-4">

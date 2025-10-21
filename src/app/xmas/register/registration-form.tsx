@@ -19,15 +19,14 @@ export function RegistrationForm() {
     warmup: false,
     main: false,
     side: false,
-    leftovers: false,
   });
 
   // Calculate total price
   const calculateTotal = () => {
-    const { warmup, main, side, leftovers } = selectedTournaments;
+    const { warmup, main, side } = selectedTournaments;
 
     // Package deal: all tournaments for 750 NOK
-    if (warmup && main && side && leftovers) {
+    if (warmup && main && side) {
       return { total: 750, isPackageDeal: true };
     }
 
@@ -36,7 +35,6 @@ export function RegistrationForm() {
     if (warmup) total += 250;
     if (main) total += 350;
     if (side) total += 250;
-    if (leftovers) total += 250;
 
     return { total, isPackageDeal: false };
   };
@@ -65,14 +63,8 @@ export function RegistrationForm() {
     const mainTournament = formData.get("mainTournament") === "true";
     const warmupTournament = formData.get("warmupTournament") === "true";
     const sideTournament = formData.get("sideTournament") === "true";
-    const leftoversTournament = formData.get("leftoversTournament") === "true";
 
-    if (
-      !mainTournament &&
-      !warmupTournament &&
-      !sideTournament &&
-      !leftoversTournament
-    ) {
+    if (!mainTournament && !warmupTournament && !sideTournament) {
       setSubmitStatus({
         type: "error",
         message: "Please select at least one tournament to participate in",
@@ -237,41 +229,6 @@ export function RegistrationForm() {
               </div>
             </div>
           </label>
-
-          {/* Leftovers Tournament */}
-          <label
-            htmlFor="leftovers-tournament"
-            className="block bg-orange-900/30 border-2 border-orange-500/50 rounded-lg p-4 cursor-pointer hover:bg-orange-900/40 transition-colors"
-          >
-            <div className="flex items-start gap-3">
-              <input
-                type="checkbox"
-                id="leftovers-tournament"
-                name="leftoversTournament"
-                value="true"
-                checked={selectedTournaments.leftovers}
-                onChange={(e) =>
-                  setSelectedTournaments((prev) => ({
-                    ...prev,
-                    leftovers: e.target.checked,
-                  }))
-                }
-                className="mt-1 h-5 w-5 rounded border-orange-300 text-orange-600 focus:ring-orange-500"
-              />
-              <div className="flex-1">
-                <div className="block font-semibold text-orange-200">
-                  XMAS Leftovers 2025 (Sunday)
-                  <span className="ml-2 text-orange-300">250 NOK</span>
-                </div>
-                <p className="text-sm text-gray-300 mt-1">
-                  For players who don't advance to Main finals
-                </p>
-                <p className="text-xs text-gray-400 mt-1">
-                  Sunday, December 7th (during Main finals)
-                </p>
-              </div>
-            </div>
-          </label>
         </div>
 
         {/* Total Price Calculator */}
@@ -284,7 +241,7 @@ export function RegistrationForm() {
                 </h3>
                 {priceInfo.isPackageDeal && (
                   <p className="text-sm text-green-300 font-semibold">
-                    Package Deal - Save 350 NOK!
+                    Package Deal - Save 100 NOK!
                   </p>
                 )}
                 <p className="text-xs text-gray-400 mt-2">
@@ -299,7 +256,7 @@ export function RegistrationForm() {
                 </p>
                 {priceInfo.isPackageDeal && (
                   <p className="text-sm text-gray-400 line-through mt-1">
-                    1100 NOK
+                    850 NOK
                   </p>
                 )}
               </div>

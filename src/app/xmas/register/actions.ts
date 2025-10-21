@@ -45,7 +45,6 @@ export async function submitRegistration(formData: FormData) {
       mainTournament: formData.get("mainTournament") === "true",
       warmupTournament: formData.get("warmupTournament") === "true",
       sideTournament: formData.get("sideTournament") === "true",
-      leftoversTournament: formData.get("leftoversTournament") === "true",
 
       // Personal information
       firstName: formData.get("firstName") as string,
@@ -75,8 +74,7 @@ export async function submitRegistration(formData: FormData) {
     if (
       !registration.mainTournament &&
       !registration.warmupTournament &&
-      !registration.sideTournament &&
-      !registration.leftoversTournament
+      !registration.sideTournament
     ) {
       return {
         success: false,
@@ -103,7 +101,6 @@ export async function submitRegistration(formData: FormData) {
       mainTournament: registration.mainTournament,
       warmupTournament: registration.warmupTournament,
       sideTournament: registration.sideTournament,
-      leftoversTournament: registration.leftoversTournament,
       firstName: registration.firstName,
       lastName: registration.lastName,
       email: registration.email,
@@ -127,10 +124,6 @@ export async function submitRegistration(formData: FormData) {
     console.log(
       "  - Side Tournament (Saturday evening):",
       registration.sideTournament ? "✓" : "✗",
-    );
-    console.log(
-      "  - Leftovers Tournament (Sunday):",
-      registration.leftoversTournament ? "✓" : "✗",
     );
     console.log("\nParticipant Information:");
     console.log(

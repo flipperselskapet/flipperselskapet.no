@@ -41,7 +41,6 @@ export function AdminRegistrationRow({ registration }: Props) {
   if (registration.mainTournament) tournaments.push("Main");
   if (registration.warmupTournament) tournaments.push("Warmup");
   if (registration.sideTournament) tournaments.push("Side");
-  if (registration.leftoversTournament) tournaments.push("Leftovers");
 
   return (
     <tr className="border-b border-slate-700/50 hover:bg-slate-800/30">
@@ -84,9 +83,7 @@ export function AdminRegistrationRow({ registration }: Props) {
                   ? "bg-purple-900/50 text-purple-200"
                   : t === "Warmup"
                     ? "bg-cyan-900/50 text-cyan-200"
-                    : t === "Side"
-                      ? "bg-pink-900/50 text-pink-200"
-                      : "bg-orange-900/50 text-orange-200"
+                    : "bg-pink-900/50 text-pink-200"
               }`}
             >
               {t}
