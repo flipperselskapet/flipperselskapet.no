@@ -200,7 +200,7 @@ export default async function Xmas2025() {
                   </div>
                   <div className="flex justify-between items-center">
                     <span>XMAS Leftovers:</span>
-                    <span className="font-semibold text-green-300">Free*</span>
+                    <span className="font-semibold text-cyan-300">250 NOK*</span>
                   </div>
                 </div>
                 <div className="bg-cyan-900/30 border border-cyan-500/50 rounded-lg p-4 flex flex-col justify-center">
@@ -212,7 +212,7 @@ export default async function Xmas2025() {
                 </div>
               </div>
               <p className="text-xs text-gray-400 italic mt-4">
-                * XMAS Leftovers is free for players registered for the Main tournament who don't advance to finals
+                * XMAS Leftovers is free for players participating in the Main tournament
               </p>
             </div>
 
