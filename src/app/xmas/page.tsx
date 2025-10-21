@@ -180,6 +180,39 @@ export default async function Xmas2025() {
               </div>
             )}
 
+            <div className="bg-slate-900/50 border-2 border-cyan-500/30 rounded-lg p-6">
+              <h3 className="text-xl font-bold text-cyan-300 mb-4">
+                💰 Entry Fees
+              </h3>
+              <div className="grid md:grid-cols-2 gap-4 text-gray-200">
+                <div className="space-y-2">
+                  <div className="flex justify-between">
+                    <span>XMAS Warmup:</span>
+                    <span className="font-semibold text-cyan-300">250 NOK</span>
+                  </div>
+                  <div className="flex justify-between">
+                    <span>XMAS Main:</span>
+                    <span className="font-semibold text-cyan-300">350 NOK</span>
+                  </div>
+                  <div className="flex justify-between">
+                    <span>XMAS Side:</span>
+                    <span className="font-semibold text-cyan-300">250 NOK</span>
+                  </div>
+                  <div className="flex justify-between">
+                    <span>XMAS Leftovers:</span>
+                    <span className="font-semibold text-cyan-300">250 NOK</span>
+                  </div>
+                </div>
+                <div className="bg-cyan-900/30 border border-cyan-500/50 rounded-lg p-4 flex flex-col justify-center">
+                  <p className="text-sm text-cyan-200 mb-2 font-semibold">
+                    Package Deal - All Tournaments:
+                  </p>
+                  <p className="text-3xl font-bold text-cyan-300">750 NOK</p>
+                  <p className="text-xs text-cyan-200 mt-1">Save 350 NOK!</p>
+                </div>
+              </div>
+            </div>
+
             <div className="bg-blue-900/20 border border-blue-500/30 rounded-lg p-4">
               <p className="text-sm text-blue-200">
                 <strong>💡 Pre-tournament tip:</strong> Check out Illegal

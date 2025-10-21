@@ -179,6 +179,46 @@ export function RegistrationForm() {
             </div>
           </label>
         </div>
+
+        {/* Pricing Information */}
+        <div className="mt-6 bg-slate-900/50 border-2 border-cyan-500/30 rounded-lg p-5">
+          <h3 className="text-lg font-bold text-cyan-300 mb-3">
+            💰 Entry Fees
+          </h3>
+          <div className="space-y-2 text-sm text-gray-200 mb-4">
+            <div className="flex justify-between">
+              <span>XMAS Warmup:</span>
+              <span className="font-semibold text-cyan-300">250 NOK</span>
+            </div>
+            <div className="flex justify-between">
+              <span>XMAS Main:</span>
+              <span className="font-semibold text-cyan-300">350 NOK</span>
+            </div>
+            <div className="flex justify-between">
+              <span>XMAS Side:</span>
+              <span className="font-semibold text-cyan-300">250 NOK</span>
+            </div>
+            <div className="flex justify-between">
+              <span>XMAS Leftovers:</span>
+              <span className="font-semibold text-cyan-300">250 NOK</span>
+            </div>
+          </div>
+          <div className="bg-cyan-900/30 border border-cyan-500/50 rounded-lg p-4">
+            <div className="flex justify-between items-center">
+              <div>
+                <p className="text-sm text-cyan-200 font-semibold">
+                  Package Deal - All Tournaments:
+                </p>
+                <p className="text-xs text-cyan-200 mt-1">Save 350 NOK!</p>
+              </div>
+              <p className="text-2xl font-bold text-cyan-300">750 NOK</p>
+            </div>
+          </div>
+          <p className="text-xs text-gray-400 italic mt-3">
+            Norwegian players will pay with VIPPS at arrival. International
+            players - we'll figure out payment together.
+          </p>
+        </div>
       </div>
 
       {/* Personal Information */}
