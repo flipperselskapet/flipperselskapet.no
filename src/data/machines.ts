@@ -353,12 +353,12 @@ export const machines: Machine[] = [
     ipdbUrl: "https://www.ipdb.org/machine.cgi?id=5682",
   },
   {
-    name: "Turtles",
-    manufacturer: "Data East",
-    year: 1991,
-    rating: "6.8/10",
-    ipdbId: "2509",
-    ipdbUrl: "https://www.ipdb.org/machine.cgi?id=2509",
+    name: "Teenage Mutant Ninja Turtles (Pro)",
+    manufacturer: "Stern",
+    year: 2020,
+    rating: "9/10",
+    ipdbId: "6730",
+    ipdbUrl: "https://www.ipdb.org/machine.cgi?id=6730",
   },
   {
     name: "Whirlwind",
