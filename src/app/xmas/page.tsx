@@ -137,8 +137,8 @@ export default async function Xmas2025() {
                 </p>
                 <p className="text-xs text-gray-400 mb-4">
                   <em>
-                    Norwegian players will pay with VIPPS at arrival.
-                    International players - we'll figure out payment together.
+                    Norwegian players: Vipps on arrival.
+                    International players: We'll figure something out.
                   </em>
                 </p>
 
@@ -173,8 +173,8 @@ export default async function Xmas2025() {
                 </p>
                 <p className="text-xs text-gray-400">
                   <em>
-                    Norwegian players will pay with VIPPS at arrival.
-                    International players - we'll figure out payment together.
+                    Norwegian players: Vipps on arrival.
+                    International players: We'll figure something out.
                   </em>
                 </p>
               </div>

@@ -245,9 +245,9 @@ export function RegistrationForm() {
                   </p>
                 )}
                 <p className="text-xs text-gray-400 mt-2">
-                  Norwegian players: VIPPS payment
+                  Norwegian players: Vipps on arrival
                   <br />
-                  International players: We'll arrange payment
+                  International players: We'll figure something out
                 </p>
               </div>
               <div className="text-right">
