@@ -66,16 +66,16 @@ export default async function Xmas2025() {
                 📅 Tournament Dates
               </h3>
               <div className="space-y-3 text-left">
-                <div className="flex items-start gap-3">
-                  <span className="text-cyan-400 font-bold min-w-[200px]">
+                <div className="flex flex-col md:flex-row md:items-start gap-1 md:gap-3">
+                  <span className="text-cyan-400 font-bold md:min-w-[200px]">
                     Friday, December 5th:
                   </span>
                   <span className="text-gray-200">
                     XMAS Matchplay Open Warmup 2025
                   </span>
                 </div>
-                <div className="flex items-start gap-3">
-                  <span className="text-purple-400 font-bold min-w-[200px]">
+                <div className="flex flex-col md:flex-row md:items-start gap-1 md:gap-3">
+                  <span className="text-purple-400 font-bold md:min-w-[200px]">
                     Saturday, December 6th:
                   </span>
                   <div className="space-y-1">
@@ -87,8 +87,8 @@ export default async function Xmas2025() {
                     </div>
                   </div>
                 </div>
-                <div className="flex items-start gap-3">
-                  <span className="text-pink-400 font-bold min-w-[200px]">
+                <div className="flex flex-col md:flex-row md:items-start gap-1 md:gap-3">
+                  <span className="text-pink-400 font-bold md:min-w-[200px]">
                     Sunday, December 7th:
                   </span>
                   <div className="space-y-1">
