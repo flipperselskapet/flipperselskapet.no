@@ -13,6 +13,14 @@ export default function Home() {
           <span>sk</span>ap
         </b>
       </div>
+      <div className="absolute bottom-8 left-8">
+        <a
+          href="/xmas"
+          className="text-gray-400 hover:text-gray-200 text-sm transition-colors opacity-50 hover:opacity-100"
+        >
+          XMAS 2025
+        </a>
+      </div>
       <div className="absolute bottom-8 right-8">
         <a
           href="/machines"

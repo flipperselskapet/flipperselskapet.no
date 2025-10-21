@@ -97,33 +97,11 @@ export function RegistrationForm() {
         </p>
 
         <div className="space-y-4">
-          {/* Main Tournament */}
-          <div className="bg-purple-900/30 border-2 border-purple-500/50 rounded-lg p-4">
-            <div className="flex items-start gap-3">
-              <input
-                type="checkbox"
-                id="main-tournament"
-                name="mainTournament"
-                value="true"
-                className="mt-1 h-5 w-5 rounded border-purple-300 text-purple-600 focus:ring-purple-500"
-              />
-              <div className="flex-1">
-                <label
-                  htmlFor="main-tournament"
-                  className="block font-semibold text-purple-200 cursor-pointer"
-                >
-                  XMAS Matchplay Open Main 2025 (Saturday)
-                </label>
-                <p className="text-sm text-gray-300 mt-1">
-                  Group matchplay qualifications followed by top 16 playoffs -
-                  200% TGP
-                </p>
-              </div>
-            </div>
-          </div>
-
           {/* Warmup Tournament */}
-          <div className="bg-cyan-900/30 border-2 border-cyan-500/50 rounded-lg p-4">
+          <label
+            htmlFor="warmup-tournament"
+            className="block bg-cyan-900/30 border-2 border-cyan-500/50 rounded-lg p-4 cursor-pointer hover:bg-cyan-900/40 transition-colors"
+          >
             <div className="flex items-start gap-3">
               <input
                 type="checkbox"
@@ -133,12 +111,9 @@ export function RegistrationForm() {
                 className="mt-1 h-5 w-5 rounded border-cyan-300 text-cyan-600 focus:ring-cyan-500"
               />
               <div className="flex-1">
-                <label
-                  htmlFor="warmup-tournament"
-                  className="block font-semibold text-cyan-200 cursor-pointer"
-                >
+                <div className="block font-semibold text-cyan-200">
                   XMAS Matchplay Open Warmup 2025 (Friday)
-                </label>
+                </div>
                 <p className="text-sm text-gray-300 mt-1">
                   Death Race format with Amazing Race finals - 125% TGP
                 </p>
@@ -147,10 +122,41 @@ export function RegistrationForm() {
                 </p>
               </div>
             </div>
-          </div>
+          </label>
+
+          {/* Main Tournament */}
+          <label
+            htmlFor="main-tournament"
+            className="block bg-purple-900/30 border-2 border-purple-500/50 rounded-lg p-4 cursor-pointer hover:bg-purple-900/40 transition-colors"
+          >
+            <div className="flex items-start gap-3">
+              <input
+                type="checkbox"
+                id="main-tournament"
+                name="mainTournament"
+                value="true"
+                className="mt-1 h-5 w-5 rounded border-purple-300 text-purple-600 focus:ring-purple-500"
+              />
+              <div className="flex-1">
+                <div className="block font-semibold text-purple-200">
+                  XMAS Matchplay Open Main 2025 (Saturday & Sunday)
+                </div>
+                <p className="text-sm text-gray-300 mt-1">
+                  Group matchplay qualifications (Saturday) followed by playoffs
+                  (Sunday) - 200-250% TGP
+                </p>
+                <p className="text-xs text-gray-400 mt-1">
+                  Saturday, December 6th and Sunday, December 7th
+                </p>
+              </div>
+            </div>
+          </label>
 
           {/* Side Tournament */}
-          <div className="bg-pink-900/30 border-2 border-pink-500/50 rounded-lg p-4">
+          <label
+            htmlFor="side-tournament"
+            className="block bg-pink-900/30 border-2 border-pink-500/50 rounded-lg p-4 cursor-pointer hover:bg-pink-900/40 transition-colors"
+          >
             <div className="flex items-start gap-3">
               <input
                 type="checkbox"
@@ -160,12 +166,9 @@ export function RegistrationForm() {
                 className="mt-1 h-5 w-5 rounded border-pink-300 text-pink-600 focus:ring-pink-500"
               />
               <div className="flex-1">
-                <label
-                  htmlFor="side-tournament"
-                  className="block font-semibold text-pink-200 cursor-pointer"
-                >
+                <div className="block font-semibold text-pink-200">
                   XMAS Matchplay Open Side 2025 (Saturday evening)
-                </label>
+                </div>
                 <p className="text-sm text-gray-300 mt-1">
                   Progressive strikes matchplay with top 8 playoffs
                 </p>
@@ -174,7 +177,7 @@ export function RegistrationForm() {
                 </p>
               </div>
             </div>
-          </div>
+          </label>
         </div>
       </div>
 
@@ -286,7 +289,6 @@ export function RegistrationForm() {
 
       {/* Captcha */}
       <div>
-        <h2 className="text-2xl font-bold text-cyan-300 mb-4">Verification</h2>
         <div className="flex justify-center">
           <Turnstile
             ref={turnstileRef}

@@ -52,7 +52,7 @@ export default async function Xmas2025() {
               another XMAS annual tournament!
             </p>
             <p className="text-lg text-gray-200 leading-relaxed mb-6">
-              Join us for two days of intense pinball action, December 5th-6th,
+              Join us for three days of intense pinball action, December 5th-7th,
               2025! This page contains all necessary information about
               registration, tournament formats, schedule, accommodation, food
               and transport.
@@ -67,23 +67,36 @@ export default async function Xmas2025() {
               </h3>
               <div className="space-y-3 text-left">
                 <div className="flex items-start gap-3">
-                  <span className="text-cyan-400 font-bold min-w-[140px]">
-                    December 5th:
+                  <span className="text-cyan-400 font-bold min-w-[200px]">
+                    Friday, December 5th:
                   </span>
                   <span className="text-gray-200">
                     XMAS Matchplay Open Warmup 2025
                   </span>
                 </div>
                 <div className="flex items-start gap-3">
-                  <span className="text-purple-400 font-bold min-w-[140px]">
-                    December 6th:
+                  <span className="text-purple-400 font-bold min-w-[200px]">
+                    Saturday, December 6th:
                   </span>
                   <div className="space-y-1">
                     <div className="text-gray-200">
-                      XMAS Matchplay Open Side 2025
+                      XMAS Matchplay Open Main 2025 (Qualifications)
                     </div>
                     <div className="text-gray-200">
-                      XMAS Matchplay Open Main 2025
+                      XMAS Matchplay Open Side 2025
+                    </div>
+                  </div>
+                </div>
+                <div className="flex items-start gap-3">
+                  <span className="text-pink-400 font-bold min-w-[200px]">
+                    Sunday, December 7th:
+                  </span>
+                  <div className="space-y-1">
+                    <div className="text-gray-200">
+                      XMAS Matchplay Open Main 2025 (Finals)
+                    </div>
+                    <div className="text-gray-200">
+                      XMAS Leftovers 2025
                     </div>
                   </div>
                 </div>
@@ -236,7 +249,7 @@ export default async function Xmas2025() {
                 with <strong>2 games in each round</strong> (one modern, one
                 classic).
               </p>
-              <ul className="list-disc list-inside space-y-2 ml-4">
+              <ul className="list-disc list-inside space-y-2 ml-4 mb-4">
                 <li>Points: 7-5-3-1</li>
                 <li>First round pairing: IFPA Slaughter</li>
                 <li>Following rounds: Tiered Swiss</li>
@@ -252,6 +265,43 @@ export default async function Xmas2025() {
                   <strong className="text-purple-300">200-250% TGP!</strong>
                 </li>
               </ul>
+
+              <div className="bg-purple-900/20 border border-purple-500/20 rounded p-4 text-sm space-y-3">
+                <p className="font-semibold text-purple-200 text-base mb-2">
+                  Playoff Format:
+                </p>
+                <p className="text-purple-200">
+                  Top 24 players (or top 16 if less than 48 players) from Saturday's
+                  qualifying rounds will compete in three/four rounds of group matchplay.
+                  Each round consists of <strong>4 games</strong> with <strong>7-5-3-1 scoring</strong>.
+                  Top two in each group advance to the next round, continuing until the
+                  XMAS champion of 2025 is determined!
+                </p>
+
+                <div className="border-t border-purple-500/20 pt-3 mt-3">
+                  <p className="font-semibold text-purple-200 mb-2">
+                    Quarter Finals / First Two Rounds:
+                  </p>
+                  <ul className="list-disc list-inside space-y-1 ml-2 text-purple-100">
+                    <li>Top seed in each group from qualification chooses game bank</li>
+                    <li>Top seed chooses their starting position on game 1</li>
+                    <li>Player starting order on consecutive machines determined by previous game results</li>
+                  </ul>
+                </div>
+
+                <div className="border-t border-purple-500/20 pt-3 mt-3">
+                  <p className="font-semibold text-purple-200 mb-2">
+                    Semi Finals and Finals:
+                  </p>
+                  <ul className="list-disc list-inside space-y-1 ml-2 text-purple-100">
+                    <li>Top seed from QUALIFICATION in each group chooses games 1 and 2</li>
+                    <li>Following seeds in each group choose one machine each</li>
+                    <li>Each game can only be chosen once during semi finals and finals</li>
+                    <li>Top seed from QUALIFICATION chooses start order on game 1</li>
+                    <li>Player starting order on consecutive machines determined by previous game results</li>
+                  </ul>
+                </div>
+              </div>
             </div>
 
             {/* XMAS Side Format */}
@@ -271,6 +321,22 @@ export default async function Xmas2025() {
                 <li>Play continues until 8 players remain</li>
                 <li>Top 8 advance to playoffs</li>
               </ul>
+            </div>
+
+            {/* XMAS Leftovers Format */}
+            <div className="bg-black/30 p-4 rounded border border-orange-500/30">
+              <h3 className="text-xl font-bold text-orange-200 mb-3">
+                XMAS Leftovers
+              </h3>
+              <div className="bg-yellow-900/30 border-2 border-yellow-500/50 rounded-lg p-4">
+                <p className="text-yellow-200 font-bold text-center">
+                  ⚠️ Format TBD
+                </p>
+              </div>
+              <p className="mt-3">
+                A separate tournament for players who didn't advance to the Main
+                finals. More details coming soon!
+              </p>
             </div>
 
             <p className="text-sm text-gray-400 italic">
@@ -486,10 +552,10 @@ export default async function Xmas2025() {
             {/* Saturday Schedule - Main */}
             <div className="bg-black/30 p-5 rounded border border-purple-600/30">
               <h3 className="font-bold text-purple-300 mb-4 text-2xl">
-                📅 Saturday, December 6th - Main Tournament
+                📅 Saturday, December 6th - Main Tournament (Qualifications)
               </h3>
               <h4 className="text-purple-200 font-semibold mb-4 text-lg">
-                XMAS Matchplay Open Main 2025
+                XMAS Matchplay Open Main 2025 - Qualifying Rounds
               </h4>
               <div className="space-y-2 text-sm">
                 <div className="flex gap-3">
@@ -596,6 +662,65 @@ export default async function Xmas2025() {
                     - Top 4 play group matchplay on 3 games
                   </span>
                 </div>
+              </div>
+            </div>
+
+            {/* Sunday Schedule - Main Finals */}
+            <div className="bg-black/30 p-5 rounded border border-purple-600/30">
+              <h3 className="font-bold text-purple-300 mb-4 text-2xl">
+                📅 Sunday, December 7th - Main Tournament Finals
+              </h3>
+              <h4 className="text-purple-200 font-semibold mb-4 text-lg">
+                XMAS Matchplay Open Main 2025 - Finals
+              </h4>
+              <div className="space-y-2 text-sm">
+                <div className="flex gap-3">
+                  <span className="font-mono text-purple-300 min-w-[80px]">
+                    09:30
+                  </span>
+                  <span className="font-semibold">Finals start</span>
+                </div>
+                <div className="flex gap-3">
+                  <span className="font-mono text-purple-300 min-w-[80px]">
+                    09:30-17:00
+                  </span>
+                  <span>
+                    Playoff bracket - Three/four rounds of group matchplay
+                    (depending on number of qualifiers)
+                  </span>
+                </div>
+                <div className="flex gap-3">
+                  <span className="font-mono text-purple-300 min-w-[80px]">
+                    17:00
+                  </span>
+                  <span className="font-semibold">Finals complete</span>
+                </div>
+              </div>
+
+              <div className="bg-purple-900/20 border border-purple-500/20 rounded p-3 text-sm mt-4">
+                <p className="text-purple-200">
+                  See <strong>Tournament Format</strong> section above for detailed playoff format rules.
+                </p>
+              </div>
+            </div>
+
+            {/* Sunday Schedule - Leftovers */}
+            <div className="bg-black/30 p-5 rounded border border-orange-600/30">
+              <h3 className="font-bold text-orange-300 mb-4 text-2xl">
+                📅 Sunday, December 7th - Leftovers
+              </h3>
+              <h4 className="text-orange-200 font-semibold mb-4 text-lg">
+                XMAS Leftovers 2025
+              </h4>
+              <div className="bg-yellow-900/30 border-2 border-yellow-500/50 rounded-lg p-4 mb-4">
+                <p className="text-yellow-200 font-bold text-center">
+                  ⚠️ Schedule TBD
+                </p>
+              </div>
+              <div className="bg-orange-900/20 border border-orange-500/20 rounded p-3 text-sm">
+                <p className="text-orange-200">
+                  See <strong>Tournament Format</strong> section above for format details.
+                </p>
               </div>
             </div>
           </div>
