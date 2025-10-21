@@ -92,7 +92,7 @@ export const machines: Machine[] = [
     name: "Rick and Morty",
     manufacturer: "Spooky Pinball",
     year: 2020,
-    rating: "TBD", // Need version confirmation
+    rating: "7.7/10",
     ipdbId: "6640",
     ipdbUrl: "https://www.ipdb.org/machine.cgi?id=6640",
   },
