@@ -1,0 +1,1 @@
+ALTER TABLE "registrations" ADD COLUMN "leftovers_tournament" boolean DEFAULT false NOT NULL;
