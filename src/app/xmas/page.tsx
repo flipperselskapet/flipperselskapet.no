@@ -42,7 +42,7 @@ export default async function Xmas2025() {
           </h1>
           <div className="max-w-3xl mx-auto">
             <p className="text-xl md:text-2xl text-cyan-100 font-semibold mb-4 drop-shadow-lg">
-              Welcome to Norway's premier pinball event!
+              Join us for a weekend of pinball competition in Oslo!
             </p>
             <p className="text-lg text-gray-200 leading-relaxed mb-6">
               Kristiania Flipperselskap is a private pinball club located in
