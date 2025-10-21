@@ -23,14 +23,6 @@ export default async function Xmas2025() {
   const registrationOpenDate = new Date("2025-10-22T18:00:00Z"); // 20:00 CEST = 18:00 UTC
   const now = new Date();
   const isRegistrationOpen = now >= registrationOpenDate;
-
-  // Check if registration opens tomorrow (Oct 21)
-  const tomorrow = new Date(now);
-  tomorrow.setDate(tomorrow.getDate() + 1);
-  const isTomorrow =
-    tomorrow.getDate() === registrationOpenDate.getDate() &&
-    tomorrow.getMonth() === registrationOpenDate.getMonth() &&
-    tomorrow.getFullYear() === registrationOpenDate.getFullYear();
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-950 via-slate-900 to-slate-950">
       {/* Hero Section with Flashy Title */}
@@ -160,9 +152,7 @@ export default async function Xmas2025() {
               <div className="bg-yellow-900/30 border-2 border-yellow-500/50 rounded-lg p-5">
                 <p className="text-lg mb-4">
                   <strong className="text-yellow-200">
-                    {isTomorrow
-                      ? "Registration opens tomorrow at 20:00 (Norwegian time)"
-                      : "Registration opens at 20:00 (Norwegian time)"}
+                    Registration opens today at 20:00 (Norwegian time)
                   </strong>
                 </p>
 
