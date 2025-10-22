@@ -30,8 +30,9 @@ export default function Machines() {
         {/* Availability Notice */}
         <div className="mb-6 bg-blue-900/30 border-l-4 border-blue-400 p-4 rounded-r-lg backdrop-blur-sm">
           <p className="text-blue-200 text-sm">
-            ℹ️ Vær oppmerksom på at ikke alle maskiner er tilgjengelige til enhver tid.
-            Flippere krever vedlikehold, og maskintilstanden kan variere.
+            ℹ️ Vær oppmerksom på at ikke alle maskiner er tilgjengelige til
+            enhver tid. Flippere krever vedlikehold, og maskintilstanden kan
+            variere.
           </p>
         </div>
 
