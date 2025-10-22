@@ -1,5 +1,6 @@
 import { and, isNotNull, isNull } from "drizzle-orm";
 import type { Metadata } from "next";
+import { AdminLink } from "../admin-link";
 import { db } from "~/db";
 import { registrations } from "~/db/schema";
 
@@ -148,13 +149,18 @@ export default async function PlayersPage() {
         </div>
 
         {/* Back Link */}
-        <div className="mt-8 text-center">
-          <a
-            href="/xmas"
-            className="text-cyan-400 hover:text-cyan-200 underline"
-          >
-            ← Back to tournament information
-          </a>
+        <div className="mt-8 text-center space-y-2">
+          <div>
+            <a
+              href="/xmas"
+              className="text-cyan-400 hover:text-cyan-200 underline"
+            >
+              ← Back to tournament information
+            </a>
+          </div>
+          <div>
+            <AdminLink />
+          </div>
         </div>
       </div>
     </div>
