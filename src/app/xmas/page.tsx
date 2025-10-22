@@ -1,5 +1,6 @@
 import { and, isNotNull, isNull } from "drizzle-orm";
 import type { Metadata } from "next";
+import { AdminLink } from "./admin-link";
 import { db } from "~/db";
 import { registrations } from "~/db/schema";
 
@@ -729,6 +730,9 @@ export default async function Xmas2025() {
               Slack
             </a>
           </p>
+          <div className="mt-4">
+            <AdminLink />
+          </div>
         </div>
       </div>
     </div>
