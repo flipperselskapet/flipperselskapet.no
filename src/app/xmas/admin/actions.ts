@@ -81,3 +81,32 @@ export async function markDeleted(id: number) {
     return { success: false, error: "Failed to delete registration" };
   }
 }
+
+export async function updateIfpaNumber(id: number, ifpaNumber: string) {
+  try {
+    // Get current registration
+    const [current] = await db
+      .select()
+      .from(registrations)
+      .where(eq(registrations.id, id))
+      .limit(1);
+
+    if (!current) {
+      return { success: false, error: "Registration not found" };
+    }
+
+    // Update IFPA number (empty string becomes null)
+    await db
+      .update(registrations)
+      .set({ ifpaNumber: ifpaNumber || null })
+      .where(eq(registrations.id, id));
+
+    // Revalidate affected pages
+    revalidatePath("/xmas/admin");
+    revalidatePath("/xmas/players");
+    return { success: true };
+  } catch (error) {
+    console.error("Error updating IFPA number:", error);
+    return { success: false, error: "Failed to update IFPA number" };
+  }
+}

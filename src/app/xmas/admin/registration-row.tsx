@@ -2,7 +2,12 @@
 
 import { useState } from "react";
 import type { SelectRegistration } from "~/db/schema";
-import { markDeleted, togglePaid, toggleVerified } from "./actions";
+import {
+  markDeleted,
+  togglePaid,
+  toggleVerified,
+  updateIfpaNumber,
+} from "./actions";
 
 interface Props {
   registration: SelectRegistration;
@@ -10,6 +15,8 @@ interface Props {
 
 export function AdminRegistrationRow({ registration }: Props) {
   const [isLoading, setIsLoading] = useState(false);
+  const [isEditingIfpa, setIsEditingIfpa] = useState(false);
+  const [ifpaNumber, setIfpaNumber] = useState(registration.ifpaNumber || "");
 
   async function handleToggleVerified() {
     setIsLoading(true);
@@ -35,6 +42,23 @@ export function AdminRegistrationRow({ registration }: Props) {
     setIsLoading(true);
     await markDeleted(registration.id);
     setIsLoading(false);
+  }
+
+  async function handleSaveIfpa() {
+    setIsLoading(true);
+    const result = await updateIfpaNumber(registration.id, ifpaNumber.trim());
+    setIsLoading(false);
+
+    if (result.success) {
+      setIsEditingIfpa(false);
+    } else {
+      alert(result.error || "Failed to update IFPA number");
+    }
+  }
+
+  function handleCancelIfpa() {
+    setIfpaNumber(registration.ifpaNumber || "");
+    setIsEditingIfpa(false);
   }
 
   const tournaments = [];
@@ -65,11 +89,52 @@ export function AdminRegistrationRow({ registration }: Props) {
 
       {/* IFPA */}
       <td className="px-4 py-4">
-        <div className="text-sm text-gray-300">
-          {registration.ifpaNumber || (
-            <span className="text-gray-500">N/A</span>
-          )}
-        </div>
+        {isEditingIfpa ? (
+          <div className="flex gap-1">
+            <input
+              type="text"
+              value={ifpaNumber}
+              onChange={(e) => setIfpaNumber(e.target.value)}
+              className="text-sm px-2 py-1 rounded bg-slate-700 text-gray-200 border border-cyan-500/50 focus:border-cyan-500 focus:outline-none w-24"
+              placeholder="IFPA #"
+              disabled={isLoading}
+            />
+            <button
+              type="button"
+              onClick={handleSaveIfpa}
+              disabled={isLoading}
+              className="text-xs px-2 py-1 rounded bg-green-700 hover:bg-green-600 text-white transition-colors disabled:opacity-50"
+              title="Save"
+            >
+              ✓
+            </button>
+            <button
+              type="button"
+              onClick={handleCancelIfpa}
+              disabled={isLoading}
+              className="text-xs px-2 py-1 rounded bg-gray-700 hover:bg-gray-600 text-white transition-colors disabled:opacity-50"
+              title="Cancel"
+            >
+              ✕
+            </button>
+          </div>
+        ) : (
+          <div className="flex items-center gap-2">
+            <div className="text-sm text-gray-300">
+              {registration.ifpaNumber || (
+                <span className="text-gray-500">N/A</span>
+              )}
+            </div>
+            <button
+              type="button"
+              onClick={() => setIsEditingIfpa(true)}
+              className="text-xs px-2 py-1 rounded bg-slate-700 hover:bg-slate-600 text-gray-300 transition-colors"
+              title="Edit IFPA number"
+            >
+              ✎
+            </button>
+          </div>
+        )}
       </td>
 
       {/* Tournaments */}
