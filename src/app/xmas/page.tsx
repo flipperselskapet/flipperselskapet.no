@@ -19,10 +19,6 @@ export default async function Xmas2025() {
 
   const playerCount = verifiedPlayers.length;
 
-  // Registration opens October 22, 2025 at 20:00 Norwegian time (CEST = UTC+2)
-  const registrationOpenDate = new Date("2025-10-22T18:00:00Z"); // 20:00 CEST = 18:00 UTC
-  const now = new Date();
-  const isRegistrationOpen = now >= registrationOpenDate;
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-950 via-slate-900 to-slate-950">
       {/* Hero Section with Flashy Title */}
@@ -106,68 +102,47 @@ export default async function Xmas2025() {
             Registration
           </h2>
           <div className="text-gray-200 space-y-6">
-            {isRegistrationOpen ? (
-              <div className="bg-cyan-900/30 border-2 border-cyan-500/50 rounded-lg p-5">
-                <p className="text-lg mb-4">
-                  <strong className="text-cyan-200">
-                    Registration is now open!
-                  </strong>
-                </p>
+            <div className="bg-cyan-900/30 border-2 border-cyan-500/50 rounded-lg p-5">
+              <p className="text-lg mb-4">
+                <strong className="text-cyan-200">
+                  Registration is now open!
+                </strong>
+              </p>
 
-                {/* Call to Action Button */}
+              {/* Call to Action Button */}
+              <a
+                href="/xmas/register"
+                className="inline-block w-full sm:w-auto px-8 py-4 bg-gradient-to-r from-cyan-600 to-purple-600 hover:from-cyan-500 hover:to-purple-500 text-white font-bold text-xl rounded-lg shadow-lg transition-all duration-200 transform hover:scale-105 text-center mb-4"
+              >
+                Register Now →
+              </a>
+
+              <p className="text-sm text-gray-300 mb-3 mt-4">
+                Register for the main tournament and optionally join the warmup
+                and side tournaments.
+              </p>
+              <p className="text-xs text-gray-400 mb-4">
+                <em>
+                  Norwegian players: Vipps on arrival.
+                  International players: We'll figure something out.
+                </em>
+              </p>
+
+              {/* Registered Players Link */}
+              <div className="flex items-center gap-3">
                 <a
-                  href="/xmas/register"
-                  className="inline-block w-full sm:w-auto px-8 py-4 bg-gradient-to-r from-cyan-600 to-purple-600 hover:from-cyan-500 hover:to-purple-500 text-white font-bold text-xl rounded-lg shadow-lg transition-all duration-200 transform hover:scale-105 text-center mb-4"
+                  href="/xmas/players"
+                  className="inline-block text-cyan-400 hover:text-cyan-200 underline font-semibold"
                 >
-                  Register Now →
+                  View registered players →
                 </a>
-
-                <p className="text-sm text-gray-300 mb-3 mt-4">
-                  Register for the main tournament and optionally join the warmup
-                  and side tournaments.
-                </p>
-                <p className="text-xs text-gray-400 mb-4">
-                  <em>
-                    Norwegian players: Vipps on arrival.
-                    International players: We'll figure something out.
-                  </em>
-                </p>
-
-                {/* Registered Players Link */}
-                <div className="flex items-center gap-3">
-                  <a
-                    href="/xmas/players"
-                    className="inline-block text-cyan-400 hover:text-cyan-200 underline font-semibold"
-                  >
-                    View registered players →
-                  </a>
-                  {playerCount > 0 && (
-                    <span className="inline-block px-3 py-1 bg-cyan-900/50 border border-cyan-500/50 rounded-full text-cyan-200 font-bold text-sm">
-                      {playerCount} {playerCount === 1 ? "player" : "players"}
-                    </span>
-                  )}
-                </div>
+                {playerCount > 0 && (
+                  <span className="inline-block px-3 py-1 bg-cyan-900/50 border border-cyan-500/50 rounded-full text-cyan-200 font-bold text-sm">
+                    {playerCount} {playerCount === 1 ? "player" : "players"}
+                  </span>
+                )}
               </div>
-            ) : (
-              <div className="bg-yellow-900/30 border-2 border-yellow-500/50 rounded-lg p-5">
-                <p className="text-lg mb-4">
-                  <strong className="text-yellow-200">
-                    Registration opens today at 20:00 (Norwegian time)
-                  </strong>
-                </p>
-
-                <p className="text-sm text-gray-300 mb-3">
-                  Register for the main tournament and optionally join the warmup
-                  and side tournaments.
-                </p>
-                <p className="text-xs text-gray-400">
-                  <em>
-                    Norwegian players: Vipps on arrival.
-                    International players: We'll figure something out.
-                  </em>
-                </p>
-              </div>
-            )}
+            </div>
 
             <div className="bg-slate-900/50 border-2 border-cyan-500/30 rounded-lg p-6">
               <h3 className="text-xl font-bold text-cyan-300 mb-4">
