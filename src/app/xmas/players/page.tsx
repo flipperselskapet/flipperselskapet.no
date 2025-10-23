@@ -21,12 +21,13 @@ export default async function PlayersPage() {
       warmupTournament: registrations.warmupTournament,
       sideTournament: registrations.sideTournament,
       verifiedAt: registrations.verifiedAt,
+      createdAt: registrations.createdAt,
     })
     .from(registrations)
     .where(
       and(isNull(registrations.deletedAt), isNotNull(registrations.verifiedAt)),
     )
-    .orderBy(registrations.lastName, registrations.firstName);
+    .orderBy(registrations.createdAt);
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-950 via-slate-900 to-slate-950">
