@@ -2,6 +2,7 @@
 
 import { revalidatePath } from "next/cache";
 import { env } from "~/env";
+import { sendSlackNotification } from "./slack";
 
 export async function submitRegistration(formData: FormData) {
   try {
@@ -140,6 +141,23 @@ export async function submitRegistration(formData: FormData) {
       `${currentCount + 1}/${env.AUTO_VERIFY_LIMIT}`,
     );
     console.log("====================================\n");
+
+    // Send Slack notification (non-blocking, errors are caught internally)
+    sendSlackNotification({
+      firstName: registration.firstName,
+      lastName: registration.lastName,
+      email: registration.email,
+      phone: registration.phone,
+      ifpaNumber: registration.ifpaNumber,
+      mainTournament: registration.mainTournament,
+      warmupTournament: registration.warmupTournament,
+      sideTournament: registration.sideTournament,
+      autoVerified: shouldAutoVerify,
+      registrationCount: currentCount + 1,
+    }).catch((error) => {
+      // Extra safety: catch any errors that might escape from sendSlackNotification
+      console.error("Unexpected error in Slack notification:", error);
+    });
 
     // Revalidate player list and xmas page if auto-verified
     if (shouldAutoVerify) {
