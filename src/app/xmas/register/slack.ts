@@ -43,7 +43,7 @@ export async function sendSlackNotification(
           type: "header",
           text: {
             type: "plain_text",
-            text: "🎄 New XMAS Tournament Registration",
+            text: "New XMAS Tournament Registration",
             emoji: true,
           },
         },
@@ -53,14 +53,6 @@ export async function sendSlackNotification(
             {
               type: "mrkdwn",
               text: `*Name:*\n${data.firstName} ${data.lastName}`,
-            },
-            {
-              type: "mrkdwn",
-              text: `*Email:*\n${data.email}`,
-            },
-            {
-              type: "mrkdwn",
-              text: `*Phone:*\n${data.phone}`,
             },
             {
               type: "mrkdwn",
