@@ -8,7 +8,7 @@ import { LogoutButton } from "./logout-button";
 import { AdminRegistrationRow } from "./registration-row";
 
 export const metadata: Metadata = {
-  title: "Admin - XMAS Matchplay Open 2025",
+  title: "Admin - XMAS Matchplay Open 2026",
   description: "Manage tournament registrations",
 };
 
@@ -39,7 +39,7 @@ export default async function AdminPage() {
                 Tournament Admin
               </h1>
               <p className="text-xl text-cyan-100">
-                XMAS Matchplay Open 2025 - Registrations
+                XMAS Matchplay Open 2026 - Registrations
               </p>
             </div>
             <LogoutButton />

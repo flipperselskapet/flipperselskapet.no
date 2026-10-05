@@ -5,8 +5,8 @@ import { db } from "~/db";
 import { registrations } from "~/db/schema";
 
 export const metadata: Metadata = {
-  title: "Registered Players - XMAS Matchplay Open 2025",
-  description: "List of registered players for XMAS Matchplay Open 2025",
+  title: "Registered Players - XMAS Matchplay Open 2026",
+  description: "List of registered players for XMAS Matchplay Open 2026",
 };
 
 export default async function PlayersPage() {
@@ -39,7 +39,7 @@ export default async function PlayersPage() {
             REGISTERED PLAYERS
           </h1>
           <p className="text-xl text-cyan-100 font-semibold">
-            XMAS Matchplay Open 2025
+            XMAS Matchplay Open 2026
           </p>
         </div>
       </div>

@@ -18,7 +18,7 @@ export default function Home() {
           href="/xmas"
           className="text-gray-400 hover:text-gray-200 text-sm transition-colors opacity-50 hover:opacity-100"
         >
-          XMAS 2025
+          XMAS 2026
         </a>
       </div>
       <div className="absolute bottom-8 right-8">
