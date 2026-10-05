@@ -2,9 +2,17 @@
 
 import { revalidatePath } from "next/cache";
 import { env } from "~/env";
+import { isRegistrationOpen } from "./opening";
 import { sendSlackNotification } from "./slack";
 
 export async function submitRegistration(formData: FormData) {
+  if (!isRegistrationOpen()) {
+    return {
+      success: false,
+      error: "Registration has not opened yet",
+    };
+  }
+
   try {
     // Verify Turnstile token
     const turnstileToken = formData.get("turnstileToken") as string;
