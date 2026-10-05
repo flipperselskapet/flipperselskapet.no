@@ -270,10 +270,11 @@ export default async function Xmas2026() {
                     Restaurants:
                   </p>
                   <ul className="list-disc list-inside ml-4 space-y-1 text-sm">
-                    <li>Drabanten</li>
-                    <li>Tims Mat</li>
+                    <li>Drabanten Spiseri og Catering</li>
+                    <li>Lucky Bowl</li>
+                    <li>Tim's Burger</li>
+                    <li>Veitvet Sportsbar & Pizza</li>
                     <li>VV Sushi</li>
-                    <li>Veitvet Sportsbar</li>
                   </ul>
                 </div>
                 <div>
