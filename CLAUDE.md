@@ -69,7 +69,8 @@ src/
       page.tsx         # Machine list page
     xmas/              # XMAS Tournament pages
       page.tsx         # Tournament information page
-      footer.tsx       # XMAS apron footer (questions, admin link)
+      layout.tsx       # Loads Saw theme fonts
+      saw.tsx          # Saw theme design components
       register/        # Registration functionality
         page.tsx       # Registration page
         registration-form.tsx  # Client-side form with Turnstile captcha
@@ -197,7 +198,8 @@ Required environment variables (add to `.env`):
 ## Design Decisions
 
 1. **No Christmas colors** - Despite "XMAS" name, avoid red-and-green combinations
-2. **EM pinball theme** - Public XMAS pages (`/xmas`, `/xmas/register`, `/xmas/players`) and the machines page (`/machines`) are styled after 1970s electromechanical playfields, not neon boxes: cream playfield background, blue "backglass" header, thick ink outlines with flat offset shadows, pop-bumper and insert-light motifs, and a playfield "apron" footer. Building blocks live in `src/components/em.tsx` (XMAS footer in `src/app/xmas/footer.tsx`), CSS classes (`em-*`) and color tokens (`em-cream`, `em-ink`, `em-teal`, `em-blue`, `em-red`, `em-yellow`, `em-orange`) in `src/app/globals.css`. Fonts (Shrikhand for display, Oswald for labels) are loaded in `src/app/layout.tsx`. The admin panel keeps its old dark style.
+2. **Saw theme on XMAS pages** - Public XMAS pages (`/xmas`, `/xmas/register`, `/xmas/players`) use a grimy, industrial look inspired by the tournament's Saw-style XMAS logo: dark blood-stained background, distressed metal title with a white outline and blood drips, dashed "cut mark" lines, circular saw blades for dates, riveted steel panels and typewritten notes. Components live in `src/app/xmas/saw.tsx`, CSS classes (`saw-*`) and color tokens (`saw-*`) in `src/app/globals.css`, and the fonts (Rubik Dirt for titles, Special Elite for notes) in `src/app/xmas/layout.tsx`. Headings use Oswald (`font-label`). Red is used with black/steel only, never with green.
+7. **EM pinball theme on machines page** - `/machines` is styled after 1970s electromechanical playfields: cream playfield background, blue "backglass" header, thick ink outlines with flat offset shadows, pop-bumper and insert-light motifs, and a playfield "apron" footer. Building blocks live in `src/components/em.tsx`, CSS classes (`em-*`) and color tokens (`em-*`) in `src/app/globals.css`, and the fonts (Shrikhand, Oswald) in `src/app/layout.tsx`.
 3. **No opening hours** - Kept website links for restaurants/shops, removed messy hours
 4. **Table layout** - Changed from cards to compact table for machines
 5. **English language** - XMAS page in English (rest of site mostly Norwegian)

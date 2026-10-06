@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import { connection } from "next/server";
-import { Backglass, Link, Page } from "~/components/em";
-import { XmasFooter } from "../footer";
+import { Footer, Hero, Link, Page, Title } from "../saw";
 import { isRegistrationOpen } from "./opening";
 import { RegistrationForm } from "./registration-form";
 
@@ -16,22 +15,20 @@ export default async function RegisterPage() {
 
   return (
     <Page>
-      <Backglass kicker="XMAS Matchplay Open 2026">
-        <h1 className="em-title font-display text-5xl md:text-7xl leading-none">
-          Registration
-        </h1>
-      </Backglass>
+      <Hero kicker="XMAS Matchplay Open 2026">
+        <Title size="text-5xl md:text-8xl">Registration</Title>
+      </Hero>
 
       <main className="container mx-auto px-4 py-12 max-w-3xl">
-        <div className="em-panel p-6 md:p-8 mb-10">
+        <div className="saw-panel p-6 md:p-10 mb-10">
           {isOpen ? (
             <RegistrationForm />
           ) : (
             <div className="text-center space-y-4">
-              <h2 className="font-label font-bold uppercase tracking-wide text-3xl text-em-teal">
+              <h2 className="font-label font-bold uppercase tracking-wide text-3xl text-saw-blood-light">
                 Registration opens soon!
               </h2>
-              <p className="font-display text-3xl text-em-red">
+              <p className="font-grunge text-3xl text-saw-bone">
                 Saturday, October 10th at 12:00
               </p>
               <p>
@@ -45,11 +42,11 @@ export default async function RegisterPage() {
           )}
         </div>
 
-        <XmasFooter>
+        <Footer>
           <p>
             <Link href="/xmas">← Tournament information</Link>
           </p>
-        </XmasFooter>
+        </Footer>
       </main>
     </Page>
   );

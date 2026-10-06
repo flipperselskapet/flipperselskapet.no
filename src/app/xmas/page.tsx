@@ -1,20 +1,22 @@
 import { and, isNotNull, isNull } from "drizzle-orm";
 import type { Metadata } from "next";
 import { connection } from "next/server";
+import { db } from "~/db";
+import { registrations } from "~/db/schema";
+import { isRegistrationOpen } from "./register/opening";
 import {
-  Backglass,
-  Bumper,
-  Insert,
+  Footer,
+  Hero,
   Link,
+  Note,
   Page,
   Panel,
   Plate,
+  Rivet,
+  SawBlade,
   SubHeading,
-} from "~/components/em";
-import { db } from "~/db";
-import { registrations } from "~/db/schema";
-import { XmasFooter } from "./footer";
-import { isRegistrationOpen } from "./register/opening";
+  Title,
+} from "./saw";
 
 export const metadata: Metadata = {
   title: "XMAS Matchplay Open 2026 - Kristiania Flipperselskap",
@@ -68,22 +70,20 @@ export default async function Xmas2026() {
 
   return (
     <Page>
-      <Backglass kicker="Kristiania Flipperselskap presents">
-        <h1 className="em-title font-display leading-none mb-8">
-          <span className="block text-7xl md:text-9xl">Xmas</span>
-          <span className="block text-4xl md:text-6xl mt-2">
-            Matchplay Open
-          </span>
-        </h1>
-        <p className="inline-block font-label font-bold uppercase tracking-[0.25em] text-lg md:text-xl bg-em-red text-em-paper border-2 border-em-ink rounded-full px-6 py-1 mb-10">
-          ★ Oslo · December 2026 ★
+      <Hero kicker="Kristiania Flipperselskap presents">
+        <Title size="text-8xl md:text-[11rem]">XMAS</Title>
+        <p className="font-label font-bold uppercase tracking-[0.3em] text-2xl md:text-4xl text-saw-bone mb-3">
+          Matchplay Open 2026
         </p>
-        <div className="flex justify-center gap-6 md:gap-12">
-          <Bumper top="FRI" big="4" label="Warmup" />
-          <Bumper top="SAT" big="5" label="Main · Side" />
-          <Bumper top="SUN" big="6" label="Finals · Leftovers" />
+        <p className="font-type text-saw-blood-light text-lg md:text-xl mb-12">
+          “I want to play a game.” · Oslo · December 4th–6th
+        </p>
+        <div className="flex justify-center gap-6 md:gap-14">
+          <SawBlade top="FRI" big="4" label="Warmup" />
+          <SawBlade top="SAT" big="5" label="Main · Side" />
+          <SawBlade top="SUN" big="6" label="Finals · Leftovers" />
         </div>
-      </Backglass>
+      </Hero>
 
       <main className="container mx-auto px-4 py-12 max-w-5xl">
         <div className="max-w-3xl mx-auto text-center text-lg leading-relaxed mb-12 space-y-4">
@@ -102,20 +102,20 @@ export default async function Xmas2026() {
           </p>
         </div>
 
-        <Panel accent="teal" title="Registration">
+        <Panel title="Registration">
           <div className="space-y-5">
             {isOpen ? (
               <div className="space-y-4">
-                <p className="font-label font-bold uppercase tracking-wide text-2xl text-em-teal-dark">
+                <p className="font-label font-bold uppercase tracking-wide text-2xl text-saw-blood-light">
                   Registration is now open!
                 </p>
-                <a href="/xmas/register" className="em-button text-xl">
+                <a href="/xmas/register" className="saw-button text-xl">
                   Register now ▸
                 </a>
                 <div className="flex items-center gap-3 pt-2">
                   <Link href="/xmas/players">View registered players</Link>
                   {playerCount > 0 && (
-                    <span className="font-label font-bold text-sm bg-em-yellow border-2 border-em-ink rounded-full px-3 py-0.5">
+                    <span className="font-label font-bold text-sm bg-saw-blood-dark text-saw-bone border border-saw-blood-light rounded-sm px-3 py-0.5">
                       {playerCount} {playerCount === 1 ? "player" : "players"}
                     </span>
                   )}
@@ -123,7 +123,7 @@ export default async function Xmas2026() {
               </div>
             ) : (
               <div>
-                <p className="font-label font-bold uppercase tracking-wide text-2xl text-em-teal-dark mb-1">
+                <p className="font-label font-bold uppercase tracking-wide text-2xl text-saw-blood-light mb-1">
                   Registration opens Saturday, October 10th at 12:00
                 </p>
                 <p>Spots are limited — be ready when registration opens.</p>
@@ -136,44 +136,43 @@ export default async function Xmas2026() {
               Sunday require no registration – sign up on the spot.
             </p>
 
-            <Plate accent="yellow">
-              <strong>Limited spots</strong> due to space and facility
-              limitations.
-            </Plate>
+            <Note>Limited spots due to space and facility limitations.</Note>
 
             <div className="grid sm:grid-cols-2 gap-4">
               <div>
-                <SubHeading accent="orange">Entry fees</SubHeading>
+                <SubHeading>Entry fees</SubHeading>
                 <p>TBD</p>
               </div>
               <div>
-                <SubHeading accent="orange">Payment details</SubHeading>
+                <SubHeading>Payment details</SubHeading>
                 <p>TBD</p>
               </div>
             </div>
           </div>
         </Panel>
 
-        <Panel accent="red" title="Schedule">
-          <p className="italic mb-6">Preliminary – times may change.</p>
+        <Panel title="Schedule">
+          <p className="font-type text-saw-ash mb-6">
+            Preliminary – times may change.
+          </p>
           <div className="grid md:grid-cols-3 gap-6">
             {schedule.map((day) => (
               <div key={day.day}>
-                <div className="bg-em-red text-em-paper border-2 border-em-ink rounded-t-xl px-4 py-2">
+                <div className="bg-saw-blood-dark text-saw-bone border border-saw-blood rounded-t-sm px-4 py-2">
                   <h3 className="font-label font-bold uppercase tracking-wide text-lg">
                     {day.day}
                   </h3>
                   <p className="text-sm opacity-90">{day.title}</p>
                 </div>
-                <ul className="border-2 border-t-0 border-em-ink rounded-b-xl bg-white/60 px-4 py-4 space-y-3">
+                <ul className="border border-t-0 border-saw-steel rounded-b-sm bg-black/40 px-4 py-4 space-y-3">
                   {day.items.map((item) => (
                     <li key={item.time + item.label} className="flex gap-3">
-                      <Insert accent="yellow" className="h-4 w-4 mt-1" />
+                      <Rivet className="h-3 w-3 mt-1.5" />
                       <div>
                         <div className="font-label font-bold tracking-wide">
                           {item.time}
                         </div>
-                        <div className="text-sm">{item.label}</div>
+                        <div className="text-sm text-saw-ash">{item.label}</div>
                       </div>
                     </li>
                   ))}
@@ -181,12 +180,12 @@ export default async function Xmas2026() {
               </div>
             ))}
           </div>
-          <p className="text-sm italic mt-4">
+          <p className="font-type text-sm text-saw-ash mt-4">
             The side tournament start time may change if qualifications run
             longer than planned.
           </p>
           <div className="mt-6">
-            <Plate accent="blue">
+            <Plate>
               <strong>Arriving early?</strong> Illegal Pinball will host a
               tournament on Thursday, December 3rd at their location in downtown
               Oslo. Link to that event to come.
@@ -194,18 +193,18 @@ export default async function Xmas2026() {
           </div>
         </Panel>
 
-        <Panel accent="blue" title="Tournament Format">
-          <p className="italic mb-6">Preliminary – details may change.</p>
+        <Panel title="Tournament Format">
+          <p className="font-type text-saw-ash mb-6">
+            Preliminary – details may change.
+          </p>
           <div className="space-y-8">
             <div>
-              <SubHeading accent="teal">XMAS Warmup · Friday</SubHeading>
+              <SubHeading>XMAS Warmup · Friday</SubHeading>
               <p>Format will be finalized ASAP.</p>
             </div>
 
             <div>
-              <SubHeading accent="blue">
-                XMAS Main · Qualifications · Saturday
-              </SubHeading>
+              <SubHeading>XMAS Main · Qualifications · Saturday</SubHeading>
               <div className="space-y-2">
                 <p>
                   Group matchplay: 10 rounds with 2 games in each round. The
@@ -220,7 +219,7 @@ export default async function Xmas2026() {
             </div>
 
             <div>
-              <SubHeading accent="blue">XMAS Main · Finals · Sunday</SubHeading>
+              <SubHeading>XMAS Main · Finals · Sunday</SubHeading>
               <div className="space-y-2">
                 <p>
                   Three or four rounds of group matchplay (depending on how many
@@ -250,11 +249,11 @@ export default async function Xmas2026() {
 
             <div className="grid sm:grid-cols-2 gap-8">
               <div>
-                <SubHeading accent="red">Side Tournament · Saturday</SubHeading>
+                <SubHeading>Side Tournament · Saturday</SubHeading>
                 <p>Format TBA.</p>
               </div>
               <div>
-                <SubHeading accent="orange">Leftovers · Sunday</SubHeading>
+                <SubHeading>Leftovers · Sunday</SubHeading>
                 <p>
                   There will be leftover tournaments. No registration needed –
                   sign up on the spot. Details will be announced closer to the
@@ -265,10 +264,10 @@ export default async function Xmas2026() {
           </div>
         </Panel>
 
-        <Panel accent="teal" title="Practical Information">
+        <Panel title="Practical Information">
           <div className="grid md:grid-cols-2 gap-x-10 gap-y-8">
             <div>
-              <SubHeading accent="red">Location</SubHeading>
+              <SubHeading>Location</SubHeading>
               <p className="font-semibold">Kristiania Flipperselskap</p>
               <p className="mb-3">
                 <Link
@@ -295,7 +294,7 @@ export default async function Xmas2026() {
             </div>
 
             <div>
-              <SubHeading accent="blue">Transport</SubHeading>
+              <SubHeading>Transport</SubHeading>
               <div className="space-y-2">
                 <p>
                   <strong>Metro:</strong> Take Line 5 to{" "}
@@ -310,7 +309,7 @@ export default async function Xmas2026() {
             </div>
 
             <div>
-              <SubHeading accent="teal">Accommodation</SubHeading>
+              <SubHeading>Accommodation</SubHeading>
               <div className="space-y-2">
                 <p>
                   <strong>Nearest hotel:</strong>{" "}
@@ -330,7 +329,7 @@ export default async function Xmas2026() {
             </div>
 
             <div>
-              <SubHeading accent="yellow">Machines</SubHeading>
+              <SubHeading>Machines</SubHeading>
               <p className="mb-2">
                 Tournament machines will be announced soon.
               </p>
@@ -341,7 +340,7 @@ export default async function Xmas2026() {
             </div>
 
             <div className="md:col-span-2">
-              <SubHeading accent="orange">Food & Drinks</SubHeading>
+              <SubHeading>Food & Drinks</SubHeading>
               <p className="mb-3">
                 Veitvet shopping mall has several restaurants and shops:
               </p>
@@ -368,7 +367,7 @@ export default async function Xmas2026() {
                   </ul>
                 </div>
               </div>
-              <p className="text-sm italic mt-3">
+              <p className="font-type text-sm text-saw-ash mt-3">
                 Opening hours at{" "}
                 <Link href="https://veitvetsenteret.no/butikker/" external>
                   veitvetsenteret.no/butikker
@@ -378,7 +377,7 @@ export default async function Xmas2026() {
           </div>
         </Panel>
 
-        <XmasFooter />
+        <Footer />
       </main>
     </Page>
   );

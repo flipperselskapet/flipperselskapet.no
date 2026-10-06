@@ -25,6 +25,18 @@
   --color-em-yellow: #f2c230;
   --color-em-red: #c2352b;
   --color-em-orange: #e07a2e;
+
+  /* Saw theme (XMAS pages), fonts loaded in src/app/xmas/layout.tsx */
+  --font-grunge: var(--font-rubik-dirt);
+  --font-type: var(--font-special-elite);
+  --color-saw-black: #0c0909;
+  --color-saw-blood: #b3121b;
+  --color-saw-blood-light: #e5404a;
+  --color-saw-blood-dark: #5e0709;
+  --color-saw-bone: #ddd5c6;
+  --color-saw-ash: #a59d90;
+  --color-saw-steel: #4a4544;
+  --color-saw-rust: #8a4a2a;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -234,4 +246,193 @@ body {
 .em-apron > * {
   clip-path: polygon(0 0, 100% 0, 100% 70%, 50% 100%, 0 70%);
   background-color: var(--color-em-paper);
+}
+
+/* Saw theme: grimy industrial metal for the XMAS pages */
+.saw-page {
+  --saw-noise: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 .5 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  background-color: var(--color-saw-black);
+  background-image:
+    radial-gradient(circle, rgb(255 255 255 / 0.22) 0 1px, transparent 1.5px),
+    radial-gradient(circle, rgb(255 255 255 / 0.12) 0 1.5px, transparent 2px),
+    var(--saw-noise),
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='1400' height='1400'%3E%3Cfilter id='s'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.011' numOctaves='4' seed='7'/%3E%3CfeColorMatrix values='0 0 0 0 .42 0 0 0 0 .02 0 0 0 0 .03 1.1 0 0 0 -.5'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23s)'/%3E%3C/svg%3E"),
+    radial-gradient(ellipse at 50% 0%, #3a0a0b, transparent 70%);
+  background-size:
+    173px 211px,
+    297px 263px,
+    220px 220px,
+    1400px 1400px,
+    100% 1200px;
+  background-repeat: repeat, repeat, repeat, repeat, no-repeat;
+  color: var(--color-saw-bone);
+  color-scheme: dark;
+}
+
+.saw-hero {
+  background-image:
+    var(--saw-noise),
+    radial-gradient(ellipse at 50% 40%, rgb(150 15 20 / 0.55), transparent 65%),
+    linear-gradient(#1a0606, #0c0909);
+}
+
+/* Distressed metal lettering with a thin white outline */
+.saw-title {
+  color: transparent;
+  background-image:
+    var(--saw-noise),
+    linear-gradient(170deg, #d6cdb9 0%, #8d8574 42%, #4f4840 55%, #b1a894 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  filter: drop-shadow(1.5px 0 0 #f3eee4) drop-shadow(-1.5px 0 0 #f3eee4)
+    drop-shadow(0 1.5px 0 #f3eee4) drop-shadow(0 -1.5px 0 #f3eee4)
+    drop-shadow(0 8px 12px rgb(0 0 0 / 0.8));
+}
+
+/* Dashed cut marks, like the ones framing the logo */
+.saw-cut {
+  position: absolute;
+  height: 3px;
+  border-radius: 2px;
+  background: repeating-linear-gradient(
+    90deg,
+    #f3eee4 0 26px,
+    transparent 26px 33px,
+    #f3eee4 33px 41px,
+    transparent 41px 52px
+  );
+}
+
+.saw-cut-v {
+  position: absolute;
+  width: 3px;
+  border-radius: 2px;
+  background: repeating-linear-gradient(
+    180deg,
+    #f3eee4 0 22px,
+    transparent 22px 30px,
+    #f3eee4 30px 36px,
+    transparent 36px 46px
+  );
+}
+
+.saw-drip {
+  position: absolute;
+  width: 7px;
+  border-radius: 0 0 4px 4px;
+  background: linear-gradient(#4a0507, var(--color-saw-blood));
+}
+
+.saw-drip::after {
+  content: "";
+  position: absolute;
+  bottom: -5px;
+  left: -2.5px;
+  width: 12px;
+  height: 12px;
+  border-radius: 9999px;
+  background: radial-gradient(
+    circle at 35% 35%,
+    #ff6b6b 0 1.5px,
+    var(--color-saw-blood) 3px
+  );
+}
+
+/* Riveted steel plate */
+.saw-panel {
+  --rivet: #a8a39a 0, #5d5955 2.5px, #111 4px, transparent 5px;
+  background-color: #1b1717;
+  background-image:
+    radial-gradient(circle at 16px 16px, var(--rivet)),
+    radial-gradient(circle at calc(100% - 16px) 16px, var(--rivet)),
+    radial-gradient(circle at 16px calc(100% - 16px), var(--rivet)),
+    radial-gradient(circle at calc(100% - 16px) calc(100% - 16px), var(--rivet)),
+    var(--saw-noise), linear-gradient(160deg, #2b2626, #171313 60%, #241c1b);
+  background-size:
+    100% 100%,
+    100% 100%,
+    100% 100%,
+    100% 100%,
+    220px 220px,
+    100% 100%;
+  border: 1px solid #4a4040;
+  border-radius: 4px;
+  box-shadow:
+    inset 0 1px 0 rgb(255 255 255 / 0.06),
+    0 12px 30px rgb(0 0 0 / 0.6);
+}
+
+.saw-rivet {
+  display: inline-block;
+  flex-shrink: 0;
+  border-radius: 9999px;
+  border: 1px solid #000;
+  background: radial-gradient(circle at 35% 30%, #d9d4ca, #6d6862 55%, #2a2726);
+}
+
+/* Steel plate for side notes */
+.saw-plate {
+  background-image: var(--saw-noise), linear-gradient(180deg, #3a3534, #262221);
+  border: 1px solid #5a5050;
+  border-left: 4px solid var(--color-saw-blood);
+  border-radius: 3px;
+}
+
+/* Typewritten note on stained paper */
+.saw-note {
+  background-image:
+    var(--saw-noise),
+    radial-gradient(ellipse at 80% 20%, rgb(120 20 20 / 0.25), transparent 50%),
+    linear-gradient(#e2d9c5, #cfc4ab);
+  color: #1a1414;
+  font-family: var(--font-special-elite);
+  transform: rotate(-0.6deg);
+  box-shadow: 0 6px 16px rgb(0 0 0 / 0.5);
+}
+
+.saw-button {
+  display: inline-block;
+  padding: 0.85rem 2rem;
+  border: 2px solid #f3eee4;
+  border-radius: 3px;
+  background-image:
+    var(--saw-noise), linear-gradient(#a3111a, var(--color-saw-blood-dark));
+  color: #f3eee4;
+  font-family: var(--font-em-label);
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  text-align: center;
+  box-shadow:
+    0 0 0 3px #000,
+    0 8px 18px rgb(0 0 0 / 0.6);
+  transition: filter 120ms ease;
+}
+
+.saw-button:hover {
+  filter: brightness(1.2);
+}
+
+.saw-button:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+  filter: grayscale(0.6);
+}
+
+.saw-input {
+  width: 100%;
+  padding: 0.6rem 1rem;
+  border: 1px solid #5a5050;
+  border-radius: 3px;
+  background-color: #0f0c0c;
+  color: var(--color-saw-bone);
+}
+
+.saw-input::placeholder {
+  color: rgb(221 213 198 / 0.35);
+}
+
+.saw-input:focus {
+  outline: 2px solid var(--color-saw-blood-light);
+  outline-offset: 1px;
 }

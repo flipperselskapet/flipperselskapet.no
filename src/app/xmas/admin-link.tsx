@@ -10,7 +10,7 @@ export async function AdminLink() {
   return (
     <a
       href="/xmas/admin"
-      className="text-em-blue font-semibold underline hover:text-em-red"
+      className="text-saw-ash font-semibold underline hover:text-saw-blood-light"
     >
       → Admin Panel
     </a>

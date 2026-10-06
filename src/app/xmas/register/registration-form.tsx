@@ -2,8 +2,8 @@
 
 import { Turnstile, type TurnstileInstance } from "@marsidev/react-turnstile";
 import { useRef, useState } from "react";
-import { type Accent, Insert } from "~/components/em";
 import { env } from "~/env";
+import { Rivet } from "../saw";
 import { submitRegistration } from "./actions";
 
 const tournaments: {
@@ -12,7 +12,6 @@ const tournaments: {
   title: string;
   description: string;
   date: string;
-  accent: Accent;
 }[] = [
   {
     id: "warmup-tournament",
@@ -20,7 +19,6 @@ const tournaments: {
     title: "XMAS Matchplay Open Warmup 2026",
     description: "Format TBD",
     date: "Friday, December 4th",
-    accent: "teal",
   },
   {
     id: "main-tournament",
@@ -28,7 +26,6 @@ const tournaments: {
     title: "XMAS Matchplay Open Main 2026",
     description: "Qualifications (group matchplay) Saturday, finals Sunday",
     date: "Saturday, December 5th – Sunday, December 6th",
-    accent: "blue",
   },
   {
     id: "side-tournament",
@@ -36,7 +33,6 @@ const tournaments: {
     title: "XMAS Matchplay Open Side 2026",
     description: "Format TBA",
     date: "Saturday, December 5th",
-    accent: "red",
   },
 ];
 
@@ -74,7 +70,7 @@ const fields: {
 ];
 
 const headingClass =
-  "font-label font-bold uppercase tracking-wide text-2xl text-em-teal mb-4";
+  "font-label font-bold uppercase tracking-wide text-2xl text-saw-blood-light mb-4";
 
 function FieldLabel({
   htmlFor,
@@ -89,7 +85,7 @@ function FieldLabel({
     <label htmlFor={htmlFor} className="block text-sm font-semibold mb-1">
       {label}{" "}
       {required ? (
-        <span className="text-em-red">*</span>
+        <span className="text-saw-blood-light">*</span>
       ) : (
         <span className="font-normal opacity-70">(Optional)</span>
       )}
@@ -192,18 +188,18 @@ export function RegistrationForm() {
             <label
               key={t.id}
               htmlFor={t.id}
-              className="flex items-start gap-3 bg-white/70 border-2 border-em-ink rounded-xl p-4 cursor-pointer transition-colors hover:bg-white has-checked:bg-em-yellow/40 has-checked:shadow-[4px_4px_0_var(--color-em-ink)]"
+              className="flex items-start gap-3 bg-black/40 border border-saw-steel rounded-sm p-4 cursor-pointer transition-colors hover:bg-black/60 has-checked:border-saw-blood-light has-checked:bg-saw-blood-dark/40"
             >
               <input
                 type="checkbox"
                 id={t.id}
                 name={t.name}
                 value="true"
-                className="mt-1 h-5 w-5 accent-em-teal"
+                className="mt-1 h-5 w-5 accent-saw-blood"
               />
               <div className="flex-1">
                 <div className="flex flex-wrap items-center gap-x-2 font-label font-bold uppercase tracking-wide">
-                  <Insert accent={t.accent} className="h-3.5 w-3.5" />
+                  <Rivet />
                   {t.title}
                   <span className="font-normal normal-case tracking-normal text-sm opacity-70">
                     Price TBD
@@ -234,7 +230,7 @@ export function RegistrationForm() {
                 id="firstName"
                 name="firstName"
                 required
-                className="em-input"
+                className="saw-input"
                 placeholder="Your first name"
               />
             </div>
@@ -245,7 +241,7 @@ export function RegistrationForm() {
                 id="lastName"
                 name="lastName"
                 required
-                className="em-input"
+                className="saw-input"
                 placeholder="Your last name"
               />
             </div>
@@ -263,7 +259,7 @@ export function RegistrationForm() {
                 id={f.id}
                 name={f.id}
                 required={f.required}
-                className="em-input"
+                className="saw-input"
                 placeholder={f.placeholder}
               />
               {f.hint && <p className="text-xs mt-1 opacity-70">{f.hint}</p>}
@@ -277,7 +273,7 @@ export function RegistrationForm() {
         <Turnstile
           ref={turnstileRef}
           siteKey={env.NEXT_PUBLIC_TURNSTILE_SITE_KEY}
-          options={{ theme: "light" }}
+          options={{ theme: "dark" }}
           onSuccess={(token) => setTurnstileToken(token)}
           onError={() => setTurnstileToken(null)}
           onExpire={() => setTurnstileToken(null)}
@@ -286,29 +282,29 @@ export function RegistrationForm() {
 
       {/* Error Status (inline) */}
       {submitStatus && submitStatus.type === "error" && (
-        <div className="p-4 rounded-xl bg-em-red text-em-paper border-2 border-em-ink">
+        <div className="p-4 rounded-sm bg-saw-blood-dark text-saw-bone border border-saw-blood-light">
           <p className="font-semibold">{submitStatus.message}</p>
         </div>
       )}
 
       {/* Success Modal */}
       {submitStatus && submitStatus.type === "success" && (
-        <div className="fixed inset-0 bg-em-ink/80 flex items-center justify-center z-50 p-4">
-          <div className="em-panel p-8 max-w-md w-full text-center">
-            <div className="em-bumper h-20 w-20 mx-auto mb-4">
-              <span className="font-display text-3xl">✓</span>
+        <div className="fixed inset-0 bg-black/85 flex items-center justify-center z-50 p-4">
+          <div className="saw-panel p-8 max-w-md w-full text-center">
+            <div className="font-grunge text-6xl text-saw-blood-light mb-4">
+              ✓
             </div>
-            <h2 className="font-label font-bold uppercase tracking-wide text-3xl text-em-teal mb-4">
+            <h2 className="font-label font-bold uppercase tracking-wide text-3xl text-saw-blood-light mb-4">
               Registration Successful!
             </h2>
             <p className="mb-6">{submitStatus.message}</p>
             <div className="space-y-4">
-              <a href="/xmas" className="em-button w-full">
+              <a href="/xmas" className="saw-button w-full">
                 Back to Tournament Information
               </a>
               <a
                 href="/xmas/players"
-                className="block font-semibold text-em-blue underline hover:text-em-red"
+                className="block font-semibold text-saw-bone underline decoration-saw-blood-light underline-offset-4 hover:text-saw-blood-light"
               >
                 View Registered Players
               </a>
@@ -322,13 +318,13 @@ export function RegistrationForm() {
         <button
           type="submit"
           disabled={isSubmitting || !turnstileToken}
-          className="em-button w-full text-lg"
+          className="saw-button w-full text-lg"
         >
           {isSubmitting ? "Submitting..." : "Register for Tournament"}
         </button>
 
         <p className="text-xs text-center mt-3 opacity-70">
-          <span className="text-em-red">*</span> Required fields
+          <span className="text-saw-blood-light">*</span> Required fields
         </p>
       </div>
     </form>
