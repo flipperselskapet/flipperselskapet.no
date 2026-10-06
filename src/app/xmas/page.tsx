@@ -1,5 +1,6 @@
 import { and, isNotNull, isNull } from "drizzle-orm";
 import type { Metadata } from "next";
+import Image from "next/image";
 import { connection } from "next/server";
 import { db } from "~/db";
 import { registrations } from "~/db/schema";
@@ -15,7 +16,6 @@ import {
   Rivet,
   SawBlade,
   SubHeading,
-  Title,
 } from "./saw";
 
 export const metadata: Metadata = {
@@ -71,10 +71,19 @@ export default async function Xmas2026() {
   return (
     <Page>
       <Hero kicker="Kristiania Flipperselskap presents">
-        <Title size="text-8xl md:text-[11rem]">XMAS</Title>
-        <p className="font-label font-bold uppercase tracking-[0.3em] text-2xl md:text-4xl text-saw-bone mb-3">
-          Matchplay Open 2026
-        </p>
+        <h1 className="mb-3">
+          <Image
+            src="/xmas-logo.jpg"
+            alt="XMAS"
+            width={1672}
+            height={941}
+            priority
+            className="saw-logo relative left-1/2 -translate-x-1/2 w-[160%] max-w-none h-auto -my-10 md:w-full md:max-w-4xl md:-mt-10 md:-mb-12"
+          />
+          <span className="block font-label font-bold uppercase tracking-[0.3em] text-2xl md:text-4xl text-saw-bone">
+            Matchplay Open 2026
+          </span>
+        </h1>
         <p className="font-type text-saw-blood-light text-lg md:text-xl mb-12">
           “I want to play a game.” · Oslo · December 4th–6th
         </p>

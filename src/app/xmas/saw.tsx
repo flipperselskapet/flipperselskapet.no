@@ -15,7 +15,7 @@ export function Hero({
   children: ReactNode;
 }) {
   return (
-    <header className="saw-hero border-b border-saw-steel">
+    <header className="saw-hero overflow-hidden border-b border-saw-steel">
       <div className="container mx-auto px-4 py-14 md:py-20 text-center">
         <p className="font-type text-saw-ash text-sm md:text-base tracking-widest mb-8">
           {kicker}
@@ -26,14 +26,7 @@ export function Hero({
   );
 }
 
-const drips = [
-  { left: "31%", height: 46 },
-  { left: "46%", height: 70 },
-  { left: "53%", height: 30 },
-  { left: "71%", height: 54 },
-];
-
-// Distressed title framed by dashed cut marks, with blood dripping off it.
+// Distressed title framed by dashed cut marks, like the logo.
 export function Title({
   children,
   size = "text-6xl md:text-8xl",
@@ -49,17 +42,9 @@ export function Title({
       <span aria-hidden className="saw-cut bottom-0 right-0 w-[34%]" />
       <span aria-hidden className="saw-cut-v -top-5 h-12 left-[4%]" />
       <span aria-hidden className="saw-cut-v -top-3 -bottom-8 right-[24%]" />
-      <div className={`relative ${size}`}>
-        <h1 className="saw-title font-grunge leading-none">{children}</h1>
-        {drips.map((d) => (
-          <span
-            key={d.left}
-            aria-hidden
-            className="saw-drip top-[calc(100%-0.2em)]"
-            style={{ left: d.left, height: d.height }}
-          />
-        ))}
-      </div>
+      <h1 className={`saw-title font-grunge leading-none ${size}`}>
+        {children}
+      </h1>
     </div>
   );
 }

@@ -316,26 +316,9 @@ body {
   );
 }
 
-.saw-drip {
-  position: absolute;
-  width: 7px;
-  border-radius: 0 0 4px 4px;
-  background: linear-gradient(#4a0507, var(--color-saw-blood));
-}
-
-.saw-drip::after {
-  content: "";
-  position: absolute;
-  bottom: -5px;
-  left: -2.5px;
-  width: 12px;
-  height: 12px;
-  border-radius: 9999px;
-  background: radial-gradient(
-    circle at 35% 35%,
-    #ff6b6b 0 1.5px,
-    var(--color-saw-blood) 3px
-  );
+/* The XMAS logo image, faded into the hero background at the edges */
+.saw-logo {
+  mask-image: radial-gradient(ellipse at center, #000 50%, transparent 72%);
 }
 
 /* Riveted steel plate */
