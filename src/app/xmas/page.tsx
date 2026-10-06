@@ -2,11 +2,7 @@ import { and, isNotNull, isNull } from "drizzle-orm";
 import type { Metadata } from "next";
 import Image from "next/image";
 import { connection } from "next/server";
-import { db } from "~/db";
-import { registrations } from "~/db/schema";
-import { isRegistrationOpen } from "./register/opening";
 import {
-  Footer,
   Hero,
   Link,
   Note,
@@ -16,7 +12,11 @@ import {
   Rivet,
   SawBlade,
   SubHeading,
-} from "./saw";
+} from "~/components/saw";
+import { db } from "~/db";
+import { registrations } from "~/db/schema";
+import { XmasFooter } from "./footer";
+import { isRegistrationOpen } from "./register/opening";
 
 export const metadata: Metadata = {
   title: "XMAS Matchplay Open 2026 - Kristiania Flipperselskap",
@@ -386,7 +386,7 @@ export default async function Xmas2026() {
           </div>
         </Panel>
 
-        <Footer />
+        <XmasFooter />
       </main>
     </Page>
   );

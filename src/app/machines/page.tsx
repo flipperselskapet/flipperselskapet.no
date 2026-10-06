@@ -1,13 +1,14 @@
 import type { Metadata } from "next";
 import {
-  Apron,
-  Backglass,
-  Bumper,
+  Footer,
+  Hero,
   Link,
+  Note,
   Page,
   Panel,
-  Plate,
-} from "~/components/em";
+  SawBlade,
+  Title,
+} from "~/components/saw";
 import { machines } from "~/data/machines";
 import MachineList from "./machine-list";
 
@@ -19,33 +20,31 @@ export const metadata: Metadata = {
 export default function Machines() {
   return (
     <Page>
-      <Backglass kicker="Kristiania Flipperselskap">
-        <h1 className="em-title font-display text-6xl md:text-8xl leading-none mb-6">
-          Våre Maskiner
-        </h1>
-        <p className="text-lg md:text-xl text-em-paper max-w-2xl mx-auto mb-10">
+      <Hero kicker="Kristiania Flipperselskap">
+        <Title size="text-6xl md:text-8xl">Våre Maskiner</Title>
+        <p className="text-lg md:text-xl text-saw-ash max-w-2xl mx-auto mb-10">
           Oversikt over alle flippermaskiner hos Kristiania Flipperselskap
         </p>
-        <Bumper top="TOTALT" big={String(machines.length)} label="Maskiner" />
-      </Backglass>
+        <SawBlade top="TOTALT" big={String(machines.length)} label="Maskiner" />
+      </Hero>
 
       <main className="container mx-auto px-4 py-12 max-w-6xl">
         <div className="max-w-3xl mx-auto mb-8">
-          <Plate accent="yellow">
+          <Note>
             Vær oppmerksom på at ikke alle maskiner er tilgjengelige til enhver
             tid. Flippere krever vedlikehold, og maskintilstanden kan variere.
-          </Plate>
+          </Note>
         </div>
 
-        <Panel accent="teal" title="Maskinliste">
+        <Panel title="Maskinliste">
           <MachineList machines={machines} />
         </Panel>
 
-        <Apron>
+        <Footer>
           <p>
             <Link href="/">← Tilbake til forsiden</Link>
           </p>
-        </Apron>
+        </Footer>
       </main>
     </Page>
   );

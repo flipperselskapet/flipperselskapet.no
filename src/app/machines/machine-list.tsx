@@ -70,19 +70,21 @@ export default function MachineList({ machines }: MachineListProps) {
   };
 
   if (machines.length === 0) {
-    return <p className="italic">Maskinliste kommer snart...</p>;
+    return (
+      <p className="font-type text-saw-ash">Maskinliste kommer snart...</p>
+    );
   }
 
   return (
     <div className="overflow-x-auto">
       <table className="w-full text-left">
-        <thead className="font-label uppercase tracking-wide text-sm bg-em-ink text-em-paper">
+        <thead className="font-label uppercase tracking-wide text-sm bg-black/60 text-saw-blood-light border-b border-saw-blood">
           <tr>
-            <th className="py-3 px-4 rounded-l-lg">
+            <th className="py-3 px-4">
               <button
                 type="button"
                 onClick={() => handleHeaderClick("name")}
-                className="uppercase tracking-wide hover:text-em-yellow transition-colors cursor-pointer"
+                className="uppercase tracking-wide hover:text-saw-bone transition-colors cursor-pointer"
               >
                 Maskin
                 <SortIndicator column="name" />
@@ -92,7 +94,7 @@ export default function MachineList({ machines }: MachineListProps) {
               <button
                 type="button"
                 onClick={() => handleHeaderClick("manufacturer")}
-                className="uppercase tracking-wide hover:text-em-yellow transition-colors cursor-pointer"
+                className="uppercase tracking-wide hover:text-saw-bone transition-colors cursor-pointer"
               >
                 Produsent
                 <SortIndicator column="manufacturer" />
@@ -102,7 +104,7 @@ export default function MachineList({ machines }: MachineListProps) {
               <button
                 type="button"
                 onClick={() => handleHeaderClick("year")}
-                className="uppercase tracking-wide hover:text-em-yellow transition-colors cursor-pointer"
+                className="uppercase tracking-wide hover:text-saw-bone transition-colors cursor-pointer"
               >
                 År
                 <SortIndicator column="year" />
@@ -112,24 +114,24 @@ export default function MachineList({ machines }: MachineListProps) {
               <button
                 type="button"
                 onClick={() => handleHeaderClick("rating")}
-                className="uppercase tracking-wide hover:text-em-yellow transition-colors cursor-pointer"
+                className="uppercase tracking-wide hover:text-saw-bone transition-colors cursor-pointer"
               >
                 Rating
                 <SortIndicator column="rating" />
               </button>
             </th>
-            <th className="py-3 px-4 rounded-r-lg">IPDB</th>
+            <th className="py-3 px-4">IPDB</th>
           </tr>
         </thead>
         <tbody>
           {sortedMachines.map((machine) => (
             <tr
               key={machine.ipdbId}
-              className="border-b-2 border-dashed border-em-ink/20 last:border-0 hover:bg-em-yellow/20 transition-colors"
+              className="border-b border-dashed border-saw-steel last:border-0 hover:bg-saw-blood-dark/30 transition-colors"
             >
               <td className="py-3 px-4">
                 <div className="font-semibold">{machine.name}</div>
-                <div className="text-sm mt-1 opacity-70 lg:hidden">
+                <div className="text-sm mt-1 text-saw-ash lg:hidden">
                   <span className="sm:hidden">
                     {machine.manufacturer}
                     {" • "}
@@ -156,7 +158,7 @@ export default function MachineList({ machines }: MachineListProps) {
                     href={machine.ipdbUrl}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="font-semibold text-em-blue underline decoration-2 underline-offset-2 hover:text-em-red"
+                    className="font-semibold text-saw-bone underline decoration-saw-blood-light decoration-2 underline-offset-4 hover:text-saw-blood-light"
                   >
                     →
                   </a>
@@ -168,7 +170,7 @@ export default function MachineList({ machines }: MachineListProps) {
           ))}
         </tbody>
       </table>
-      <p className="font-label uppercase tracking-wide text-sm mt-4 text-center">
+      <p className="font-label uppercase tracking-wide text-sm mt-4 text-center text-saw-ash">
         Total: {machines.length} maskiner
       </p>
     </div>

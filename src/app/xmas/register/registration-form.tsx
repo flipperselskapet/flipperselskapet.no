@@ -2,8 +2,8 @@
 
 import { Turnstile, type TurnstileInstance } from "@marsidev/react-turnstile";
 import { useRef, useState } from "react";
+import { Rivet } from "~/components/saw";
 import { env } from "~/env";
-import { Rivet } from "../saw";
 import { submitRegistration } from "./actions";
 
 const tournaments: {

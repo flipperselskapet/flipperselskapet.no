@@ -12,21 +12,8 @@
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
 
-  /* EM pinball theme (XMAS pages), loaded in src/app/xmas/layout.tsx */
-  --font-display: var(--font-em-display);
-  --font-label: var(--font-em-label);
-  --color-em-cream: #f2e6c9;
-  --color-em-paper: #fbf4e2;
-  --color-em-ink: #1d1914;
-  --color-em-teal: #17808f;
-  --color-em-teal-dark: #105a65;
-  --color-em-blue: #1f5fa8;
-  --color-em-blue-dark: #163f73;
-  --color-em-yellow: #f2c230;
-  --color-em-red: #c2352b;
-  --color-em-orange: #e07a2e;
-
-  /* Saw theme (XMAS pages), fonts loaded in src/app/xmas/layout.tsx */
+  /* Saw theme, fonts loaded in src/app/layout.tsx */
+  --font-label: var(--font-oswald);
   --font-grunge: var(--font-rubik-dirt);
   --font-type: var(--font-special-elite);
   --color-saw-black: #0c0909;
@@ -104,151 +91,7 @@ body {
   }
 }
 
-/* EM pinball theme: inspired by 1970s electromechanical playfields */
-.em-playfield {
-  background-color: var(--color-em-cream);
-  background-image:
-    radial-gradient(ellipse at 50% 0%, rgb(255 255 255 / 0.55), transparent 60%),
-    repeating-linear-gradient(
-      90deg,
-      rgb(120 80 30 / 0.035) 0 2px,
-      transparent 2px 11px
-    );
-  color: var(--color-em-ink);
-  color-scheme: light;
-}
-
-.em-backglass {
-  background-color: var(--color-em-blue-dark);
-  background-image:
-    repeating-conic-gradient(
-      from 0deg at 50% 115%,
-      rgb(255 255 255 / 0.07) 0deg 5deg,
-      transparent 5deg 10deg
-    ), linear-gradient(var(--color-em-blue), var(--color-em-blue-dark));
-}
-
-.em-title {
-  color: var(--color-em-paper);
-  text-shadow:
-    2px 0 0 var(--color-em-ink),
-    -2px 0 0 var(--color-em-ink),
-    0 2px 0 var(--color-em-ink),
-    0 -2px 0 var(--color-em-ink),
-    2px 2px 0 var(--color-em-ink),
-    -2px -2px 0 var(--color-em-ink),
-    2px -2px 0 var(--color-em-ink),
-    -2px 2px 0 var(--color-em-ink),
-    6px 6px 0 var(--color-em-red);
-}
-
-.em-panel {
-  background-color: var(--color-em-paper);
-  border: 3px solid var(--color-em-ink);
-  border-radius: 20px;
-  box-shadow: 6px 6px 0 var(--color-em-ink);
-}
-
-/* Round insert light */
-.em-insert {
-  display: inline-block;
-  flex-shrink: 0;
-  border: 2px solid var(--color-em-ink);
-  border-radius: 9999px;
-  background-image: radial-gradient(
-    circle at 35% 30%,
-    rgb(255 255 255 / 0.75),
-    transparent 45%
-  );
-}
-
-/* Pop bumper cap with ridged rim */
-.em-bumper {
-  display: grid;
-  place-items: center;
-  border: 3px solid var(--color-em-ink);
-  border-radius: 9999px;
-  background:
-    radial-gradient(
-      circle,
-      var(--color-em-paper) 0 52%,
-      var(--color-em-ink) 52% 55%,
-      transparent 55%
-    ),
-    repeating-conic-gradient(
-      var(--color-em-blue) 0deg 12deg,
-      var(--color-em-paper) 12deg 24deg
-    );
-  box-shadow: 0 5px 0 var(--color-em-ink);
-}
-
-/* Flipper-style button */
-.em-button {
-  display: inline-block;
-  padding: 0.85rem 2rem;
-  border: 3px solid var(--color-em-ink);
-  border-radius: 9999px;
-  background-color: var(--color-em-yellow);
-  color: var(--color-em-ink);
-  font-family: var(--font-em-label);
-  font-weight: 700;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  text-align: center;
-  box-shadow: 4px 4px 0 var(--color-em-ink);
-  transition:
-    transform 80ms ease,
-    box-shadow 80ms ease;
-}
-
-.em-button:hover {
-  transform: translate(-1px, -1px);
-  box-shadow: 5px 5px 0 var(--color-em-ink);
-}
-
-.em-button:active {
-  transform: translate(3px, 3px);
-  box-shadow: 1px 1px 0 var(--color-em-ink);
-}
-
-.em-button:disabled {
-  opacity: 0.5;
-  cursor: not-allowed;
-  transform: none;
-  box-shadow: 4px 4px 0 var(--color-em-ink);
-}
-
-.em-input {
-  width: 100%;
-  padding: 0.6rem 1rem;
-  border: 2px solid var(--color-em-ink);
-  border-radius: 10px;
-  background-color: #fff;
-  color: var(--color-em-ink);
-}
-
-.em-input::placeholder {
-  color: rgb(29 25 20 / 0.4);
-}
-
-.em-input:focus {
-  outline: 3px solid var(--color-em-teal);
-  outline-offset: 1px;
-}
-
-/* Apron plate, like the "COLLECT BONUS" shield at the bottom of a playfield */
-.em-apron {
-  clip-path: polygon(0 0, 100% 0, 100% 70%, 50% 100%, 0 70%);
-  background-color: var(--color-em-ink);
-  padding: 3px 3px 6px;
-}
-
-.em-apron > * {
-  clip-path: polygon(0 0, 100% 0, 100% 70%, 50% 100%, 0 70%);
-  background-color: var(--color-em-paper);
-}
-
-/* Saw theme: grimy industrial metal for the XMAS pages */
+/* Saw theme: grimy industrial metal, inspired by the XMAS logo */
 .saw-page {
   --saw-noise: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 .5 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
   background-color: var(--color-saw-black);
@@ -381,7 +224,7 @@ body {
   background-image:
     var(--saw-noise), linear-gradient(#a3111a, var(--color-saw-blood-dark));
   color: #f3eee4;
-  font-family: var(--font-em-label);
+  font-family: var(--font-oswald);
   font-weight: 700;
   letter-spacing: 0.12em;
   text-transform: uppercase;

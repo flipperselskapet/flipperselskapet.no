@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { connection } from "next/server";
-import { Footer, Hero, Link, Page, Title } from "../saw";
+import { Hero, Link, Page, Title } from "~/components/saw";
+import { XmasFooter } from "../footer";
 import { isRegistrationOpen } from "./opening";
 import { RegistrationForm } from "./registration-form";
 
@@ -42,11 +43,11 @@ export default async function RegisterPage() {
           )}
         </div>
 
-        <Footer>
+        <XmasFooter>
           <p>
             <Link href="/xmas">← Tournament information</Link>
           </p>
-        </Footer>
+        </XmasFooter>
       </main>
     </Page>
   );

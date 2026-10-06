@@ -1,7 +1,6 @@
 import type { ReactNode } from "react";
-import { AdminLink } from "./admin-link";
 
-// Building blocks for the Saw-inspired, industrial look of the XMAS pages.
+// Building blocks for the Saw-inspired, industrial look of the site.
 
 export function Page({ children }: { children: ReactNode }) {
   return <div className="saw-page min-h-screen font-sans">{children}</div>;
@@ -195,20 +194,13 @@ export function Link({
   );
 }
 
-export function Footer({ children }: { children?: ReactNode }) {
+export function Footer({ children }: { children: ReactNode }) {
   return (
     <footer className="relative max-w-md mx-auto mt-4 mb-12 px-8 py-8 text-center space-y-2">
       <span aria-hidden className="saw-cut top-0 left-0 w-1/2" />
       <span aria-hidden className="saw-cut top-0 right-0 w-1/3" />
       <span aria-hidden className="saw-cut bottom-0 left-[15%] w-[70%]" />
-      <p className="font-type text-lg text-saw-blood-light">Questions?</p>
-      <p>
-        Contact us on <Link href="/slack">Slack</Link>
-      </p>
       {children}
-      <div>
-        <AdminLink />
-      </div>
     </footer>
   );
 }
