@@ -93,7 +93,8 @@ export function RegistrationForm() {
           Tournament Selection
         </h2>
         <p className="text-gray-300 text-sm mb-4">
-          Select which tournaments you want to participate in.
+          Select one or more tournaments. Leftovers on Sunday, December 6th
+          require no registration – sign up on the spot.
         </p>
 
         <div className="space-y-4">
@@ -116,7 +117,9 @@ export function RegistrationForm() {
                   <span className="ml-2 text-cyan-300">Price TBD</span>
                 </div>
                 <p className="text-sm text-gray-300 mt-1">Format TBD</p>
-                <p className="text-xs text-gray-400 mt-1">Date TBD</p>
+                <p className="text-xs text-gray-400 mt-1">
+                  Friday, December 4th
+                </p>
               </div>
             </div>
           </label>
@@ -139,8 +142,12 @@ export function RegistrationForm() {
                   XMAS Matchplay Open Main 2026
                   <span className="ml-2 text-purple-300">Price TBD</span>
                 </div>
-                <p className="text-sm text-gray-300 mt-1">Format TBD</p>
-                <p className="text-xs text-gray-400 mt-1">Date TBD</p>
+                <p className="text-sm text-gray-300 mt-1">
+                  Qualifications (group matchplay) Saturday, finals Sunday
+                </p>
+                <p className="text-xs text-gray-400 mt-1">
+                  Saturday, December 5th – Sunday, December 6th
+                </p>
               </div>
             </div>
           </label>
@@ -163,8 +170,10 @@ export function RegistrationForm() {
                   XMAS Matchplay Open Side 2026
                   <span className="ml-2 text-pink-300">Price TBD</span>
                 </div>
-                <p className="text-sm text-gray-300 mt-1">Format TBD</p>
-                <p className="text-xs text-gray-400 mt-1">Date TBD</p>
+                <p className="text-sm text-gray-300 mt-1">Format TBA</p>
+                <p className="text-xs text-gray-400 mt-1">
+                  Saturday, December 5th
+                </p>
               </div>
             </div>
           </label>

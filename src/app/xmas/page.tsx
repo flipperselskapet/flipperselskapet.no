@@ -173,6 +173,11 @@ export default async function Xmas2026() {
                   </p>
                 </>
               )}
+              <p className="text-sm text-gray-300 mt-4">
+                You can register for one or more of the Warmup (Friday), Main
+                (Saturday–Sunday) and Side Tournament (Saturday). Leftovers on
+                Sunday require no registration – sign up on the spot.
+              </p>
               <p className="text-xs text-gray-400 mt-4">
                 <em>Payment details: TBD</em>
               </p>
@@ -272,8 +277,9 @@ export default async function Xmas2026() {
                 🍽️ Leftovers (Sunday)
               </h3>
               <p>
-                There will be leftover tournaments. Details will be announced
-                closer to the tournament.
+                There will be leftover tournaments. No registration needed –
+                sign up on the spot. Details will be announced closer to the
+                tournament.
               </p>
             </div>
           </div>
