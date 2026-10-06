@@ -11,6 +11,37 @@ export const metadata: Metadata = {
   description: "Annual pinball championship in Oslo - XMAS Matchplay Open 2026",
 };
 
+const schedule = [
+  {
+    day: "Friday, Dec 4th",
+    title: "XMAS Warmup",
+    items: [
+      { time: "17.00–18.00", label: "Attendance and registration" },
+      { time: "00.30", label: "Tournament over" },
+    ],
+  },
+  {
+    day: "Saturday, Dec 5th",
+    title: "XMAS Main qualifications & Side Tournament",
+    items: [
+      { time: "09.30–10.00", label: "Attendance and registration" },
+      { time: "10.00–10.15", label: "Information about the day" },
+      { time: "10.15", label: "Qualifications start" },
+      { time: "12.45–13.30", label: "Break for food/shopping" },
+      { time: "18.00", label: "Qualifications done" },
+      { time: "19.45", label: "XMAS Side Tournament" },
+    ],
+  },
+  {
+    day: "Sunday, Dec 6th",
+    title: "XMAS Main finals",
+    items: [
+      { time: "09.30", label: "Finals start" },
+      { time: "17.00", label: "Finals done" },
+    ],
+  },
+];
+
 export default async function Xmas2026() {
   await connection();
   const isOpen = isRegistrationOpen();
@@ -46,9 +77,11 @@ export default async function Xmas2026() {
               tournament!
             </p>
             <p className="text-lg text-gray-200 leading-relaxed mb-6">
-              Join us for a weekend of intense pinball action! Dates TBD. This
-              page will contain all necessary information about registration,
-              tournament formats, schedule, accommodation, food and transport.
+              Join us for a weekend of intense pinball action, December 4th–6th!
+              This page will contain all necessary information about
+              registration, tournament formats, schedule, accommodation, food
+              and transport. The registration link will be posted closer to the
+              registration date.
             </p>
             <p className="text-base text-yellow-200 font-semibold">
               ⚠️ Limited spots available due to space and facility limitations -
@@ -58,7 +91,32 @@ export default async function Xmas2026() {
               <h3 className="text-2xl font-bold text-cyan-300 mb-4">
                 📅 Tournament Dates
               </h3>
-              <p className="text-gray-200">TBD</p>
+              <ul className="text-gray-200 space-y-2">
+                <li>
+                  <strong className="text-cyan-200">
+                    Thursday, December 3rd:
+                  </strong>{" "}
+                  Early-arrival tournament at Illegal Pinball
+                </li>
+                <li>
+                  <strong className="text-cyan-200">
+                    Friday, December 4th:
+                  </strong>{" "}
+                  XMAS Warmup
+                </li>
+                <li>
+                  <strong className="text-cyan-200">
+                    Saturday, December 5th:
+                  </strong>{" "}
+                  XMAS Main qualifications &amp; Side Tournament
+                </li>
+                <li>
+                  <strong className="text-cyan-200">
+                    Sunday, December 6th:
+                  </strong>{" "}
+                  XMAS Main finals &amp; leftovers
+                </li>
+              </ul>
             </div>
           </div>
         </div>
@@ -129,9 +187,9 @@ export default async function Xmas2026() {
 
             <div className="bg-blue-900/20 border border-blue-500/30 rounded-lg p-4">
               <p className="text-sm text-blue-200">
-                <strong>💡 Pre-tournament tip:</strong> Check out Illegal
-                Pinball Club in downtown Oslo for additional pinball action
-                before the weekend!
+                <strong>💡 Arriving early?</strong> Illegal Pinball will host a
+                tournament on Thursday at their location in downtown Oslo. Link
+                to that event to come.
               </p>
             </div>
           </div>
@@ -143,7 +201,82 @@ export default async function Xmas2026() {
             <span className="text-5xl">📜</span>
             Tournament Format
           </h2>
-          <p className="text-gray-200">TBD</p>
+          <p className="text-sm text-yellow-200 italic mb-6">
+            Preliminary – details may change.
+          </p>
+          <div className="text-gray-200 space-y-6">
+            <div>
+              <h3 className="text-xl font-bold text-purple-200 mb-2">
+                🔥 XMAS Warmup (Friday)
+              </h3>
+              <p>Format will be finalized ASAP.</p>
+            </div>
+
+            <div>
+              <h3 className="text-xl font-bold text-purple-200 mb-2">
+                🏆 XMAS Main – Qualifications (Saturday)
+              </h3>
+              <div className="bg-black/30 p-4 rounded border border-purple-500/30 space-y-2 text-sm">
+                <p>
+                  Group matchplay: 10 rounds with 2 games in each round. The
+                  first round uses slaughter pairing, after that strict Swiss
+                  pairing.
+                </p>
+                <p>
+                  With 48 or more players, the top 24 advance to the finals.
+                  With fewer than 48 players, the top 16 advance.
+                </p>
+              </div>
+            </div>
+
+            <div>
+              <h3 className="text-xl font-bold text-purple-200 mb-2">
+                🏆 XMAS Main – Finals (Sunday)
+              </h3>
+              <div className="bg-black/30 p-4 rounded border border-purple-500/30 space-y-2 text-sm">
+                <p>
+                  Three or four rounds of group matchplay (depending on how many
+                  advance), each round consisting of 4 or 5 games. Scoring is
+                  7-5-3-1, and the top two in each group advance to the next
+                  round. This continues until the finals are done and the XMAS
+                  champion of 2026 is determined!
+                </p>
+                <p>
+                  <strong>Quarterfinals:</strong> The top seed from
+                  qualification in each group chooses the game bank, then
+                  chooses their starting position on game 1.
+                </p>
+                <p>
+                  <strong>Semifinals and finals:</strong> The top seed from
+                  qualification in each group chooses games 1 and 2, then the
+                  following seeds each choose a machine. The top seed then
+                  chooses starting position on game 1. Each game can only be
+                  chosen once during the semifinals and finals.
+                </p>
+                <p>
+                  In all rounds, starting order choice on subsequent games is
+                  determined by the previous game's results.
+                </p>
+              </div>
+            </div>
+
+            <div>
+              <h3 className="text-xl font-bold text-purple-200 mb-2">
+                🎲 XMAS Side Tournament (Saturday)
+              </h3>
+              <p>Format TBA.</p>
+            </div>
+
+            <div>
+              <h3 className="text-xl font-bold text-purple-200 mb-2">
+                🍽️ Leftovers (Sunday)
+              </h3>
+              <p>
+                There will be leftover tournaments. Details will be announced
+                closer to the tournament.
+              </p>
+            </div>
+          </div>
         </section>
 
         {/* Practical Information Section */}
@@ -308,7 +441,34 @@ export default async function Xmas2026() {
             <span className="text-5xl">⏰</span>
             Schedule
           </h2>
-          <p className="text-gray-200">TBD</p>
+          <p className="text-sm text-yellow-200 italic mb-6">
+            Preliminary – times may change.
+          </p>
+          <div className="grid md:grid-cols-3 gap-4 text-gray-200">
+            {schedule.map((day) => (
+              <div
+                key={day.day}
+                className="bg-black/30 p-4 rounded border border-pink-500/30"
+              >
+                <h3 className="text-lg font-bold text-pink-200">{day.day}</h3>
+                <p className="text-sm text-pink-300/80 mb-3">{day.title}</p>
+                <ul className="space-y-2 text-sm">
+                  {day.items.map((item) => (
+                    <li key={item.time + item.label} className="flex gap-3">
+                      <span className="font-mono text-cyan-300 shrink-0 w-24">
+                        {item.time}
+                      </span>
+                      <span>{item.label}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            ))}
+          </div>
+          <p className="text-sm text-gray-400 italic mt-4">
+            The side tournament start time may change if qualifications run
+            longer than planned.
+          </p>
         </section>
 
         {/* Footer Call to Action */}
