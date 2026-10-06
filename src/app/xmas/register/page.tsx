@@ -1,5 +1,7 @@
 import type { Metadata } from "next";
 import { connection } from "next/server";
+import { Hero, Link, Page, Title } from "~/components/saw";
+import { XmasFooter } from "../footer";
 import { isRegistrationOpen } from "./opening";
 import { RegistrationForm } from "./registration-form";
 
@@ -13,64 +15,40 @@ export default async function RegisterPage() {
   const isOpen = isRegistrationOpen();
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-950 via-slate-900 to-slate-950">
-      {/* Hero Section */}
-      <div className="relative overflow-hidden bg-black/40 border-b-4 border-cyan-500">
-        <div className="absolute inset-0 bg-[url(/wall.jpg)] opacity-20 bg-cover bg-center" />
-        <div className="relative container mx-auto px-4 py-12 text-center">
-          <h1 className="neon-logo text-5xl md:text-7xl mb-4">
-            TOURNAMENT REGISTRATION
-          </h1>
-          <p className="text-xl text-cyan-100 font-semibold">
-            XMAS Matchplay Open 2026
-          </p>
-        </div>
-      </div>
+    <Page>
+      <Hero kicker="XMAS Matchplay Open 2026">
+        <Title size="text-5xl md:text-8xl">Registration</Title>
+      </Hero>
 
-      {/* Registration Form Section */}
-      <div className="container mx-auto px-4 py-12 max-w-3xl">
-        <div className="bg-gradient-to-r from-slate-900/50 to-slate-800/50 rounded-lg border-2 border-cyan-500/50 p-8 backdrop-blur-sm shadow-2xl">
+      <main className="container mx-auto px-4 py-12 max-w-3xl">
+        <div className="saw-panel p-6 md:p-10 mb-10">
           {isOpen ? (
             <RegistrationForm />
           ) : (
-            <div className="text-center space-y-6">
-              <h2 className="text-3xl font-bold text-cyan-300">
+            <div className="text-center space-y-4">
+              <h2 className="font-label font-bold uppercase tracking-wide text-3xl text-saw-blood-light">
                 Registration opens soon!
               </h2>
-              <p className="text-2xl font-semibold text-purple-200">
+              <p className="font-grunge text-3xl text-saw-bone">
                 Saturday, October 10th at 12:00
               </p>
-              <p className="text-gray-300">
-                Dates, tournament formats and prices: TBD
+              <p>
+                Tournaments run December 4th–6th. Prices and payment details:
+                TBD
               </p>
-              <p className="text-gray-400 text-sm">
+              <p className="text-sm">
                 Spots are limited — come back on Saturday to secure yours.
               </p>
             </div>
           )}
         </div>
 
-        {/* Info Section */}
-        <div className="mt-8 text-center text-gray-400 text-sm">
-          <p className="mb-2">
-            Questions? Contact us on{" "}
-            <a
-              href="/slack"
-              className="text-cyan-400 hover:text-cyan-200 underline"
-            >
-              Slack
-            </a>
-          </p>
+        <XmasFooter>
           <p>
-            <a
-              href="/xmas"
-              className="text-cyan-400 hover:text-cyan-200 underline"
-            >
-              ← Back to tournament information
-            </a>
+            <Link href="/xmas">← Tournament information</Link>
           </p>
-        </div>
-      </div>
-    </div>
+        </XmasFooter>
+      </main>
+    </Page>
   );
 }

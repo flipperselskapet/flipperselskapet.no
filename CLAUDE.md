@@ -69,6 +69,7 @@ src/
       page.tsx         # Machine list page
     xmas/              # XMAS Tournament pages
       page.tsx         # Tournament information page
+      footer.tsx       # XMAS footer (questions, admin link)
       register/        # Registration functionality
         page.tsx       # Registration page
         registration-form.tsx  # Client-side form with Turnstile captcha
@@ -82,6 +83,8 @@ src/
         logout-button.tsx # Logout button
       players/         # Public player list
         page.tsx       # Registered players list
+  components/          # Shared components
+    saw.tsx            # Saw theme design components
   data/                # Data files
     machines.ts        # Pinball machine data with IPDB information
   db/                  # Database configuration and schema
@@ -193,12 +196,12 @@ Required environment variables (add to `.env`):
 
 ## Design Decisions
 
-1. **No Christmas colors** - Despite "XMAS" name, uses cyan/blue/purple color scheme
-2. **No pulsing/blinking header** - Changed to static neon sign style matching homepage
+1. **No Christmas colors** - Despite "XMAS" name, avoid red-and-green combinations
+2. **Saw theme** - Public XMAS pages (`/xmas`, `/xmas/register`, `/xmas/players`) and the machines page (`/machines`) use a grimy, industrial look inspired by the tournament's Saw-style XMAS logo: dark blood-stained background, the XMAS logo image (`public/xmas-logo.jpg`) as the main heading on `/xmas`, distressed metal titles with a white outline on the other pages, dashed "cut mark" lines, circular saw blades for dates, riveted steel panels and typewritten notes. Components live in `src/components/saw.tsx` (XMAS footer in `src/app/xmas/footer.tsx`), CSS classes (`saw-*`) and color tokens (`saw-*`) in `src/app/globals.css`, and the fonts (Rubik Dirt for titles, Special Elite for notes, Oswald for headings) in `src/app/layout.tsx`. Red is used with black/steel only, never with green.
 3. **No opening hours** - Kept website links for restaurants/shops, removed messy hours
 4. **Table layout** - Changed from cards to compact table for machines
 5. **English language** - XMAS page in English (rest of site mostly Norwegian)
-6. **Geist fonts preserved** - Keep for general pages, neon sign uses Vibur font
+6. **Geist fonts preserved** - Keep for general pages and body text, homepage neon sign uses Vibur font
 
 ## Known Issues / TODOs
 

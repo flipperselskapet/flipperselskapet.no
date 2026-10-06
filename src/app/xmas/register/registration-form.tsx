@@ -2,8 +2,96 @@
 
 import { Turnstile, type TurnstileInstance } from "@marsidev/react-turnstile";
 import { useRef, useState } from "react";
+import { Rivet } from "~/components/saw";
 import { env } from "~/env";
 import { submitRegistration } from "./actions";
+
+const tournaments: {
+  id: string;
+  name: string;
+  title: string;
+  description: string;
+  date: string;
+}[] = [
+  {
+    id: "warmup-tournament",
+    name: "warmupTournament",
+    title: "XMAS Matchplay Open Warmup 2026",
+    description: "Format TBD",
+    date: "Friday, December 4th",
+  },
+  {
+    id: "main-tournament",
+    name: "mainTournament",
+    title: "XMAS Matchplay Open Main 2026",
+    description: "Qualifications (group matchplay) Saturday, finals Sunday",
+    date: "Saturday, December 5th – Sunday, December 6th",
+  },
+  {
+    id: "side-tournament",
+    name: "sideTournament",
+    title: "XMAS Matchplay Open Side 2026",
+    description: "Format TBA",
+    date: "Saturday, December 5th",
+  },
+];
+
+const fields: {
+  id: string;
+  label: string;
+  type: string;
+  placeholder: string;
+  required: boolean;
+  hint?: string;
+}[] = [
+  {
+    id: "email",
+    label: "Email Address",
+    type: "email",
+    placeholder: "your.email@example.com",
+    required: true,
+  },
+  {
+    id: "phone",
+    label: "Phone Number",
+    type: "tel",
+    placeholder: "+47 123 45 678",
+    required: true,
+    hint: "Include country code for international numbers",
+  },
+  {
+    id: "ifpaNumber",
+    label: "IFPA Number",
+    type: "text",
+    placeholder: "12345",
+    required: false,
+    hint: "Your International Flipper Pinball Association player number, if you have one.",
+  },
+];
+
+const headingClass =
+  "font-label font-bold uppercase tracking-wide text-2xl text-saw-blood-light mb-4";
+
+function FieldLabel({
+  htmlFor,
+  label,
+  required,
+}: {
+  htmlFor: string;
+  label: string;
+  required: boolean;
+}) {
+  return (
+    <label htmlFor={htmlFor} className="block text-sm font-semibold mb-1">
+      {label}{" "}
+      {required ? (
+        <span className="text-saw-blood-light">*</span>
+      ) : (
+        <span className="font-normal opacity-70">(Optional)</span>
+      )}
+    </label>
+  );
+}
 
 export function RegistrationForm() {
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -86,262 +174,157 @@ export function RegistrationForm() {
   }
 
   return (
-    <form onSubmit={handleSubmit} className="space-y-8">
+    <form onSubmit={handleSubmit} className="space-y-10">
       {/* Tournament Selection */}
       <div>
-        <h2 className="text-2xl font-bold text-cyan-300 mb-4">
-          Tournament Selection
-        </h2>
-        <p className="text-gray-300 text-sm mb-4">
-          Select which tournaments you want to participate in.
+        <h2 className={headingClass}>Tournament Selection</h2>
+        <p className="text-sm mb-4">
+          Select one or more tournaments. Leftovers on Sunday, December 6th
+          require no registration – sign up on the spot.
         </p>
 
         <div className="space-y-4">
-          {/* Warmup Tournament */}
-          <label
-            htmlFor="warmup-tournament"
-            className="block bg-cyan-900/30 border-2 border-cyan-500/50 rounded-lg p-4 cursor-pointer hover:bg-cyan-900/40 transition-colors"
-          >
-            <div className="flex items-start gap-3">
+          {tournaments.map((t) => (
+            <label
+              key={t.id}
+              htmlFor={t.id}
+              className="flex items-start gap-3 bg-black/40 border border-saw-steel rounded-sm p-4 cursor-pointer transition-colors hover:bg-black/60 has-checked:border-saw-blood-light has-checked:bg-saw-blood-dark/40"
+            >
               <input
                 type="checkbox"
-                id="warmup-tournament"
-                name="warmupTournament"
+                id={t.id}
+                name={t.name}
                 value="true"
-                className="mt-1 h-5 w-5 rounded border-cyan-300 text-cyan-600 focus:ring-cyan-500"
+                className="mt-1 h-5 w-5 accent-saw-blood"
               />
               <div className="flex-1">
-                <div className="block font-semibold text-cyan-200">
-                  XMAS Matchplay Open Warmup 2026
-                  <span className="ml-2 text-cyan-300">Price TBD</span>
+                <div className="flex flex-wrap items-center gap-x-2 font-label font-bold uppercase tracking-wide">
+                  <Rivet />
+                  {t.title}
+                  <span className="font-normal normal-case tracking-normal text-sm opacity-70">
+                    Price TBD
+                  </span>
                 </div>
-                <p className="text-sm text-gray-300 mt-1">Format TBD</p>
-                <p className="text-xs text-gray-400 mt-1">Date TBD</p>
+                <p className="text-sm mt-1">{t.description}</p>
+                <p className="text-xs mt-1 opacity-70">{t.date}</p>
               </div>
-            </div>
-          </label>
-
-          {/* Main Tournament */}
-          <label
-            htmlFor="main-tournament"
-            className="block bg-purple-900/30 border-2 border-purple-500/50 rounded-lg p-4 cursor-pointer hover:bg-purple-900/40 transition-colors"
-          >
-            <div className="flex items-start gap-3">
-              <input
-                type="checkbox"
-                id="main-tournament"
-                name="mainTournament"
-                value="true"
-                className="mt-1 h-5 w-5 rounded border-purple-300 text-purple-600 focus:ring-purple-500"
-              />
-              <div className="flex-1">
-                <div className="block font-semibold text-purple-200">
-                  XMAS Matchplay Open Main 2026
-                  <span className="ml-2 text-purple-300">Price TBD</span>
-                </div>
-                <p className="text-sm text-gray-300 mt-1">Format TBD</p>
-                <p className="text-xs text-gray-400 mt-1">Date TBD</p>
-              </div>
-            </div>
-          </label>
-
-          {/* Side Tournament */}
-          <label
-            htmlFor="side-tournament"
-            className="block bg-pink-900/30 border-2 border-pink-500/50 rounded-lg p-4 cursor-pointer hover:bg-pink-900/40 transition-colors"
-          >
-            <div className="flex items-start gap-3">
-              <input
-                type="checkbox"
-                id="side-tournament"
-                name="sideTournament"
-                value="true"
-                className="mt-1 h-5 w-5 rounded border-pink-300 text-pink-600 focus:ring-pink-500"
-              />
-              <div className="flex-1">
-                <div className="block font-semibold text-pink-200">
-                  XMAS Matchplay Open Side 2026
-                  <span className="ml-2 text-pink-300">Price TBD</span>
-                </div>
-                <p className="text-sm text-gray-300 mt-1">Format TBD</p>
-                <p className="text-xs text-gray-400 mt-1">Date TBD</p>
-              </div>
-            </div>
-          </label>
+            </label>
+          ))}
         </div>
 
-        <p className="mt-6 text-xs text-gray-400">
+        <p className="mt-4 text-xs opacity-70">
           Prices and payment details: TBD
         </p>
       </div>
 
       {/* Personal Information */}
       <div>
-        <h2 className="text-2xl font-bold text-cyan-300 mb-4">
-          Personal Information
-        </h2>
+        <h2 className={headingClass}>Personal Information</h2>
 
         <div className="space-y-4">
-          {/* Name Fields */}
           <div className="grid md:grid-cols-2 gap-4">
             <div>
-              <label
-                htmlFor="firstName"
-                className="block text-sm font-medium text-gray-200 mb-2"
-              >
-                First Name <span className="text-red-400">*</span>
-              </label>
+              <FieldLabel htmlFor="firstName" label="First Name" required />
               <input
                 type="text"
                 id="firstName"
                 name="firstName"
                 required
-                className="w-full px-4 py-2 bg-slate-800/50 border border-cyan-500/30 rounded-lg text-gray-100 placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-cyan-500 focus:border-transparent"
+                className="saw-input"
                 placeholder="Your first name"
               />
             </div>
-
             <div>
-              <label
-                htmlFor="lastName"
-                className="block text-sm font-medium text-gray-200 mb-2"
-              >
-                Last Name <span className="text-red-400">*</span>
-              </label>
+              <FieldLabel htmlFor="lastName" label="Last Name" required />
               <input
                 type="text"
                 id="lastName"
                 name="lastName"
                 required
-                className="w-full px-4 py-2 bg-slate-800/50 border border-cyan-500/30 rounded-lg text-gray-100 placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-cyan-500 focus:border-transparent"
+                className="saw-input"
                 placeholder="Your last name"
               />
             </div>
           </div>
 
-          {/* Email */}
-          <div>
-            <label
-              htmlFor="email"
-              className="block text-sm font-medium text-gray-200 mb-2"
-            >
-              Email Address <span className="text-red-400">*</span>
-            </label>
-            <input
-              type="email"
-              id="email"
-              name="email"
-              required
-              className="w-full px-4 py-2 bg-slate-800/50 border border-cyan-500/30 rounded-lg text-gray-100 placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-cyan-500 focus:border-transparent"
-              placeholder="your.email@example.com"
-            />
-          </div>
-
-          {/* Phone */}
-          <div>
-            <label
-              htmlFor="phone"
-              className="block text-sm font-medium text-gray-200 mb-2"
-            >
-              Phone Number <span className="text-red-400">*</span>
-            </label>
-            <input
-              type="tel"
-              id="phone"
-              name="phone"
-              required
-              className="w-full px-4 py-2 bg-slate-800/50 border border-cyan-500/30 rounded-lg text-gray-100 placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-cyan-500 focus:border-transparent"
-              placeholder="+47 123 45 678"
-            />
-            <p className="text-xs text-gray-400 mt-1">
-              Include country code for international numbers
-            </p>
-          </div>
-
-          {/* IFPA Number */}
-          <div>
-            <label
-              htmlFor="ifpaNumber"
-              className="block text-sm font-medium text-gray-200 mb-2"
-            >
-              IFPA Number <span className="text-gray-400">(Optional)</span>
-            </label>
-            <input
-              type="text"
-              id="ifpaNumber"
-              name="ifpaNumber"
-              className="w-full px-4 py-2 bg-slate-800/50 border border-cyan-500/30 rounded-lg text-gray-100 placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-cyan-500 focus:border-transparent"
-              placeholder="12345"
-            />
-            <p className="text-xs text-gray-400 mt-1">
-              Your International Flipper Pinball Association player number, if
-              you have one.
-            </p>
-          </div>
+          {fields.map((f) => (
+            <div key={f.id}>
+              <FieldLabel
+                htmlFor={f.id}
+                label={f.label}
+                required={f.required}
+              />
+              <input
+                type={f.type}
+                id={f.id}
+                name={f.id}
+                required={f.required}
+                className="saw-input"
+                placeholder={f.placeholder}
+              />
+              {f.hint && <p className="text-xs mt-1 opacity-70">{f.hint}</p>}
+            </div>
+          ))}
         </div>
       </div>
 
       {/* Captcha */}
-      <div>
-        <div className="flex justify-center">
-          <Turnstile
-            ref={turnstileRef}
-            siteKey={env.NEXT_PUBLIC_TURNSTILE_SITE_KEY}
-            onSuccess={(token) => setTurnstileToken(token)}
-            onError={() => setTurnstileToken(null)}
-            onExpire={() => setTurnstileToken(null)}
-          />
-        </div>
+      <div className="flex justify-center">
+        <Turnstile
+          ref={turnstileRef}
+          siteKey={env.NEXT_PUBLIC_TURNSTILE_SITE_KEY}
+          options={{ theme: "dark" }}
+          onSuccess={(token) => setTurnstileToken(token)}
+          onError={() => setTurnstileToken(null)}
+          onExpire={() => setTurnstileToken(null)}
+        />
       </div>
 
       {/* Error Status (inline) */}
       {submitStatus && submitStatus.type === "error" && (
-        <div className="p-4 rounded-lg bg-red-900/30 border-2 border-red-500/50 text-red-200">
+        <div className="p-4 rounded-sm bg-saw-blood-dark text-saw-bone border border-saw-blood-light">
           <p className="font-semibold">{submitStatus.message}</p>
         </div>
       )}
 
       {/* Success Modal */}
       {submitStatus && submitStatus.type === "success" && (
-        <div className="fixed inset-0 bg-black/80 flex items-center justify-center z-50 p-4">
-          <div className="bg-gradient-to-r from-slate-900 to-slate-800 rounded-lg border-4 border-green-500/80 p-8 max-w-md w-full shadow-2xl">
-            <div className="text-center">
-              <div className="text-6xl mb-4">✓</div>
-              <h2 className="text-3xl font-bold text-green-300 mb-4">
-                Registration Successful!
-              </h2>
-              <p className="text-gray-200 mb-6">{submitStatus.message}</p>
-              <div className="space-y-3">
-                <a
-                  href="/xmas"
-                  className="block w-full py-3 px-6 bg-gradient-to-r from-cyan-600 to-purple-600 hover:from-cyan-500 hover:to-purple-500 text-white font-bold text-lg rounded-lg shadow-lg transition-all duration-200"
-                >
-                  Back to Tournament Information
-                </a>
-                <a
-                  href="/xmas/players"
-                  className="block w-full py-3 px-6 bg-slate-700 hover:bg-slate-600 text-white font-semibold rounded-lg transition-all duration-200"
-                >
-                  View Registered Players
-                </a>
-              </div>
+        <div className="fixed inset-0 bg-black/85 flex items-center justify-center z-50 p-4">
+          <div className="saw-panel p-8 max-w-md w-full text-center">
+            <div className="font-grunge text-6xl text-saw-blood-light mb-4">
+              ✓
+            </div>
+            <h2 className="font-label font-bold uppercase tracking-wide text-3xl text-saw-blood-light mb-4">
+              Registration Successful!
+            </h2>
+            <p className="mb-6">{submitStatus.message}</p>
+            <div className="space-y-4">
+              <a href="/xmas" className="saw-button w-full">
+                Back to Tournament Information
+              </a>
+              <a
+                href="/xmas/players"
+                className="block font-semibold text-saw-bone underline decoration-saw-blood-light underline-offset-4 hover:text-saw-blood-light"
+              >
+                View Registered Players
+              </a>
             </div>
           </div>
         </div>
       )}
 
       {/* Submit Button */}
-      <div className="pt-4">
+      <div className="pt-2">
         <button
           type="submit"
           disabled={isSubmitting || !turnstileToken}
-          className="w-full py-4 px-6 bg-gradient-to-r from-cyan-600 to-purple-600 hover:from-cyan-500 hover:to-purple-500 disabled:from-gray-600 disabled:to-gray-600 disabled:cursor-not-allowed text-white font-bold text-lg rounded-lg shadow-lg transition-all duration-200 transform hover:scale-105 disabled:hover:scale-100"
+          className="saw-button w-full text-lg"
         >
           {isSubmitting ? "Submitting..." : "Register for Tournament"}
         </button>
 
-        <p className="text-xs text-gray-400 text-center mt-3">
-          <span className="text-red-400">*</span> Required fields
+        <p className="text-xs text-center mt-3 opacity-70">
+          <span className="text-saw-blood-light">*</span> Required fields
         </p>
       </div>
     </form>
