@@ -3,7 +3,17 @@ import type { Metadata } from "next";
 import { connection } from "next/server";
 import { db } from "~/db";
 import { registrations } from "~/db/schema";
-import { AdminLink } from "./admin-link";
+import {
+  Apron,
+  Backglass,
+  Bumper,
+  Insert,
+  Link,
+  Page,
+  Panel,
+  Plate,
+  SubHeading,
+} from "./em";
 import { isRegistrationOpen } from "./register/opening";
 
 export const metadata: Metadata = {
@@ -57,171 +67,146 @@ export default async function Xmas2026() {
   const playerCount = verifiedPlayers.length;
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-950 via-slate-900 to-slate-950">
-      {/* Hero Section with Flashy Title */}
-      <div className="relative overflow-hidden bg-black/40 border-b-4 border-cyan-500">
-        <div className="absolute inset-0 bg-[url(/wall.jpg)] opacity-20 bg-cover bg-center" />
-        <div className="relative container mx-auto px-4 py-16 text-center">
-          <h1 className="neon-logo text-6xl md:text-8xl mb-6">
-            XMAS MATCHPLAY OPEN 2026
-          </h1>
-          <div className="max-w-3xl mx-auto">
-            <p className="text-xl md:text-2xl text-cyan-100 font-semibold mb-4 drop-shadow-lg">
-              Join us for a weekend of pinball competition in Oslo!
-            </p>
-            <p className="text-lg text-gray-200 leading-relaxed mb-6">
-              Kristiania Flipperselskap is a private pinball club located in
-              Oslo, Norway. With 40+ pinball machines of different eras and in
-              close proximity to shops, restaurants and pubs - only 15 minutes
-              outside downtown Oslo - we are excited to host another XMAS annual
-              tournament!
-            </p>
-            <p className="text-lg text-gray-200 leading-relaxed mb-6">
-              Join us for a weekend of intense pinball action, December 4th–6th!
-              This page will contain all necessary information about
-              registration, tournament formats, schedule, accommodation, food
-              and transport. The registration link will be posted closer to the
-              registration date.
-            </p>
-            <p className="text-base text-yellow-200 font-semibold">
-              ⚠️ Limited spots available due to space and facility limitations -
-              registration opens Saturday, October 10th at 12:00!
-            </p>
-            <div className="bg-black/40 rounded-lg p-6 border-2 border-cyan-400/50">
-              <h3 className="text-2xl font-bold text-cyan-300 mb-4">
-                📅 Tournament Dates
-              </h3>
-              <ul className="text-gray-200 space-y-2">
-                <li>
-                  <strong className="text-cyan-200">
-                    Thursday, December 3rd:
-                  </strong>{" "}
-                  Early-arrival tournament at Illegal Pinball
-                </li>
-                <li>
-                  <strong className="text-cyan-200">
-                    Friday, December 4th:
-                  </strong>{" "}
-                  XMAS Warmup
-                </li>
-                <li>
-                  <strong className="text-cyan-200">
-                    Saturday, December 5th:
-                  </strong>{" "}
-                  XMAS Main qualifications &amp; Side Tournament
-                </li>
-                <li>
-                  <strong className="text-cyan-200">
-                    Sunday, December 6th:
-                  </strong>{" "}
-                  XMAS Main finals &amp; leftovers
-                </li>
-              </ul>
-            </div>
-          </div>
+    <Page>
+      <Backglass kicker="Kristiania Flipperselskap presents">
+        <h1 className="em-title font-display leading-none mb-8">
+          <span className="block text-7xl md:text-9xl">Xmas</span>
+          <span className="block text-4xl md:text-6xl mt-2">
+            Matchplay Open
+          </span>
+        </h1>
+        <p className="inline-block font-label font-bold uppercase tracking-[0.25em] text-lg md:text-xl bg-em-red text-em-paper border-2 border-em-ink rounded-full px-6 py-1 mb-10">
+          ★ Oslo · December 2026 ★
+        </p>
+        <div className="flex justify-center gap-6 md:gap-12">
+          <Bumper top="FRI" big="4" label="Warmup" />
+          <Bumper top="SAT" big="5" label="Main · Side" />
+          <Bumper top="SUN" big="6" label="Finals · Leftovers" />
         </div>
-      </div>
+      </Backglass>
 
-      {/* Main Content */}
-      <div className="container mx-auto px-4 py-12 max-w-5xl">
-        {/* Registration Section */}
-        <section className="mb-12 bg-gradient-to-r from-slate-900/50 to-slate-800/50 rounded-lg border-2 border-cyan-500/50 p-8 backdrop-blur-sm shadow-2xl">
-          <h2 className="text-4xl font-black mb-6 text-cyan-300 drop-shadow-lg flex items-center gap-3">
-            <span className="text-5xl">🎯</span>
-            Registration
-          </h2>
-          <div className="text-gray-200 space-y-6">
-            <div className="bg-cyan-900/30 border-2 border-cyan-500/50 rounded-lg p-5">
-              {isOpen ? (
-                <>
-                  <p className="text-lg mb-4">
-                    <strong className="text-cyan-200">
-                      Registration is now open!
-                    </strong>
-                  </p>
+      <main className="container mx-auto px-4 py-12 max-w-5xl">
+        <div className="max-w-3xl mx-auto text-center text-lg leading-relaxed mb-12 space-y-4">
+          <p>
+            Kristiania Flipperselskap is a private pinball club located in Oslo,
+            Norway. With 40+ pinball machines of different eras and in close
+            proximity to shops, restaurants and pubs - only 15 minutes outside
+            downtown Oslo - we are excited to host another XMAS annual
+            tournament!
+          </p>
+          <p>
+            Join us for a weekend of intense pinball action, December 4th–6th!
+            This page will contain all necessary information about registration,
+            tournament formats, schedule, accommodation, food and transport. The
+            registration link will be posted closer to the registration date.
+          </p>
+        </div>
 
-                  <a
-                    href="/xmas/register"
-                    className="inline-block w-full sm:w-auto px-8 py-4 bg-gradient-to-r from-cyan-600 to-purple-600 hover:from-cyan-500 hover:to-purple-500 text-white font-bold text-xl rounded-lg shadow-lg transition-all duration-200 transform hover:scale-105 text-center mb-4"
-                  >
-                    Register Now →
-                  </a>
+        <Panel accent="teal" title="Registration">
+          <div className="space-y-5">
+            {isOpen ? (
+              <div className="space-y-4">
+                <p className="font-label font-bold uppercase tracking-wide text-2xl text-em-teal-dark">
+                  Registration is now open!
+                </p>
+                <a href="/xmas/register" className="em-button text-xl">
+                  Register now ▸
+                </a>
+                <div className="flex items-center gap-3 pt-2">
+                  <Link href="/xmas/players">View registered players</Link>
+                  {playerCount > 0 && (
+                    <span className="font-label font-bold text-sm bg-em-yellow border-2 border-em-ink rounded-full px-3 py-0.5">
+                      {playerCount} {playerCount === 1 ? "player" : "players"}
+                    </span>
+                  )}
+                </div>
+              </div>
+            ) : (
+              <div>
+                <p className="font-label font-bold uppercase tracking-wide text-2xl text-em-teal-dark mb-1">
+                  Registration opens Saturday, October 10th at 12:00
+                </p>
+                <p>Spots are limited — be ready when registration opens.</p>
+              </div>
+            )}
 
-                  <div className="flex items-center gap-3 mt-4">
-                    <a
-                      href="/xmas/players"
-                      className="inline-block text-cyan-400 hover:text-cyan-200 underline font-semibold"
-                    >
-                      View registered players →
-                    </a>
-                    {playerCount > 0 && (
-                      <span className="inline-block px-3 py-1 bg-cyan-900/50 border border-cyan-500/50 rounded-full text-cyan-200 font-bold text-sm">
-                        {playerCount} {playerCount === 1 ? "player" : "players"}
-                      </span>
-                    )}
-                  </div>
-                </>
-              ) : (
-                <>
-                  <p className="text-lg mb-2">
-                    <strong className="text-cyan-200">
-                      Registration opens Saturday, October 10th at 12:00!
-                    </strong>
-                  </p>
-                  <p className="text-sm text-gray-300">
-                    Spots are limited — be ready when registration opens.
-                  </p>
-                </>
-              )}
-              <p className="text-sm text-gray-300 mt-4">
-                You can register for one or more of the Warmup (Friday), Main
-                (Saturday–Sunday) and Side Tournament (Saturday). Leftovers on
-                Sunday require no registration – sign up on the spot.
-              </p>
-              <p className="text-xs text-gray-400 mt-4">
-                <em>Payment details: TBD</em>
-              </p>
-            </div>
+            <p>
+              You can register for one or more of the Warmup (Friday), Main
+              (Saturday–Sunday) and Side Tournament (Saturday). Leftovers on
+              Sunday require no registration – sign up on the spot.
+            </p>
 
-            <div className="bg-slate-900/50 border-2 border-cyan-500/30 rounded-lg p-6">
-              <h3 className="text-xl font-bold text-cyan-300 mb-4">
-                💰 Entry Fees
-              </h3>
-              <p className="text-gray-200">TBD</p>
-            </div>
+            <Plate accent="yellow">
+              <strong>Limited spots</strong> due to space and facility
+              limitations.
+            </Plate>
 
-            <div className="bg-blue-900/20 border border-blue-500/30 rounded-lg p-4">
-              <p className="text-sm text-blue-200">
-                <strong>💡 Arriving early?</strong> Illegal Pinball will host a
-                tournament on Thursday at their location in downtown Oslo. Link
-                to that event to come.
-              </p>
+            <div className="grid sm:grid-cols-2 gap-4">
+              <div>
+                <SubHeading accent="orange">Entry fees</SubHeading>
+                <p>TBD</p>
+              </div>
+              <div>
+                <SubHeading accent="orange">Payment details</SubHeading>
+                <p>TBD</p>
+              </div>
             </div>
           </div>
-        </section>
+        </Panel>
 
-        {/* Format Section */}
-        <section className="mb-12 bg-gradient-to-r from-slate-800/50 to-slate-900/50 rounded-lg border-2 border-purple-500/50 p-8 backdrop-blur-sm shadow-2xl">
-          <h2 className="text-4xl font-black mb-6 text-purple-300 drop-shadow-lg flex items-center gap-3">
-            <span className="text-5xl">📜</span>
-            Tournament Format
-          </h2>
-          <p className="text-sm text-yellow-200 italic mb-6">
-            Preliminary – details may change.
+        <Panel accent="red" title="Schedule">
+          <p className="italic mb-6">Preliminary – times may change.</p>
+          <div className="grid md:grid-cols-3 gap-6">
+            {schedule.map((day) => (
+              <div key={day.day}>
+                <div className="bg-em-red text-em-paper border-2 border-em-ink rounded-t-xl px-4 py-2">
+                  <h3 className="font-label font-bold uppercase tracking-wide text-lg">
+                    {day.day}
+                  </h3>
+                  <p className="text-sm opacity-90">{day.title}</p>
+                </div>
+                <ul className="border-2 border-t-0 border-em-ink rounded-b-xl bg-white/60 px-4 py-4 space-y-3">
+                  {day.items.map((item) => (
+                    <li key={item.time + item.label} className="flex gap-3">
+                      <Insert accent="yellow" className="h-4 w-4 mt-1" />
+                      <div>
+                        <div className="font-label font-bold tracking-wide">
+                          {item.time}
+                        </div>
+                        <div className="text-sm">{item.label}</div>
+                      </div>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            ))}
+          </div>
+          <p className="text-sm italic mt-4">
+            The side tournament start time may change if qualifications run
+            longer than planned.
           </p>
-          <div className="text-gray-200 space-y-6">
+          <div className="mt-6">
+            <Plate accent="blue">
+              <strong>Arriving early?</strong> Illegal Pinball will host a
+              tournament on Thursday, December 3rd at their location in downtown
+              Oslo. Link to that event to come.
+            </Plate>
+          </div>
+        </Panel>
+
+        <Panel accent="blue" title="Tournament Format">
+          <p className="italic mb-6">Preliminary – details may change.</p>
+          <div className="space-y-8">
             <div>
-              <h3 className="text-xl font-bold text-purple-200 mb-2">
-                🔥 XMAS Warmup (Friday)
-              </h3>
+              <SubHeading accent="teal">XMAS Warmup · Friday</SubHeading>
               <p>Format will be finalized ASAP.</p>
             </div>
 
             <div>
-              <h3 className="text-xl font-bold text-purple-200 mb-2">
-                🏆 XMAS Main – Qualifications (Saturday)
-              </h3>
-              <div className="bg-black/30 p-4 rounded border border-purple-500/30 space-y-2 text-sm">
+              <SubHeading accent="blue">
+                XMAS Main · Qualifications · Saturday
+              </SubHeading>
+              <div className="space-y-2">
                 <p>
                   Group matchplay: 10 rounds with 2 games in each round. The
                   first round uses slaughter pairing, after that strict Swiss
@@ -235,10 +220,8 @@ export default async function Xmas2026() {
             </div>
 
             <div>
-              <h3 className="text-xl font-bold text-purple-200 mb-2">
-                🏆 XMAS Main – Finals (Sunday)
-              </h3>
-              <div className="bg-black/30 p-4 rounded border border-purple-500/30 space-y-2 text-sm">
+              <SubHeading accent="blue">XMAS Main · Finals · Sunday</SubHeading>
+              <div className="space-y-2">
                 <p>
                   Three or four rounds of group matchplay (depending on how many
                   advance), each round consisting of 4 or 5 games. Scoring is
@@ -265,52 +248,37 @@ export default async function Xmas2026() {
               </div>
             </div>
 
-            <div>
-              <h3 className="text-xl font-bold text-purple-200 mb-2">
-                🎲 XMAS Side Tournament (Saturday)
-              </h3>
-              <p>Format TBA.</p>
-            </div>
-
-            <div>
-              <h3 className="text-xl font-bold text-purple-200 mb-2">
-                🍽️ Leftovers (Sunday)
-              </h3>
-              <p>
-                There will be leftover tournaments. No registration needed –
-                sign up on the spot. Details will be announced closer to the
-                tournament.
-              </p>
+            <div className="grid sm:grid-cols-2 gap-8">
+              <div>
+                <SubHeading accent="red">Side Tournament · Saturday</SubHeading>
+                <p>Format TBA.</p>
+              </div>
+              <div>
+                <SubHeading accent="orange">Leftovers · Sunday</SubHeading>
+                <p>
+                  There will be leftover tournaments. No registration needed –
+                  sign up on the spot. Details will be announced closer to the
+                  tournament.
+                </p>
+              </div>
             </div>
           </div>
-        </section>
+        </Panel>
 
-        {/* Practical Information Section */}
-        <section className="mb-12 bg-gradient-to-r from-slate-900/50 to-slate-800/50 rounded-lg border-2 border-blue-500/50 p-8 backdrop-blur-sm shadow-2xl">
-          <h2 className="text-4xl font-black mb-6 text-blue-300 drop-shadow-lg flex items-center gap-3">
-            <span className="text-5xl">ℹ️</span>
-            Practical Information
-          </h2>
-          <div className="text-gray-200 space-y-6">
-            {/* Location */}
+        <Panel accent="teal" title="Practical Information">
+          <div className="grid md:grid-cols-2 gap-x-10 gap-y-8">
             <div>
-              <h3 className="text-xl font-bold text-cyan-200 mb-3">
-                📍 Location
-              </h3>
-              <p className="font-semibold text-lg mb-1">
-                Kristiania Flipperselskap
-              </p>
-              <p className="text-gray-300 mb-3">
-                <a
+              <SubHeading accent="red">Location</SubHeading>
+              <p className="font-semibold">Kristiania Flipperselskap</p>
+              <p className="mb-3">
+                <Link
                   href="https://maps.google.com/?q=Veitvetveien+8,+0596+Oslo"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-cyan-400 hover:text-cyan-200 underline"
+                  external
                 >
                   Veitvetveien 8, 0596 Oslo
-                </a>
+                </Link>
               </p>
-              <div className="space-y-3 text-sm bg-black/30 p-4 rounded border border-cyan-500/30">
+              <div className="space-y-2 text-sm">
                 <p>
                   <strong>Access:</strong> We are located in the basement of the
                   shopping mall. The entrance is on the right side of the
@@ -321,94 +289,68 @@ export default async function Xmas2026() {
                 <p>
                   <strong>Door:</strong> The door will be open during tournament
                   hours. If locked, contact us on{" "}
-                  <a
-                    href="/slack"
-                    className="text-cyan-400 hover:text-cyan-200 underline font-semibold"
-                  >
-                    Slack
-                  </a>
-                  .
+                  <Link href="/slack">Slack</Link>.
                 </p>
               </div>
             </div>
 
-            {/* Transport */}
             <div>
-              <h3 className="text-xl font-bold text-cyan-200 mb-3">
-                🚇 Transport
-              </h3>
-              <div className="bg-black/30 p-4 rounded border border-cyan-500/30 space-y-2 text-sm">
+              <SubHeading accent="blue">Transport</SubHeading>
+              <div className="space-y-2">
                 <p>
                   <strong>Metro:</strong> Take Line 5 to{" "}
                   <strong>Veitvet station</strong> (15 minutes from downtown
                   Oslo).
                 </p>
-                <p>
+                <p className="text-sm">
                   Line 5 passes through several downtown stations:
                   Nationalteateret, Stortinget, Jernbanetorget, and Grønland.
                 </p>
               </div>
             </div>
 
-            {/* Accommodation */}
             <div>
-              <h3 className="text-xl font-bold text-cyan-200 mb-3">
-                🏨 Accommodation
-              </h3>
-              <div className="bg-black/30 p-4 rounded border border-cyan-500/30 space-y-3 text-sm">
+              <SubHeading accent="teal">Accommodation</SubHeading>
+              <div className="space-y-2">
                 <p>
                   <strong>Nearest hotel:</strong>{" "}
-                  <a
+                  <Link
                     href="https://www.thonhotels.com/our-hotels/norway/oslo/thon-hotel-linne/"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="text-cyan-400 hover:text-cyan-200 underline"
+                    external
                   >
                     Thon Hotel Linne, Lindeberg
-                  </a>{" "}
+                  </Link>{" "}
                   - 20 minutes walk or one metro stop from the venue.
                 </p>
-                <p>
+                <p className="text-sm">
                   Alternatively, book a hotel in downtown Oslo near metro Line 5
                   for easy 15-minute direct access to Veitvet.
                 </p>
               </div>
             </div>
 
-            {/* Machines */}
             <div>
-              <h3 className="text-xl font-bold text-cyan-200 mb-2">
-                🎮 Machines
-              </h3>
+              <SubHeading accent="yellow">Machines</SubHeading>
               <p className="mb-2">
                 Tournament machines will be announced soon.
               </p>
               <p className="text-sm">
                 View our complete machine collection on the{" "}
-                <a
-                  href="/machines"
-                  className="text-cyan-400 hover:text-cyan-200 underline font-semibold"
-                >
-                  machines page
-                </a>
-                .
+                <Link href="/machines">machines page</Link>.
               </p>
             </div>
 
-            {/* Food & Drinks */}
-            <div>
-              <h3 className="text-xl font-bold text-cyan-200 mb-2">
-                🍕 Food & Drinks
-              </h3>
+            <div className="md:col-span-2">
+              <SubHeading accent="orange">Food & Drinks</SubHeading>
               <p className="mb-3">
                 Veitvet shopping mall has several restaurants and shops:
               </p>
-              <div className="grid md:grid-cols-2 gap-4">
+              <div className="grid sm:grid-cols-2 gap-4">
                 <div>
-                  <p className="font-semibold text-cyan-300 mb-2">
-                    Restaurants:
+                  <p className="font-label font-bold uppercase tracking-wide mb-1">
+                    Restaurants
                   </p>
-                  <ul className="list-disc list-inside ml-4 space-y-1 text-sm">
+                  <ul className="list-disc list-inside space-y-1 text-sm">
                     <li>Drabanten Spiseri og Catering</li>
                     <li>Lucky Bowl</li>
                     <li>Tim's Burger</li>
@@ -417,85 +359,27 @@ export default async function Xmas2026() {
                   </ul>
                 </div>
                 <div>
-                  <p className="font-semibold text-cyan-300 mb-2">
-                    Grocery Stores:
+                  <p className="font-label font-bold uppercase tracking-wide mb-1">
+                    Grocery stores
                   </p>
-                  <ul className="list-disc list-inside ml-4 space-y-1 text-sm">
+                  <ul className="list-disc list-inside space-y-1 text-sm">
                     <li>Kiwi</li>
                     <li>Rema 1000</li>
                   </ul>
                 </div>
               </div>
-              <p className="text-sm text-gray-400 italic mt-3">
+              <p className="text-sm italic mt-3">
                 Opening hours at{" "}
-                <a
-                  href="https://veitvetsenteret.no/butikker/"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-cyan-400 hover:text-cyan-200 underline"
-                >
+                <Link href="https://veitvetsenteret.no/butikker/" external>
                   veitvetsenteret.no/butikker
-                </a>
+                </Link>
               </p>
             </div>
           </div>
-        </section>
+        </Panel>
 
-        {/* Time Schedule Section */}
-        <section className="mb-12 bg-gradient-to-r from-slate-800/50 to-slate-900/50 rounded-lg border-2 border-pink-500/50 p-8 backdrop-blur-sm shadow-2xl">
-          <h2 className="text-4xl font-black mb-6 text-pink-300 drop-shadow-lg flex items-center gap-3">
-            <span className="text-5xl">⏰</span>
-            Schedule
-          </h2>
-          <p className="text-sm text-yellow-200 italic mb-6">
-            Preliminary – times may change.
-          </p>
-          <div className="grid md:grid-cols-3 gap-4 text-gray-200">
-            {schedule.map((day) => (
-              <div
-                key={day.day}
-                className="bg-black/30 p-4 rounded border border-pink-500/30"
-              >
-                <h3 className="text-lg font-bold text-pink-200">{day.day}</h3>
-                <p className="text-sm text-pink-300/80 mb-3">{day.title}</p>
-                <ul className="space-y-2 text-sm">
-                  {day.items.map((item) => (
-                    <li key={item.time + item.label} className="flex gap-3">
-                      <span className="font-mono text-cyan-300 shrink-0 w-24">
-                        {item.time}
-                      </span>
-                      <span>{item.label}</span>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            ))}
-          </div>
-          <p className="text-sm text-gray-400 italic mt-4">
-            The side tournament start time may change if qualifications run
-            longer than planned.
-          </p>
-        </section>
-
-        {/* Footer Call to Action */}
-        <div className="text-center py-8">
-          <p className="text-2xl font-bold text-cyan-300 mb-4">
-            Stay tuned for updates!
-          </p>
-          <p className="text-gray-300">
-            Questions? Contact us on{" "}
-            <a
-              href="/slack"
-              className="text-cyan-400 hover:text-cyan-200 underline"
-            >
-              Slack
-            </a>
-          </p>
-          <div className="mt-4">
-            <AdminLink />
-          </div>
-        </div>
-      </div>
-    </div>
+        <Apron />
+      </main>
+    </Page>
   );
 }

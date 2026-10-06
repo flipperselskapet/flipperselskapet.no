@@ -69,6 +69,8 @@ src/
       page.tsx         # Machine list page
     xmas/              # XMAS Tournament pages
       page.tsx         # Tournament information page
+      layout.tsx       # Loads EM theme fonts
+      em.tsx           # EM pinball design components
       register/        # Registration functionality
         page.tsx       # Registration page
         registration-form.tsx  # Client-side form with Turnstile captcha
@@ -193,12 +195,12 @@ Required environment variables (add to `.env`):
 
 ## Design Decisions
 
-1. **No Christmas colors** - Despite "XMAS" name, uses cyan/blue/purple color scheme
-2. **No pulsing/blinking header** - Changed to static neon sign style matching homepage
+1. **No Christmas colors** - Despite "XMAS" name, avoid red-and-green combinations
+2. **EM pinball theme on XMAS pages** - Public XMAS pages (`/xmas`, `/xmas/register`, `/xmas/players`) are styled after 1970s electromechanical playfields, not neon boxes: cream playfield background, blue "backglass" header, thick ink outlines with flat offset shadows, pop-bumper and insert-light motifs, and a playfield "apron" footer. Building blocks live in `src/app/xmas/em.tsx`, CSS classes (`em-*`) and color tokens (`em-cream`, `em-ink`, `em-teal`, `em-blue`, `em-red`, `em-yellow`, `em-orange`) in `src/app/globals.css`. Fonts (Shrikhand for display, Oswald for labels) are loaded in `src/app/xmas/layout.tsx`. The admin panel keeps its old dark style.
 3. **No opening hours** - Kept website links for restaurants/shops, removed messy hours
 4. **Table layout** - Changed from cards to compact table for machines
 5. **English language** - XMAS page in English (rest of site mostly Norwegian)
-6. **Geist fonts preserved** - Keep for general pages, neon sign uses Vibur font
+6. **Geist fonts preserved** - Keep for general pages and body text, homepage neon sign uses Vibur font
 
 ## Known Issues / TODOs
 
