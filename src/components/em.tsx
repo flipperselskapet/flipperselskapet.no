@@ -1,7 +1,6 @@
 import type { ReactNode } from "react";
-import { AdminLink } from "./admin-link";
 
-// Building blocks for the EM pinball look of the XMAS pages.
+// Building blocks for the EM pinball look (XMAS and machines pages).
 
 export type Accent = "teal" | "red" | "blue" | "yellow" | "orange";
 
@@ -170,22 +169,11 @@ export function Link({
   );
 }
 
-export function Apron({ children }: { children?: ReactNode }) {
+export function Apron({ children }: { children: ReactNode }) {
   return (
     <footer className="mt-4 mb-12 flex justify-center">
       <div className="em-apron w-full max-w-md">
-        <div className="px-8 pt-6 pb-14 text-center space-y-2">
-          <p className="font-label font-bold uppercase tracking-[0.2em] text-em-red">
-            Questions?
-          </p>
-          <p>
-            Contact us on <Link href="/slack">Slack</Link>
-          </p>
-          {children}
-          <div>
-            <AdminLink />
-          </div>
-        </div>
+        <div className="px-8 pt-6 pb-14 text-center space-y-2">{children}</div>
       </div>
     </footer>
   );

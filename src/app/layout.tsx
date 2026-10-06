@@ -1,7 +1,7 @@
 import { Analytics } from "@vercel/analytics/next";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Geist, Geist_Mono, Oswald, Shrikhand } from "next/font/google";
 import "./globals.css";
 
 const geistSans = Geist({
@@ -12,6 +12,18 @@ const geistSans = Geist({
 const geistMono = Geist_Mono({
   variable: "--font-geist-mono",
   subsets: ["latin"],
+});
+
+// EM pinball theme fonts (see globals.css)
+const emDisplay = Shrikhand({
+  weight: "400",
+  subsets: ["latin"],
+  variable: "--font-em-display",
+});
+
+const emLabel = Oswald({
+  subsets: ["latin"],
+  variable: "--font-em-label",
 });
 
 export const metadata: Metadata = {
@@ -27,7 +39,7 @@ export default function RootLayout({
   return (
     <html lang="no">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+        className={`${geistSans.variable} ${geistMono.variable} ${emDisplay.variable} ${emLabel.variable} antialiased`}
       >
         {children}
         <Analytics />

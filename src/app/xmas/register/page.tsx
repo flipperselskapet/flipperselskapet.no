@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { connection } from "next/server";
-import { Apron, Backglass, Link, Page } from "../em";
+import { Backglass, Link, Page } from "~/components/em";
+import { XmasFooter } from "../footer";
 import { isRegistrationOpen } from "./opening";
 import { RegistrationForm } from "./registration-form";
 
@@ -44,11 +45,11 @@ export default async function RegisterPage() {
           )}
         </div>
 
-        <Apron>
+        <XmasFooter>
           <p>
             <Link href="/xmas">← Tournament information</Link>
           </p>
-        </Apron>
+        </XmasFooter>
       </main>
     </Page>
   );

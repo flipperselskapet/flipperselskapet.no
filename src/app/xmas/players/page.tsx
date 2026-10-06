@@ -1,8 +1,9 @@
 import { and, isNotNull, isNull } from "drizzle-orm";
 import type { Metadata } from "next";
+import { Backglass, Bumper, Link, Page, Plate } from "~/components/em";
 import { db } from "~/db";
 import { registrations } from "~/db/schema";
-import { Apron, Backglass, Bumper, Link, Page, Plate } from "../em";
+import { XmasFooter } from "../footer";
 
 export const metadata: Metadata = {
   title: "Registered Players - XMAS Matchplay Open 2026",
@@ -127,11 +128,11 @@ export default async function PlayersPage() {
           )}
         </div>
 
-        <Apron>
+        <XmasFooter>
           <p>
             <Link href="/xmas">← Tournament information</Link>
           </p>
-        </Apron>
+        </XmasFooter>
       </main>
     </Page>
   );

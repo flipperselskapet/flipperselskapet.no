@@ -1,10 +1,7 @@
 import { and, isNotNull, isNull } from "drizzle-orm";
 import type { Metadata } from "next";
 import { connection } from "next/server";
-import { db } from "~/db";
-import { registrations } from "~/db/schema";
 import {
-  Apron,
   Backglass,
   Bumper,
   Insert,
@@ -13,7 +10,10 @@ import {
   Panel,
   Plate,
   SubHeading,
-} from "./em";
+} from "~/components/em";
+import { db } from "~/db";
+import { registrations } from "~/db/schema";
+import { XmasFooter } from "./footer";
 import { isRegistrationOpen } from "./register/opening";
 
 export const metadata: Metadata = {
@@ -378,7 +378,7 @@ export default async function Xmas2026() {
           </div>
         </Panel>
 
-        <Apron />
+        <XmasFooter />
       </main>
     </Page>
   );

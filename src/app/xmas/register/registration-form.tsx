@@ -2,8 +2,8 @@
 
 import { Turnstile, type TurnstileInstance } from "@marsidev/react-turnstile";
 import { useRef, useState } from "react";
+import { type Accent, Insert } from "~/components/em";
 import { env } from "~/env";
-import { type Accent, Insert } from "../em";
 import { submitRegistration } from "./actions";
 
 const tournaments: {
