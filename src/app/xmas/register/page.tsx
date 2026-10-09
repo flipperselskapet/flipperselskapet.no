@@ -30,7 +30,7 @@ export default async function RegisterPage() {
                 Registration opens soon!
               </h2>
               <p className="font-grunge text-3xl text-saw-bone">
-                Saturday, October 10th at 12:00
+                Saturday, October 10th at 20:00
               </p>
               <p>
                 Tournaments run December 4th–6th. Prices and payment details:
