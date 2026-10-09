@@ -1,4 +1,12 @@
-import { boolean, pgTable, serial, text, timestamp } from "drizzle-orm/pg-core";
+import {
+  boolean,
+  integer,
+  numeric,
+  pgTable,
+  serial,
+  text,
+  timestamp,
+} from "drizzle-orm/pg-core";
 
 export const registrations = pgTable("registrations", {
   id: serial("id").primaryKey(),
@@ -30,3 +38,27 @@ export const registrations = pgTable("registrations", {
 
 export type InsertRegistration = typeof registrations.$inferInsert;
 export type SelectRegistration = typeof registrations.$inferSelect;
+
+export const machines = pgTable("machines", {
+  id: serial("id").primaryKey(),
+
+  name: text("name").notNull(),
+  manufacturer: text("manufacturer").notNull(),
+  year: integer("year").notNull(),
+
+  // Internet Pinball Database (https://www.ipdb.org)
+  ipdbId: text("ipdb_id").notNull().unique(),
+  ipdbUrl: text("ipdb_url").notNull(),
+  // Average fun rating out of 10; null while the community hasn't rated it
+  ipdbRating: numeric("ipdb_rating", { precision: 5, scale: 3 }),
+
+  // Metadata
+  createdAt: timestamp("created_at").notNull().defaultNow(),
+  updatedAt: timestamp("updated_at")
+    .notNull()
+    .defaultNow()
+    .$onUpdate(() => new Date()),
+});
+
+export type InsertMachine = typeof machines.$inferInsert;
+export type SelectMachine = typeof machines.$inferSelect;
