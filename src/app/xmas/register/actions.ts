@@ -2,12 +2,12 @@
 
 import { revalidatePath } from "next/cache";
 import { env } from "~/env";
-import { checkAdminAuth } from "../admin/login-actions";
+import { canRegisterEarly } from "./early-access";
 import { isRegistrationOpen } from "./opening";
 import { sendSlackNotification } from "./slack";
 
 export async function submitRegistration(formData: FormData) {
-  if (!isRegistrationOpen() && !(await checkAdminAuth())) {
+  if (!isRegistrationOpen() && !(await canRegisterEarly())) {
     return {
       success: false,
       error: "Registration has not opened yet",

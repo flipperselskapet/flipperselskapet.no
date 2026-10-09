@@ -15,6 +15,7 @@ export const env = createEnv({
     AUTO_VERIFY_LIMIT: z.coerce.number().int().positive().default(50),
     ADMIN_PASSWORD: z.string().min(8),
     SLACK_WEBHOOK_URL: z.string().url().optional(),
+    PREREGISTRATION_KEY: z.string().min(16).optional(),
   },
 
   /**
@@ -38,6 +39,7 @@ export const env = createEnv({
     AUTO_VERIFY_LIMIT: process.env.AUTO_VERIFY_LIMIT,
     ADMIN_PASSWORD: process.env.ADMIN_PASSWORD,
     SLACK_WEBHOOK_URL: process.env.SLACK_WEBHOOK_URL,
+    PREREGISTRATION_KEY: process.env.PREREGISTRATION_KEY,
   },
   /**
    * Run `build` or `dev` with `SKIP_ENV_VALIDATION` to skip env validation. This is especially
