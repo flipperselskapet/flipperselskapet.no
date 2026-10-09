@@ -40,6 +40,9 @@ const tournaments: {
   },
 ];
 
+// Ticking every tournament gives the package deal price.
+const PACKAGE_PRICE = 750;
+
 const fields: {
   id: string;
   label: string;
@@ -105,6 +108,12 @@ export function RegistrationForm() {
   } | null>(null);
   const [turnstileToken, setTurnstileToken] = useState<string | null>(null);
   const turnstileRef = useRef<TurnstileInstance | null>(null);
+  const [selected, setSelected] = useState<Record<string, boolean>>({});
+
+  const selectedTournaments = tournaments.filter((t) => selected[t.name]);
+  const fullPrice = selectedTournaments.reduce((sum, t) => sum + t.price, 0);
+  const isPackageDeal = selectedTournaments.length === tournaments.length;
+  const total = isPackageDeal ? PACKAGE_PRICE : fullPrice;
 
   async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
@@ -154,6 +163,7 @@ export function RegistrationForm() {
         });
         // Reset form only on success
         formElement.reset();
+        setSelected({});
         setTurnstileToken(null);
       } else {
         setSubmitStatus({
@@ -199,6 +209,12 @@ export function RegistrationForm() {
                 id={t.id}
                 name={t.name}
                 value="true"
+                onChange={(e) =>
+                  setSelected((prev) => ({
+                    ...prev,
+                    [t.name]: e.target.checked,
+                  }))
+                }
                 className="mt-1 h-5 w-5 accent-saw-blood"
               />
               <div className="flex-1">
@@ -216,11 +232,36 @@ export function RegistrationForm() {
           ))}
         </div>
 
-        <p className="mt-4 text-sm">
-          <strong>Package deal:</strong> Warmup + Main + Side for 750 NOK (save
-          100 NOK). Leftovers is free for Main players.
-        </p>
-        <p className="mt-1 text-xs opacity-70">
+        {total > 0 ? (
+          <div className="saw-note px-5 py-4 mt-4" aria-live="polite">
+            <div className="flex items-end justify-between gap-4">
+              <div>
+                <p className="font-label font-bold uppercase tracking-wide">
+                  Total to pay on arrival
+                </p>
+                {isPackageDeal && (
+                  <p className="text-sm font-bold">
+                    Package deal — you save {fullPrice - PACKAGE_PRICE} NOK!
+                  </p>
+                )}
+              </div>
+              <div className="text-right">
+                {isPackageDeal && (
+                  <p className="text-sm line-through opacity-60">
+                    {fullPrice} NOK
+                  </p>
+                )}
+                <p className="font-grunge text-4xl leading-none">{total} NOK</p>
+              </div>
+            </div>
+          </div>
+        ) : (
+          <p className="mt-4 text-sm">
+            <strong>Package deal:</strong> sign up for all three tournaments for{" "}
+            {PACKAGE_PRICE} NOK. Leftovers is free for Main players.
+          </p>
+        )}
+        <p className="mt-2 text-xs opacity-70">
           Payment: Norwegian players pay with Vipps on arrival. International
           players: we'll figure something out.
         </p>
