@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import type { SelectRegistration } from "~/db/schema";
+import { Badge, Button, Input, TableCell, TableRow } from "../ui";
 import {
   markDeleted,
   togglePaid,
@@ -67,156 +68,132 @@ export function AdminRegistrationRow({ registration }: Props) {
   if (registration.sideTournament) tournaments.push("Side");
 
   return (
-    <tr className="border-b border-slate-700/50 hover:bg-slate-800/30">
+    <TableRow>
       {/* Name */}
-      <td className="px-4 py-4">
-        <div className="font-semibold text-gray-200">
+      <TableCell className="pl-6">
+        <div className="font-medium">
           {registration.firstName} {registration.lastName}
         </div>
-        <div className="text-xs text-gray-400">
+        <div className="text-xs text-(color:--muted-foreground)">
           ID: {registration.id} | Registered:{" "}
           {new Date(registration.createdAt).toLocaleDateString()}
         </div>
-      </td>
+      </TableCell>
 
       {/* Contact */}
-      <td className="px-4 py-4">
-        <div className="text-sm">
-          <div className="text-gray-300">{registration.email}</div>
-          <div className="text-gray-400">{registration.phone}</div>
+      <TableCell>
+        <div>{registration.email}</div>
+        <div className="text-xs text-(color:--muted-foreground)">
+          {registration.phone}
         </div>
-      </td>
+      </TableCell>
 
       {/* IFPA */}
-      <td className="px-4 py-4">
+      <TableCell>
         {isEditingIfpa ? (
           <div className="flex gap-1">
-            <input
+            <Input
               type="text"
               value={ifpaNumber}
               onChange={(e) => setIfpaNumber(e.target.value)}
-              className="text-sm px-2 py-1 rounded bg-slate-700 text-gray-200 border border-cyan-500/50 focus:border-cyan-500 focus:outline-none w-24"
+              className="h-8 w-24"
               placeholder="IFPA #"
               disabled={isLoading}
             />
-            <button
-              type="button"
+            <Button
+              size="icon"
               onClick={handleSaveIfpa}
               disabled={isLoading}
-              className="text-xs px-2 py-1 rounded bg-green-700 hover:bg-green-600 text-white transition-colors disabled:opacity-50"
               title="Save"
             >
               ✓
-            </button>
-            <button
-              type="button"
+            </Button>
+            <Button
+              size="icon"
+              variant="outline"
               onClick={handleCancelIfpa}
               disabled={isLoading}
-              className="text-xs px-2 py-1 rounded bg-gray-700 hover:bg-gray-600 text-white transition-colors disabled:opacity-50"
               title="Cancel"
             >
               ✕
-            </button>
+            </Button>
           </div>
         ) : (
           <div className="flex items-center gap-2">
-            <div className="text-sm text-gray-300">
+            <span className="tabular-nums">
               {registration.ifpaNumber || (
-                <span className="text-gray-500">N/A</span>
+                <span className="text-(color:--muted-foreground)">N/A</span>
               )}
-            </div>
-            <button
-              type="button"
+            </span>
+            <Button
+              size="icon"
+              variant="ghost"
               onClick={() => setIsEditingIfpa(true)}
-              className="text-xs px-2 py-1 rounded bg-slate-700 hover:bg-slate-600 text-gray-300 transition-colors"
               title="Edit IFPA number"
             >
               ✎
-            </button>
+            </Button>
           </div>
         )}
-      </td>
+      </TableCell>
 
       {/* Tournaments */}
-      <td className="px-4 py-4">
+      <TableCell>
         <div className="flex flex-wrap gap-1">
           {tournaments.map((t) => (
-            <span
-              key={t}
-              className={`text-xs px-2 py-1 rounded ${
-                t === "Main"
-                  ? "bg-purple-900/50 text-purple-200"
-                  : t === "Warmup"
-                    ? "bg-cyan-900/50 text-cyan-200"
-                    : "bg-pink-900/50 text-pink-200"
-              }`}
-            >
+            <Badge key={t} variant="outline">
               {t}
-            </span>
+            </Badge>
           ))}
         </div>
-      </td>
+      </TableCell>
 
       {/* Status */}
-      <td className="px-4 py-4">
-        <div className="flex flex-col gap-1">
-          {registration.verifiedAt && (
-            <span className="text-xs px-2 py-1 rounded bg-green-900/50 text-green-200 inline-block">
-              ✓ Verified
-            </span>
-          )}
+      <TableCell>
+        <div className="flex flex-wrap gap-1">
+          {registration.verifiedAt && <Badge>✓ Verified</Badge>}
           {registration.paidAt && (
-            <span className="text-xs px-2 py-1 rounded bg-blue-900/50 text-blue-200 inline-block">
+            <Badge variant="outline" className="text-(color:--success)">
               ✓ Paid
-            </span>
+            </Badge>
           )}
           {!registration.verifiedAt && !registration.paidAt && (
-            <span className="text-xs px-2 py-1 rounded bg-yellow-900/50 text-yellow-200 inline-block">
-              Pending
-            </span>
+            <Badge variant="secondary">Pending</Badge>
           )}
         </div>
-      </td>
+      </TableCell>
 
       {/* Actions */}
-      <td className="px-4 py-4">
-        <div className="flex flex-col gap-2">
-          <button
-            type="button"
+      <TableCell className="pr-6">
+        <div className="flex flex-wrap gap-1">
+          <Button
+            size="sm"
+            variant={registration.verifiedAt ? "outline" : "default"}
             onClick={handleToggleVerified}
             disabled={isLoading}
-            className={`text-xs px-3 py-1 rounded transition-colors disabled:opacity-50 ${
-              registration.verifiedAt
-                ? "bg-gray-700 hover:bg-gray-600 text-gray-200"
-                : "bg-green-700 hover:bg-green-600 text-white"
-            }`}
           >
             {registration.verifiedAt ? "Unverify" : "Verify"}
-          </button>
+          </Button>
 
-          <button
-            type="button"
+          <Button
+            size="sm"
+            variant={registration.paidAt ? "outline" : "secondary"}
             onClick={handleTogglePaid}
             disabled={isLoading}
-            className={`text-xs px-3 py-1 rounded transition-colors disabled:opacity-50 ${
-              registration.paidAt
-                ? "bg-gray-700 hover:bg-gray-600 text-gray-200"
-                : "bg-blue-700 hover:bg-blue-600 text-white"
-            }`}
           >
             {registration.paidAt ? "Unpaid" : "Mark Paid"}
-          </button>
+          </Button>
 
-          <button
-            type="button"
+          <Button
+            size="sm"
+            variant="destructive"
             onClick={handleDelete}
             disabled={isLoading}
-            className="text-xs px-3 py-1 rounded bg-red-700 hover:bg-red-600 text-white transition-colors disabled:opacity-50"
           >
             Delete
-          </button>
+          </Button>
         </div>
-      </td>
-    </tr>
+      </TableCell>
+    </TableRow>
   );
 }

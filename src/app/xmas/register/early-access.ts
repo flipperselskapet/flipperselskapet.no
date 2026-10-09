@@ -1,7 +1,7 @@
 import { createHash, timingSafeEqual } from "node:crypto";
 import { cookies } from "next/headers";
+import { checkAdminAuth } from "~/app/admin/login-actions";
 import { env } from "~/env";
-import { checkAdminAuth } from "../admin/login-actions";
 
 export const EARLY_ACCESS_COOKIE_NAME = "xmas_early_access";
 

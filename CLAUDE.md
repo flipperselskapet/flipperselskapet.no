@@ -74,15 +74,21 @@ src/
         page.tsx       # Registration page
         registration-form.tsx  # Client-side form with Turnstile captcha
         actions.ts     # Server action for registration submission
-      admin/           # Admin panel (password protected)
-        page.tsx       # Admin dashboard
-        actions.ts     # Admin actions (verify, paid, delete)
-        login-actions.ts # Authentication actions
-        admin-login.tsx  # Login form
-        registration-row.tsx # Table row component
-        logout-button.tsx # Logout button
       players/         # Public player list
         page.tsx       # Registered players list
+  admin/               # Site-wide admin panel (password protected)
+    layout.tsx         # Auth gate + navigation for all admin pages
+    page.tsx           # Overview with links to each section
+    admin-nav.tsx      # Navigation bar
+    login-actions.ts   # Authentication actions (HMAC session cookie)
+    admin-login.tsx    # Login form
+    logout-button.tsx  # Logout button
+    xmas/              # XMAS registrations (verify, paid, delete, IFPA)
+      page.tsx
+      actions.ts       # Server actions (each checks admin auth)
+      registration-row.tsx
+    machines/          # Machines (read-only list for now)
+      page.tsx
   components/          # Shared components
     saw.tsx            # Saw theme design components
   data/                # Data files
@@ -147,7 +153,7 @@ The project includes a complete tournament registration system for the XMAS Matc
    - `/xmas/register` - Registration form with Cloudflare Turnstile captcha
    - `/xmas/players` - List of verified registered players
 
-2. **Admin Panel** (`/xmas/admin`):
+2. **Admin Panel** (`/admin`, XMAS registrations at `/admin/xmas`; `/xmas/admin` redirects there):
    - Password protected (cookie-based auth)
    - View all registrations with statistics
    - Mark players as verified/paid
@@ -168,7 +174,8 @@ The project includes a complete tournament registration system for the XMAS Matc
 5. **Security**:
    - Cloudflare Turnstile captcha prevents spam
    - Admin password via environment variable
-   - HTTP-only cookies for admin auth
+   - HTTP-only cookies for admin auth; the cookie is an HMAC keyed with `ADMIN_PASSWORD`, so changing the password logs everyone out
+   - Every admin server action re-checks `checkAdminAuth()`; never rely on the page or layout check alone
    - Server-side validation with Turnstile token verification
 
 6. **Cache Management**:

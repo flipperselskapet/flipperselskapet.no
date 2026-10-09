@@ -1,4 +1,4 @@
-import { checkAdminAuth } from "./admin/login-actions";
+import { checkAdminAuth } from "~/app/admin/login-actions";
 
 export async function AdminLink() {
   const isAuthenticated = await checkAdminAuth();
@@ -9,7 +9,7 @@ export async function AdminLink() {
 
   return (
     <a
-      href="/xmas/admin"
+      href="/admin"
       className="text-saw-ash font-semibold underline hover:text-saw-blood-light"
     >
       → Admin Panel

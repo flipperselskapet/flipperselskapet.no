@@ -4,8 +4,13 @@ import { eq } from "drizzle-orm";
 import { revalidatePath } from "next/cache";
 import { db } from "~/db";
 import { registrations } from "~/db/schema";
+import { checkAdminAuth } from "../login-actions";
 
 export async function toggleVerified(id: number) {
+  if (!(await checkAdminAuth())) {
+    return { success: false, error: "Unauthorized" };
+  }
+
   try {
     // Get current value
     const [current] = await db
@@ -25,7 +30,7 @@ export async function toggleVerified(id: number) {
       .where(eq(registrations.id, id));
 
     // Revalidate all affected pages
-    revalidatePath("/xmas/admin");
+    revalidatePath("/admin/xmas");
     revalidatePath("/xmas/players");
     revalidatePath("/xmas");
     return { success: true };
@@ -36,6 +41,10 @@ export async function toggleVerified(id: number) {
 }
 
 export async function togglePaid(id: number) {
+  if (!(await checkAdminAuth())) {
+    return { success: false, error: "Unauthorized" };
+  }
+
   try {
     // Get current value
     const [current] = await db
@@ -55,7 +64,7 @@ export async function togglePaid(id: number) {
       .where(eq(registrations.id, id));
 
     // Revalidate admin page (paid status doesn't affect public pages)
-    revalidatePath("/xmas/admin");
+    revalidatePath("/admin/xmas");
     return { success: true };
   } catch (error) {
     console.error("Error toggling paid status:", error);
@@ -64,6 +73,10 @@ export async function togglePaid(id: number) {
 }
 
 export async function markDeleted(id: number) {
+  if (!(await checkAdminAuth())) {
+    return { success: false, error: "Unauthorized" };
+  }
+
   try {
     // Soft delete by setting deletedAt timestamp
     await db
@@ -72,7 +85,7 @@ export async function markDeleted(id: number) {
       .where(eq(registrations.id, id));
 
     // Revalidate all affected pages
-    revalidatePath("/xmas/admin");
+    revalidatePath("/admin/xmas");
     revalidatePath("/xmas/players");
     revalidatePath("/xmas");
     return { success: true };
@@ -83,6 +96,10 @@ export async function markDeleted(id: number) {
 }
 
 export async function updateIfpaNumber(id: number, ifpaNumber: string) {
+  if (!(await checkAdminAuth())) {
+    return { success: false, error: "Unauthorized" };
+  }
+
   try {
     // Get current registration
     const [current] = await db
@@ -102,7 +119,7 @@ export async function updateIfpaNumber(id: number, ifpaNumber: string) {
       .where(eq(registrations.id, id));
 
     // Revalidate affected pages
-    revalidatePath("/xmas/admin");
+    revalidatePath("/admin/xmas");
     revalidatePath("/xmas/players");
     return { success: true };
   } catch (error) {
