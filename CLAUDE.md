@@ -87,12 +87,12 @@ src/
       page.tsx
       actions.ts       # Server actions (each checks admin auth)
       registration-row.tsx
-    machines/          # Machines (read-only list for now)
+    machines/          # Machines (read-only list for now; add/edit not built yet)
       page.tsx
   components/          # Shared components
     saw.tsx            # Saw theme design components
   data/                # Data files
-    machines.ts        # Pinball machine data with IPDB information
+    machines.ts        # getMachines(): reads the machines table, formats ratings
   db/                  # Database configuration and schema
     index.ts           # Database connection and Drizzle client
     schema.ts          # Database schema definitions
@@ -129,6 +129,11 @@ supabase/
 - Tournament selections: `mainTournament`, `warmupTournament`, `sideTournament` (boolean)
 - Personal info: `firstName`, `lastName`, `email`, `phone`, `ifpaNumber` (text)
 - Admin fields: `verifiedAt`, `paidAt`, `deletedAt` (timestamp, nullable)
+- Metadata: `createdAt`, `updatedAt` (timestamp)
+
+**Machines Table** (`machines`):
+- `name`, `manufacturer` (text), `year` (integer)
+- IPDB: `ipdbId` (text, unique), `ipdbUrl` (text), `ipdbRating` (numeric out of 10, null = not rated yet)
 - Metadata: `createdAt`, `updatedAt` (timestamp)
 
 ### Database Workflow
@@ -219,7 +224,7 @@ Required environment variables (add to `.env`):
 
 ## Pinball Machine Data (IPDB)
 
-All pinball machines in the project (`src/data/machines.ts`) reference the **Internet Pinball Database (IPDB)** at https://www.ipdb.org.
+All pinball machines live in the `machines` table (read via `getMachines()` in `src/data/machines.ts`) and reference the **Internet Pinball Database (IPDB)** at https://www.ipdb.org.
 
 ### About IPDB
 
@@ -229,13 +234,15 @@ All pinball machines in the project (`src/data/machines.ts`) reference the **Int
 
 ### Machine Data Structure
 
-Each machine in `src/data/machines.ts` contains:
+Each row in the `machines` table contains:
 - `name` - Machine name
 - `manufacturer` - Company that produced the machine
 - `year` - Year of manufacture
-- `rating` - Community rating from IPDB (format: "X.XX/10" or "TBD" if no ratings)
+- `ipdbRating` - Community rating from IPDB as a number out of 10 (null if no ratings yet; shown as "TBD")
 - `ipdbId` - Unique IPDB identifier
-- `ipdbUrl` - Direct link to IPDB page
+- `ipdbUrl` - Direct link to IPDB page (usually `machine.cgi?id={ipdbId}`, but some machines link to a group page with `gid=`)
+
+The original data was imported from the old hard-coded list by `supabase/migrations/0004_*.sql`.
 
 ### Finding Machine Information
 
@@ -243,7 +250,7 @@ To look up or verify machine data:
 1. Search by name at https://www.ipdb.org/search.pl
 2. Find the machine's IPDB ID from the URL
 3. Extract rating from "Average Fun Rating" field
-4. Update `src/data/machines.ts` with the information
+4. Add or update the machine in the `machines` table
 
 **Note**: Some newer machines may not have ratings yet if the community hasn't submitted enough reviews.
 

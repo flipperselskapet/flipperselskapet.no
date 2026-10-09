@@ -1,6 +1,6 @@
 import { isNull } from "drizzle-orm";
 import Link from "next/link";
-import { machines } from "~/data/machines";
+import { getMachines } from "~/data/machines";
 import { db } from "~/db";
 import { registrations } from "~/db/schema";
 import { AdminLogin } from "./admin-login";
@@ -22,6 +22,7 @@ export default async function AdminOverviewPage() {
     .select()
     .from(registrations)
     .where(isNull(registrations.deletedAt));
+  const machines = await getMachines();
   const verified = active.filter((r) => r.verifiedAt).length;
   const unpaid = active.filter((r) => !r.paidAt).length;
 

@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { machines } from "~/data/machines";
+import { getMachines } from "~/data/machines";
 import { AdminLogin } from "../admin-login";
 import { checkAdminAuth } from "../login-actions";
 import {
@@ -26,6 +26,8 @@ export default async function AdminMachinesPage() {
     return <AdminLogin />;
   }
 
+  const machines = await getMachines();
+
   return (
     <div className="space-y-6">
       <div className="flex flex-wrap items-start justify-between gap-4">
@@ -41,12 +43,7 @@ export default async function AdminMachinesPage() {
       </div>
 
       <p className="rounded-md border border-(color:--border) bg-(color:--muted)/50 px-4 py-3 text-sm text-(color:--muted-foreground)">
-        Read-only for now: this list comes from{" "}
-        <code className="font-mono text-(color:--foreground)">
-          src/data/machines.ts
-        </code>
-        . Adding and editing machines will work once the data has been moved to
-        the database.
+        Read-only for now: adding and editing machines is not built yet.
       </p>
 
       <Card>

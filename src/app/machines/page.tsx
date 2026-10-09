@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { connection } from "next/server";
 import {
   Footer,
   Hero,
@@ -9,7 +10,7 @@ import {
   SawBlade,
   Title,
 } from "~/components/saw";
-import { machines } from "~/data/machines";
+import { getMachines } from "~/data/machines";
 import MachineList from "./machine-list";
 
 export const metadata: Metadata = {
@@ -17,7 +18,10 @@ export const metadata: Metadata = {
   description: "Oversikt over flippermaskiner hos Kristiania Flipperselskap",
 };
 
-export default function Machines() {
+export default async function Machines() {
+  await connection();
+  const machines = await getMachines();
+
   return (
     <Page>
       <Hero kicker="Kristiania Flipperselskap">
