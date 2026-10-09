@@ -12,6 +12,7 @@ const tournaments: {
   title: string;
   description: string;
   date: string;
+  price: number;
 }[] = [
   {
     id: "warmup-tournament",
@@ -19,6 +20,7 @@ const tournaments: {
     title: "XMAS Matchplay Open Warmup 2026",
     description: "Format TBD",
     date: "Friday, December 4th",
+    price: 250,
   },
   {
     id: "main-tournament",
@@ -26,6 +28,7 @@ const tournaments: {
     title: "XMAS Matchplay Open Main 2026",
     description: "Qualifications (group matchplay) Saturday, finals Sunday",
     date: "Saturday, December 5th – Sunday, December 6th",
+    price: 350,
   },
   {
     id: "side-tournament",
@@ -33,6 +36,7 @@ const tournaments: {
     title: "XMAS Matchplay Open Side 2026",
     description: "Format TBA",
     date: "Saturday, December 5th",
+    price: 250,
   },
 ];
 
@@ -202,7 +206,7 @@ export function RegistrationForm() {
                   <Rivet />
                   {t.title}
                   <span className="font-normal normal-case tracking-normal text-sm opacity-70">
-                    Price TBD
+                    {t.price} NOK
                   </span>
                 </div>
                 <p className="text-sm mt-1">{t.description}</p>
@@ -212,8 +216,13 @@ export function RegistrationForm() {
           ))}
         </div>
 
-        <p className="mt-4 text-xs opacity-70">
-          Prices and payment details: TBD
+        <p className="mt-4 text-sm">
+          <strong>Package deal:</strong> Warmup + Main + Side for 750 NOK (save
+          100 NOK). Leftovers is free for Main players.
+        </p>
+        <p className="mt-1 text-xs opacity-70">
+          Payment: Norwegian players pay with Vipps on arrival. International
+          players: we'll figure something out.
         </p>
       </div>
 

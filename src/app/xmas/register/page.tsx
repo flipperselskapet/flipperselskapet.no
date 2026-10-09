@@ -44,8 +44,9 @@ export default async function RegisterPage() {
                 Saturday, October 10th at 20:00
               </p>
               <p>
-                Tournaments run December 4th–6th. Prices and payment details:
-                TBD
+                Tournaments run December 4th–6th. Entry: Warmup 250 NOK, Main
+                350 NOK, Side 250 NOK, or all three for 750 NOK. Pay with Vipps
+                on arrival.
               </p>
               <p className="text-sm">
                 Spots are limited — come back on Saturday to secure yours.

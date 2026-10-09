@@ -150,11 +150,38 @@ export default async function Xmas2026() {
             <div className="grid sm:grid-cols-2 gap-4">
               <div>
                 <SubHeading>Entry fees</SubHeading>
-                <p>TBD</p>
+                <ul className="space-y-1">
+                  <li className="flex justify-between gap-4">
+                    <span>XMAS Warmup</span>
+                    <span className="font-bold">250 NOK</span>
+                  </li>
+                  <li className="flex justify-between gap-4">
+                    <span>XMAS Main</span>
+                    <span className="font-bold">350 NOK</span>
+                  </li>
+                  <li className="flex justify-between gap-4">
+                    <span>XMAS Side</span>
+                    <span className="font-bold">250 NOK</span>
+                  </li>
+                  <li className="flex justify-between gap-4">
+                    <span>XMAS Leftovers*</span>
+                    <span className="font-bold">250 NOK</span>
+                  </li>
+                </ul>
+                <p className="mt-3">
+                  <strong>Package deal</strong> (Warmup + Main + Side):{" "}
+                  <strong>750 NOK</strong> — save 100 NOK!
+                </p>
+                <p className="mt-2 text-sm">
+                  * Leftovers is free for players in the Main tournament.
+                </p>
               </div>
               <div>
                 <SubHeading>Payment details</SubHeading>
-                <p>TBD</p>
+                <p>
+                  Norwegian players: Vipps on arrival. International players:
+                  we'll figure something out.
+                </p>
               </div>
             </div>
           </div>
