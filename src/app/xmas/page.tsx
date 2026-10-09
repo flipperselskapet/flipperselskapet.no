@@ -133,7 +133,7 @@ export default async function Xmas2026() {
             ) : (
               <div>
                 <p className="font-label font-bold uppercase tracking-wide text-2xl text-saw-blood-light mb-1">
-                  Registration opens Saturday, October 10th at 12:00
+                  Registration opens Saturday, October 10th at 20:00
                 </p>
                 <p>Spots are limited — be ready when registration opens.</p>
               </div>
