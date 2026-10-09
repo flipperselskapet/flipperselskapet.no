@@ -206,7 +206,6 @@ Required environment variables (add to `.env`):
 ## Known Issues / TODOs
 
 - Rick and Morty machine has no IPDB rating yet (waiting for community ratings)
-- Entry fees for XMAS tournament TBD
 - Registration link not yet available
 - Tournament format marked as preliminary
 - Schedule marked as preliminary
