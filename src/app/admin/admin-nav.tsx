@@ -3,6 +3,8 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { LogoutButton } from "./logout-button";
+import type { AdminTheme } from "./theme";
+import { ThemeSwitcher } from "./theme-switcher";
 import { buttonStyles } from "./ui";
 
 const links = [
@@ -11,7 +13,7 @@ const links = [
   { href: "/admin/machines", label: "Machines" },
 ];
 
-export function AdminNav() {
+export function AdminNav({ theme }: { theme: AdminTheme }) {
   const pathname = usePathname();
 
   return (
@@ -39,6 +41,7 @@ export function AdminNav() {
           })}
         </nav>
         <div className="ml-auto flex items-center gap-2">
+          <ThemeSwitcher initial={theme} />
           <Link
             href="/"
             className={buttonStyles({ variant: "ghost", size: "sm" })}

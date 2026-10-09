@@ -15,13 +15,26 @@
   --destructive: oklch(0.577 0.245 27.325);
   --success: oklch(0.527 0.154 150.069);
 
+  /* Dashboard charts: one blue for single series, an ordinal ramp low→high */
+  --chart-1: #2a78d6;
+  --chart-ramp-1: #86b6ef;
+  --chart-ramp-2: #5598e7;
+  --chart-ramp-3: #2a78d6;
+  --chart-ramp-4: #1c5cab;
+  --chart-ramp-5: #104281;
+  --chart-grid: oklch(0.922 0 0);
+  --chart-empty: oklch(0.87 0 0);
+
   background: var(--background);
   color: var(--foreground);
   min-height: 100vh;
+  color-scheme: light;
 }
 
+/* Dark: follow the OS unless the theme switcher picked one (data-theme) */
 @media (prefers-color-scheme: dark) {
-  .admin-theme {
+  .admin-theme:not([data-theme="light"]) {
+    color-scheme: dark;
     --background: oklch(0.145 0 0);
     --foreground: oklch(0.985 0 0);
     --card: oklch(0.205 0 0);
@@ -36,5 +49,41 @@
     --secondary-foreground: oklch(0.985 0 0);
     --destructive: oklch(0.704 0.191 22.216);
     --success: oklch(0.723 0.219 149.579);
+
+    --chart-1: #3987e5;
+    --chart-ramp-1: #184f95;
+    --chart-ramp-2: #256abf;
+    --chart-ramp-3: #3987e5;
+    --chart-ramp-4: #6da7ec;
+    --chart-ramp-5: #b7d3f6;
+    --chart-grid: oklch(1 0 0 / 8%);
+    --chart-empty: oklch(0.4 0 0);
   }
+}
+
+.admin-theme[data-theme="dark"] {
+  color-scheme: dark;
+  --background: oklch(0.145 0 0);
+  --foreground: oklch(0.985 0 0);
+  --card: oklch(0.205 0 0);
+  --muted: oklch(0.269 0 0);
+  --muted-foreground: oklch(0.708 0 0);
+  --border: oklch(1 0 0 / 10%);
+  --input: oklch(1 0 0 / 15%);
+  --ring: oklch(0.556 0 0);
+  --primary: oklch(0.922 0 0);
+  --primary-foreground: oklch(0.205 0 0);
+  --secondary: oklch(0.269 0 0);
+  --secondary-foreground: oklch(0.985 0 0);
+  --destructive: oklch(0.704 0.191 22.216);
+  --success: oklch(0.723 0.219 149.579);
+
+  --chart-1: #3987e5;
+  --chart-ramp-1: #184f95;
+  --chart-ramp-2: #256abf;
+  --chart-ramp-3: #3987e5;
+  --chart-ramp-4: #6da7ec;
+  --chart-ramp-5: #b7d3f6;
+  --chart-grid: oklch(1 0 0 / 8%);
+  --chart-empty: oklch(0.4 0 0);
 }

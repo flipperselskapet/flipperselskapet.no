@@ -5,6 +5,7 @@ import { useRef, useState } from "react";
 import { Rivet } from "~/components/saw";
 import { env } from "~/env";
 import { submitRegistration } from "./actions";
+import { PACKAGE_PRICE, TOURNAMENT_PRICES } from "./prices";
 
 const tournaments: {
   id: string;
@@ -20,7 +21,7 @@ const tournaments: {
     title: "XMAS Matchplay Open Warmup 2026",
     description: "Format TBD",
     date: "Friday, December 4th",
-    price: 250,
+    price: TOURNAMENT_PRICES.warmupTournament,
   },
   {
     id: "main-tournament",
@@ -28,7 +29,7 @@ const tournaments: {
     title: "XMAS Matchplay Open Main 2026",
     description: "Qualifications (group matchplay) Saturday, finals Sunday",
     date: "Saturday, December 5th – Sunday, December 6th",
-    price: 350,
+    price: TOURNAMENT_PRICES.mainTournament,
   },
   {
     id: "side-tournament",
@@ -36,12 +37,9 @@ const tournaments: {
     title: "XMAS Matchplay Open Side 2026",
     description: "Format TBA",
     date: "Saturday, December 5th",
-    price: 250,
+    price: TOURNAMENT_PRICES.sideTournament,
   },
 ];
-
-// Ticking every tournament gives the package deal price.
-const PACKAGE_PRICE = 750;
 
 const fields: {
   id: string;
