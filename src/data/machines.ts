@@ -3,6 +3,7 @@ import { db } from "~/db";
 import { machines as machinesTable } from "~/db/schema";
 
 export interface Machine {
+  id: number;
   name: string;
   manufacturer: string;
   year: number;
@@ -24,6 +25,7 @@ export async function getMachines(): Promise<Machine[]> {
     .orderBy(asc(machinesTable.id));
 
   return rows.map((row) => ({
+    id: row.id,
     name: row.name,
     manufacturer: row.manufacturer,
     year: row.year,

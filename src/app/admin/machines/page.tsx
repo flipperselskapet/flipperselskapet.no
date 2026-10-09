@@ -1,9 +1,10 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 import { getMachines } from "~/data/machines";
 import { AdminLogin } from "../admin-login";
 import { checkAdminAuth } from "../login-actions";
 import {
-  Button,
+  buttonStyles,
   Card,
   CardContent,
   CardDescription,
@@ -37,14 +38,10 @@ export default async function AdminMachinesPage() {
             {machines.length} machines in the collection
           </p>
         </div>
-        <Button disabled title="Needs a machines table in the database first">
+        <Link href="/admin/machines/new" className={buttonStyles()}>
           + Add machine
-        </Button>
+        </Link>
       </div>
-
-      <p className="rounded-md border border-(color:--border) bg-(color:--muted)/50 px-4 py-3 text-sm text-(color:--muted-foreground)">
-        Read-only for now: adding and editing machines is not built yet.
-      </p>
 
       <Card>
         <CardHeader>
@@ -61,12 +58,13 @@ export default async function AdminMachinesPage() {
                 <TableHead>Manufacturer</TableHead>
                 <TableHead>Year</TableHead>
                 <TableHead>IPDB rating</TableHead>
-                <TableHead className="pr-6">IPDB</TableHead>
+                <TableHead>IPDB</TableHead>
+                <TableHead className="pr-6 text-right">Actions</TableHead>
               </TableRow>
             </TableHeader>
             <TableBody>
               {machines.map((machine) => (
-                <TableRow key={machine.ipdbId}>
+                <TableRow key={machine.id}>
                   <TableCell className="pl-6 font-medium">
                     {machine.name}
                   </TableCell>
@@ -75,7 +73,7 @@ export default async function AdminMachinesPage() {
                   <TableCell className="tabular-nums">
                     {machine.rating}
                   </TableCell>
-                  <TableCell className="pr-6">
+                  <TableCell>
                     <a
                       href={machine.ipdbUrl}
                       target="_blank"
@@ -84,6 +82,17 @@ export default async function AdminMachinesPage() {
                     >
                       #{machine.ipdbId}
                     </a>
+                  </TableCell>
+                  <TableCell className="pr-6 text-right">
+                    <Link
+                      href={`/admin/machines/${machine.id}`}
+                      className={buttonStyles({
+                        variant: "outline",
+                        size: "sm",
+                      })}
+                    >
+                      Edit
+                    </Link>
                   </TableCell>
                 </TableRow>
               ))}
