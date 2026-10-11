@@ -168,9 +168,10 @@ export async function submitRegistration(formData: FormData) {
       console.error("Unexpected error in Slack notification:", error);
     });
 
-    // Revalidate player list and xmas page if auto-verified
+    // Revalidate player list (new player or waiting list entry), and the
+    // xmas page if auto-verified
+    revalidatePath("/xmas/players");
     if (shouldAutoVerify) {
-      revalidatePath("/xmas/players");
       revalidatePath("/xmas");
     }
 
