@@ -157,7 +157,7 @@ export default async function AdminOverviewPage() {
         <div className="grid gap-4 lg:grid-cols-3">
           <ChartCard
             title="Seats per tournament"
-            description={`${xmas.seatsPerTournament} seats each. Verified players hold a seat in every tournament they signed up for.`}
+            description={`${xmas.seatsPerTournament} seats each, one per verified player (auto plus manual). Verified players hold a seat in every tournament they signed up for.`}
             className="lg:col-span-2"
           >
             <div className="space-y-4">

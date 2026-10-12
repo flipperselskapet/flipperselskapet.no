@@ -7,10 +7,6 @@ import { registrationPrice } from "../xmas/register/prices";
 
 const TIME_ZONE = "Europe/Oslo";
 
-// Seats in each tournament. Verified players hold a seat in every tournament
-// they signed up for; everyone else is waiting.
-export const SEATS_PER_TOURNAMENT = 48;
-
 const TOURNAMENTS = [
   { key: "warmupTournament", label: "Warmup" },
   { key: "mainTournament", label: "Main" },
@@ -102,15 +98,19 @@ export async function getXmasStats(now = new Date()) {
   const firstAfterOpening = rows.find(
     (r) => r.createdAt >= REGISTRATION_OPENS_AT,
   );
-  // Seats per tournament, and which waiting players could be let in right now
-  // without overfilling any of their tournaments (in sign-up order).
+  // Each tournament has room for as many players as are verified in total
+  // (auto plus manual). Verified players hold a seat in every tournament they
+  // signed up for, so a tournament some of them skipped has free seats.
+  // Also work out which waiting players could be let in right now without
+  // overfilling any of their tournaments (in sign-up order).
+  const seatsPerTournament = verified.length;
   const waiting = rows.filter((r) => !r.verifiedAt);
   const seats = TOURNAMENTS.map((t) => {
     const taken = verified.filter((r) => r[t.key]).length;
     return {
       label: t.label,
       taken,
-      free: Math.max(0, SEATS_PER_TOURNAMENT - taken),
+      free: Math.max(0, seatsPerTournament - taken),
       waiting: waiting.filter((r) => r[t.key]).length,
     };
   });
@@ -160,7 +160,7 @@ export async function getXmasStats(now = new Date()) {
       { label: "Main", count: rows.filter((r) => r.mainTournament).length },
       { label: "Side", count: rows.filter((r) => r.sideTournament).length },
     ],
-    seatsPerTournament: SEATS_PER_TOURNAMENT,
+    seatsPerTournament,
     seats,
     waiting: waiting.length,
     fitsNow,
