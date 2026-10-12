@@ -6,6 +6,16 @@ import { REGISTRATION_OPENS_AT } from "../xmas/register/opening";
 import { registrationPrice } from "../xmas/register/prices";
 
 const TIME_ZONE = "Europe/Oslo";
+
+// Seats in each tournament. Verified players hold a seat in every tournament
+// they signed up for; everyone else is waiting.
+export const SEATS_PER_TOURNAMENT = 48;
+
+const TOURNAMENTS = [
+  { key: "warmupTournament", label: "Warmup" },
+  { key: "mainTournament", label: "Main" },
+  { key: "sideTournament", label: "Side" },
+] as const;
 const DAY_MS = 24 * 60 * 60 * 1000;
 
 const dayKeyFormat = new Intl.DateTimeFormat("en-CA", {
@@ -92,6 +102,41 @@ export async function getXmasStats(now = new Date()) {
   const firstAfterOpening = rows.find(
     (r) => r.createdAt >= REGISTRATION_OPENS_AT,
   );
+  // Seats per tournament, and which waiting players could be let in right now
+  // without overfilling any of their tournaments (in sign-up order).
+  const waiting = rows.filter((r) => !r.verifiedAt);
+  const seats = TOURNAMENTS.map((t) => {
+    const taken = verified.filter((r) => r[t.key]).length;
+    return {
+      label: t.label,
+      taken,
+      free: Math.max(0, SEATS_PER_TOURNAMENT - taken),
+      waiting: waiting.filter((r) => r[t.key]).length,
+    };
+  });
+  const freeAfter = Object.fromEntries(seats.map((s) => [s.label, s.free]));
+  const tournamentsOf = (r: (typeof rows)[number]) =>
+    TOURNAMENTS.filter((t) => r[t.key]).map((t) => t.label);
+  const fitsNow: { name: string; tournaments: string[] }[] = [];
+  const blocked: typeof waiting = [];
+  for (const r of waiting) {
+    const chosen = tournamentsOf(r);
+    if (chosen.every((label) => freeAfter[label] > 0)) {
+      for (const label of chosen) freeAfter[label]--;
+      fitsNow.push({
+        name: `${r.firstName} ${r.lastName}`,
+        tournaments: chosen,
+      });
+    } else {
+      blocked.push(r);
+    }
+  }
+  // Waiting players who would get at least one tournament with per-tournament
+  // waiting lists, but are stuck today because another one is full.
+  const partlyFits = blocked.filter((r) =>
+    tournamentsOf(r).some((label) => freeAfter[label] > 0),
+  ).length;
+
   const autoVerifyFilledAt =
     rows.length >= env.AUTO_VERIFY_LIMIT
       ? rows[env.AUTO_VERIFY_LIMIT - 1].createdAt
@@ -115,6 +160,11 @@ export async function getXmasStats(now = new Date()) {
       { label: "Main", count: rows.filter((r) => r.mainTournament).length },
       { label: "Side", count: rows.filter((r) => r.sideTournament).length },
     ],
+    seatsPerTournament: SEATS_PER_TOURNAMENT,
+    seats,
+    waiting: waiting.length,
+    fitsNow,
+    partlyFits,
     allThree: rows.filter(
       (r) => r.warmupTournament && r.mainTournament && r.sideTournament,
     ).length,

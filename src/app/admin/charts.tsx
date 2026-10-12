@@ -324,6 +324,63 @@ export function BarList({
   );
 }
 
+// One bar per tournament on a shared scale: taken seats, then the waiting
+// list, with a marker at capacity. Waiting past the marker won't fit.
+export function SeatBars({
+  rows,
+  capacity,
+}: {
+  rows: { label: string; taken: number; waiting: number; free: number }[];
+  capacity: number;
+}) {
+  const max = Math.max(capacity, ...rows.map((r) => r.taken + r.waiting));
+  const pct = (value: number) => `${(value / max) * 100}%`;
+  return (
+    <div className="space-y-4">
+      {rows.map((row) => (
+        <div key={row.label} className="space-y-1.5 text-sm">
+          <div className="flex items-baseline justify-between gap-2">
+            <span className="font-medium">{row.label}</span>
+            <span className="text-xs tabular-nums text-(color:--muted-foreground)">
+              <span className="font-medium text-(color:--foreground)">
+                {row.taken}
+              </span>{" "}
+              / {capacity} taken · {row.free} free · {row.waiting} waiting
+            </span>
+          </div>
+          <div className="relative h-5">
+            <div
+              className="absolute inset-y-0 left-0 rounded-[4px] bg-(color:--chart-empty)/40"
+              style={{ width: pct(capacity) }}
+            />
+            <div className="absolute inset-0 flex gap-0.5">
+              {row.taken > 0 && (
+                <div
+                  title={`${row.label}: ${row.taken} verified player${row.taken === 1 ? "" : "s"}`}
+                  className="h-full rounded-[4px] bg-(color:--chart-1) transition-opacity hover:opacity-75"
+                  style={{ width: pct(row.taken) }}
+                />
+              )}
+              {row.waiting > 0 && (
+                <div
+                  title={`${row.label}: ${row.waiting} on the waiting list`}
+                  className="h-full rounded-[4px] bg-(color:--chart-ramp-1) transition-opacity hover:opacity-75"
+                  style={{ width: pct(row.waiting) }}
+                />
+              )}
+            </div>
+            <div
+              className="absolute -inset-y-1 w-0.5 rounded-full bg-(color:--foreground)"
+              style={{ left: `calc(${pct(capacity)} - 1px)` }}
+              title={`${capacity} seats`}
+            />
+          </div>
+        </div>
+      ))}
+    </div>
+  );
+}
+
 export function Legend({
   items,
 }: {

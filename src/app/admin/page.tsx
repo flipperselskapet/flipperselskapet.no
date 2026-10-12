@@ -8,6 +8,7 @@ import {
   ColumnChart,
   Legend,
   LineChart,
+  SeatBars,
   StatTile,
   YearDots,
 } from "./charts";
@@ -151,6 +152,60 @@ export default async function AdminOverviewPage() {
             }
             detail={`of ${nok(xmas.expectedRevenue)} expected`}
           />
+        </div>
+
+        <div className="grid gap-4 lg:grid-cols-3">
+          <ChartCard
+            title="Seats per tournament"
+            description={`${xmas.seatsPerTournament} seats each. Verified players hold a seat in every tournament they signed up for.`}
+            className="lg:col-span-2"
+          >
+            <div className="space-y-4">
+              <SeatBars rows={xmas.seats} capacity={xmas.seatsPerTournament} />
+              <Legend
+                items={[
+                  { label: "Verified", color: "var(--chart-1)" },
+                  { label: "Waiting list", color: "var(--chart-ramp-1)" },
+                  { label: "Free seat", color: "var(--chart-empty)" },
+                ]}
+              />
+            </div>
+          </ChartCard>
+          <ChartCard
+            title="Room for the waiting list"
+            description="Waiting players whose tournaments all have a free seat, in sign-up order"
+          >
+            <div className="space-y-3">
+              <p className="text-3xl font-semibold tracking-tight">
+                {xmas.fitsNow.length}
+                <span className="text-base font-normal text-(color:--muted-foreground)">
+                  {" "}
+                  of {xmas.waiting} could join now
+                </span>
+              </p>
+              {xmas.fitsNow.length > 0 && (
+                <ul className="space-y-1 text-sm">
+                  {xmas.fitsNow.map((p) => (
+                    <li
+                      key={p.name}
+                      className="flex justify-between gap-2 border-b border-(color:--border) pb-1 last:border-0"
+                    >
+                      <span className="truncate">{p.name}</span>
+                      <span className="shrink-0 text-xs text-(color:--muted-foreground)">
+                        {p.tournaments.join(" · ")}
+                      </span>
+                    </li>
+                  ))}
+                </ul>
+              )}
+              {xmas.partlyFits > 0 && (
+                <p className="text-xs text-(color:--muted-foreground)">
+                  {xmas.partlyFits} more would fit in some of their tournaments,
+                  but at least one is full.
+                </p>
+              )}
+            </div>
+          </ChartCard>
         </div>
 
         <div className="grid gap-4 lg:grid-cols-2">
