@@ -3,7 +3,6 @@ import type { Metadata } from "next";
 import { Hero, Link, Note, Page, SawBlade, Title } from "~/components/saw";
 import { db } from "~/db";
 import { registrations } from "~/db/schema";
-import { env } from "~/env";
 import { XmasFooter } from "../footer";
 
 export const metadata: Metadata = {
@@ -118,7 +117,8 @@ export default async function PlayersPage() {
 
   const players = registered.filter((r) => r.verifiedAt !== null);
   const waitingList = registered.filter((r) => r.verifiedAt === null);
-  const spots = env.AUTO_VERIFY_LIMIT;
+  // Spots follow the number of verified players, not AUTO_VERIFY_LIMIT
+  const spots = players.length;
 
   return (
     <Page>
@@ -132,7 +132,7 @@ export default async function PlayersPage() {
           }
         />
         <p className="font-type text-saw-ash text-sm md:text-base tracking-widest mt-4">
-          {spots} spots · {players.length} confirmed
+          {spots} spots
           {waitingList.length > 0 && ` · ${waitingList.length} on waiting list`}
         </p>
       </Hero>
