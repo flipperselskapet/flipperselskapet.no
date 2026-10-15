@@ -3,6 +3,7 @@ import type { Metadata } from "next";
 import { Hero, Link, Note, Page, SawBlade, Title } from "~/components/saw";
 import { db } from "~/db";
 import { registrations } from "~/db/schema";
+import { env } from "~/env";
 import { XmasFooter } from "../footer";
 
 export const metadata: Metadata = {
@@ -117,6 +118,7 @@ export default async function PlayersPage() {
 
   const players = registered.filter((r) => r.verifiedAt !== null);
   const waitingList = registered.filter((r) => r.verifiedAt === null);
+  const spots = env.AUTO_VERIFY_LIMIT;
 
   return (
     <Page>
@@ -124,19 +126,24 @@ export default async function PlayersPage() {
         <Title size="text-5xl md:text-8xl">Registered Players</Title>
         <SawBlade
           top="PLAYERS"
-          big={String(players.length)}
+          big={String(registered.length)}
           label={
-            players.length === 1 ? "Registered player" : "Registered players"
+            registered.length === 1 ? "Registered player" : "Registered players"
           }
         />
+        <p className="font-type text-saw-ash text-sm md:text-base tracking-widest mt-4">
+          {spots} spots · {players.length} confirmed
+          {waitingList.length > 0 && ` · ${waitingList.length} on waiting list`}
+        </p>
       </Hero>
 
       <main className="container mx-auto px-4 py-12 max-w-5xl">
         <div className="max-w-2xl mx-auto mb-8">
           <Note>
-            <strong>Note:</strong> Once the tournament is full, new
-            registrations go on the waiting list at the bottom of this page.
-            Players on the waiting list are moved up in order if a spot opens.
+            <strong>Note:</strong> The tournament has {spots} spots. Once they
+            are filled, new registrations go on the waiting list at the bottom
+            of this page. Players on the waiting list are moved up in order if a
+            spot opens.
           </Note>
         </div>
 
