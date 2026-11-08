@@ -16,6 +16,7 @@ import {
   TableHeader,
   TableRow,
 } from "../ui";
+import { EmailPlayers } from "./email-players";
 import { AdminRegistrationRow } from "./registration-row";
 
 export const metadata: Metadata = {
@@ -37,6 +38,18 @@ export default async function AdminPage() {
     .from(registrations)
     .where(isNull(registrations.deletedAt))
     .orderBy(registrations.createdAt);
+
+  // Verified players are the accepted ones (the rest are on the waiting
+  // list). Dedupe case-insensitively in case someone registered twice.
+  const verifiedEmails = [
+    ...new Map(
+      allRegistrations
+        .filter((r) => r.verifiedAt)
+        .map((r) => r.email.trim())
+        .filter(Boolean)
+        .map((email) => [email.toLowerCase(), email]),
+    ).values(),
+  ];
 
   const stats = [
     { label: "Total", value: allRegistrations.length },
@@ -74,6 +87,8 @@ export default async function AdminPage() {
           </Card>
         ))}
       </section>
+
+      <EmailPlayers emails={verifiedEmails} />
 
       <Card>
         <CardHeader>
